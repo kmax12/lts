@@ -1,3 +1,3 @@
 Django==1.4
 django-registration
-mysql-python
+MySQL-python==1.2.3
