@@ -1,7 +1,7 @@
 <div class="navbar clearfix">
+	<a href="/cart/" class="pull-right navbar-cart">Cart: <span class="badge badge-primary">{{cart.num_items}}</span></a>
+	<div class="pull-right divider-vertical"></div>
 	{% if user.is_authenticated %}
-		<a href="/cart/" class="pull-right navbar-cart">Cart: <span class="badge badge-primary">{{cart.num_items}}</span></a>
-		<div class="pull-right divider-vertical"></div>
 		<ul class="nav pull-right">
 	        <li id="" class="dropdown">
 	          <a href="#" id="drop3" role="button" class="dropdown-toggle btn btn-account" data-toggle="dropdown">Account <b class="caret"></b></a>
@@ -19,7 +19,7 @@
 	
 
 	{% if home_active == None %}
-	<a id="logo" href="/" class="pull-left logo">lifetime Supply</a>
+	<a id="logo" href="/account/login/" class="pull-left logo">lifetime Supply</a>
 	{% endif %}
 
 

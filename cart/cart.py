@@ -3,7 +3,7 @@
 
 import datetime
 import models
-
+from django.contrib.auth.models import User, AnonymousUser
 CART_ID = 'CART-ID'
 
 
@@ -13,24 +13,21 @@ class ItemDoesNotExist(Exception):
 
 class Cart:
     def __init__(self, request):
-        cart_id = request.session.get(CART_ID)
-        if cart_id:
-            try:
-                cart = models.Cart.objects.get(id=cart_id, owner=request.user, checked_out=False)
-            except models.Cart.DoesNotExist:
-                cart = self.new(request)
-        else:
-            cart = self.new(request)
-        self.cart = cart
+        self.associate_cart(request)
 
     def __iter__(self):
         for item in self.cart.item_set.all():
             yield item
 
-    def new(self, request):
-        cart = models.Cart(owner=request.user, creation_date=datetime.datetime.now())
+    def new(self, request):        
+        cart = models.Cart(creation_date=datetime.datetime.now())
+        if isinstance(request.user, User):
+            cart.user = request.user
+
         cart.save()
+
         request.session[CART_ID] = cart.id
+        
         return cart
 
     def add(self, product, unit_price, quantity=1):
@@ -70,6 +67,20 @@ class Cart:
             )
         except models.Item.DoesNotExist:
             raise ItemDoesNotExist
+
+    def associate_cart(self, request):
+        cart_id = request.session.get(CART_ID)
+        if cart_id:
+            try:
+                cart = models.Cart.objects.select_related().get(id=cart_id, checked_out=False)
+                if cart.owner == None and isinstance(request.user, User):
+                    cart.owner = request.user
+            except models.Cart.DoesNotExist:
+                cart = self.new(request)
+        else:
+            cart = self.new(request)
+
+        self.cart = cart
 
     def clear(self):
         for item in self.cart.item_set.all():
