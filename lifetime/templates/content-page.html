@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block styles %}
+	{% block content_styles %}
+
+	{% endblock %}
+{% endblock %}
+
+{% block body %}
+<div class="container">
+	{% include "navbar.html" %}
+	<div class="row span12 ">
+		<span id="page-content">
+			<h1 class="page-header">{% block page-header %} {% endblock %}</h1>
+			{% block content %}{% endblock %}
+		</span>	
+	</div>
+</div>
+{% endblock %}

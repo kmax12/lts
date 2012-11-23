@@ -1,0 +1,21 @@
+{% extends "content-page.html" %}
+{% load i18n %}
+
+{% block content_styles %}
+<link href="{{ STATIC_URL}}css/registration.css" rel="stylesheet">
+{% endblock %}
+
+{% block page-header %} 
+Register
+{% endblock %}
+
+
+
+{% block content %}
+<form method="post" action=".">
+	{% csrf_token %}
+  {{ form.as_p }}
+
+  <input class="btn" type="submit" value="{% trans 'Submit' %}" />
+</form>
+{% endblock %}

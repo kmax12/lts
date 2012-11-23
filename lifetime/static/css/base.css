@@ -1,0 +1,126 @@
+body {
+	padding-top: 20px;
+	padding-bottom: 40px;
+	background-image: url(http://subtlepatterns.subtlepatterns.netdna-cdn.com/patterns/creampaper.png);
+	background-position: initial initial;
+	background-repeat: initial initial;
+  font-family: 'Cabin', Helvetica, Arial, sans-serif;
+}
+
+.shadow{
+  -webkit-box-shadow: 0 0 2px rgba(0, 0, 0, 0.3),0 3px 5px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 0 2px rgba(0,0,0,0.3),0 3px 5px rgba(0,0,0,0.2);
+  -ms-box-shadow: 0 0 2px rgba(0,0,0,0.3),0 3px 5px rgba(0,0,0,0.2);
+  -o-box-shadow: 0 0 2px rgba(0,0,0,0.3),0 3px 5px rgba(0,0,0,0.2);
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.3),0 3px 5px rgba(0, 0, 0, 0.2);s
+}
+
+.btn-account{
+  padding: 6px!important;
+  margin:0px !important;
+}
+
+#logo{
+	font-size: 2.2em;
+  line-height: 30px;
+  text-decoration: none;
+}
+
+#logo:hover{
+  color:#BD362F;
+}
+
+.logo{
+  color:#BD362F;
+  font-family: 'Lobster', cursive;
+  font-weight: normal;
+  color:#BD362F;
+  text-shadow: 1px 1px 1px #3E4045, 3px 3px 5px #fff;
+}
+
+.logo:first-letter{
+  font-size:1.2em;
+}
+
+.page-nav{
+    margin-right: 60px !important;
+}
+
+.dropdown-account{
+  top: 40px;
+}
+
+.navbar-cart{
+  line-height: 38px;
+  text-decoration: none!important;
+  font-weight: bold;  
+}
+
+.btn-buy {
+  background-color: hsl(0, 0%, 22%) !important;
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#4c4c4c", endColorstr="#383838");
+  background-image: -khtml-gradient(linear, left top, left bottom, from(#4c4c4c), to(#383838));
+  background-image: -moz-linear-gradient(top, #4c4c4c, #383838);
+  background-image: -ms-linear-gradient(top, #4c4c4c, #383838);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #4c4c4c), color-stop(100%, #383838));
+  background-image: -webkit-linear-gradient(top, #4c4c4c, #383838);
+  background-image: -o-linear-gradient(top, #4c4c4c, #383838);
+  background-image: linear-gradient(#4c4c4c, #383838);
+  border-color: #383838 #383838 hsl(0, 0%, 20%);
+  color: #fff !important;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.13);
+  -webkit-font-smoothing: antialiased;
+}
+
+.body-content{
+  background-color: #EFEFEF;
+  padding:5px;
+}
+
+.bevel-border {
+border: 1px solid rgba(51, 51, 51, 0.5);
+border-top-color: rgba(71, 71, 71, 0.5);
+border-bottom-color: rgba(31, 31, 31, 0.5);
+}
+
+.cutout {
+-webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 5px 5px rgba(0, 0, 0, 0.6), inset 0 1px 5px rgba(0, 0, 0, 0.6);
+-moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 5px 5px rgba(0, 0, 0, 0.6), inset 0 1px 5px rgba(0, 0, 0, 0.6);
+box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 5px 5px rgba(0, 0, 0, 0.6), inset 0 1px 5px rgba(0, 0, 0, 0.6);
+}
+
+.background-polka-dot {
+background-color: black;
+background-image: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 16, color-stop(15%, #2F5270), color-stop(16%, transparent)), -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 16, color-stop(15%, #2F5270), color-stop(16%, transparent));
+background-image: -webkit-radial-gradient(#2F5270 15%, transparent 16%), -webkit-radial-gradient(#2F5270 15%, transparent 16%);
+background-image: -moz-radial-gradient(#2F5270 15%, transparent 16%), -moz-radial-gradient(#2F5270 15%, transparent 16%);
+background-image: -o-radial-gradient(#2F5270 15%, transparent 16%), -o-radial-gradient(#2F5270 15%, transparent 16%);
+background-image: radial-gradient(#2F5270 15%, transparent 16%), radial-gradient(#2F5270 15%, transparent 16%);
+background-size: 60px 60px;
+background-position: 0 0, 30px 30px;
+}
+.background-cicada-stripes {
+background-image: -webkit-gradient(linear, 0% 50%, 100% 50%, color-stop(50%, rgba(255, 255, 255, 0.07)), color-stop(50%, transparent)), -webkit-gradient(linear, 0% 50%, 100% 50%, color-stop(50%, rgba(255, 255, 255, 0.13)), color-stop(50%, transparent)), -webkit-gradient(linear, 0% 50%, 100% 50%, color-stop(50%, transparent), color-stop(50%, rgba(255, 255, 255, 0.17))), -webkit-gradient(linear, 0% 50%, 100% 50%, color-stop(50%, transparent), color-stop(50%, rgba(255, 255, 255, 0.19)));
+background-image: -webkit-linear-gradient(left, rgba(255, 255, 255, 0.07) 50%, transparent 50%), -webkit-linear-gradient(left, rgba(255, 255, 255, 0.13) 50%, transparent 50%), -webkit-linear-gradient(left, transparent 50%, rgba(255, 255, 255, 0.17) 50%), -webkit-linear-gradient(left, transparent 50%, rgba(255, 255, 255, 0.19) 50%);
+background-image: -moz-linear-gradient(left, rgba(255, 255, 255, 0.07) 50%, transparent 50%), -moz-linear-gradient(left, rgba(255, 255, 255, 0.13) 50%, transparent 50%), -moz-linear-gradient(left, transparent 50%, rgba(255, 255, 255, 0.17) 50%), -moz-linear-gradient(left, transparent 50%, rgba(255, 255, 255, 0.19) 50%);
+background-image: -o-linear-gradient(left, rgba(255, 255, 255, 0.07) 50%, transparent 50%), -o-linear-gradient(left, rgba(255, 255, 255, 0.13) 50%, transparent 50%), -o-linear-gradient(left, transparent 50%, rgba(255, 255, 255, 0.17) 50%), -o-linear-gradient(left, transparent 50%, rgba(255, 255, 255, 0.19) 50%);
+background-image: linear-gradient(left, rgba(255, 255, 255, 0.07) 50%, transparent 50%), linear-gradient(left, rgba(255, 255, 255, 0.13) 50%, transparent 50%), linear-gradient(left, transparent 50%, rgba(255, 255, 255, 0.17) 50%), linear-gradient(left, transparent 50%, rgba(255, 255, 255, 0.19) 50%);
+background-size: 13px, 29px, 37px, 53px;
+}
+
+.background-stripes-straight {
+background-image: -webkit-gradient(linear, 0% 50%, 100% 50%, color-stop(50%, transparent), color-stop(50%, rgba(255, 255, 255, 0.5)));
+background-image: -webkit-linear-gradient(left, transparent 50%, rgba(255, 255, 255, 0.5) 50%);
+background-image: -moz-linear-gradient(left, transparent 50%, rgba(255, 255, 255, 0.5) 50%);
+background-image: -o-linear-gradient(left, transparent 50%, rgba(255, 255, 255, 0.5) 50%);
+background-image: linear-gradient(left, transparent 50%, rgba(255, 255, 255, 0.5) 50%);
+background-size: 50px 50px;
+}
+
+.background-diagonal-stripes {
+background-image: -webkit-repeating-linear-gradient(45deg, transparent, transparent 25px, rgba(255, 255, 255, 0.5) 25px, rgba(255, 255, 255, 0.5) 50px);
+background-image: -moz-repeating-linear-gradient(45deg, transparent, transparent 25px, rgba(255, 255, 255, 0.5) 25px, rgba(255, 255, 255, 0.5) 50px);
+background-image: -o-repeating-linear-gradient(45deg, transparent, transparent 25px, rgba(255, 255, 255, 0.5) 25px, rgba(255, 255, 255, 0.5) 50px);
+background-image: repeating-linear-gradient(45deg, transparent, transparent 25px, rgba(255, 255, 255, 0.5) 25px, rgba(255, 255, 255, 0.5) 50px);
+}

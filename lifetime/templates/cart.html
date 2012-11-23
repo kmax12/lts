@@ -1,0 +1,28 @@
+{% extends 'content-page.html' %}
+{% block page-header %} 
+Checkout
+{% endblock %}
+{% block content %}
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <th>Product</th>
+        <th>Price (billed yearly)</th>
+    </tr>
+    </thead>
+    <tbody>
+        {% for item in cart %}
+        <tr>
+            <td>Lifetime Supply of {{ item.product.name }}</td>
+            <td>{{ item.total_price }}</td>
+            <td><button href="/cart/remove?id={{item.object_id}}" type="button" class="btn btn-warning btn-remove" data-loading-text="Delete">Delete</button></td>
+        </tr>
+        {% endfor %}
+        <tr>
+            <td></td>
+            <td>Total (billed yearly): $<span id="total">{{cart.total}}</span></td>
+        </tr>
+    </tbody>
+</table>
+
+{% endblock %}

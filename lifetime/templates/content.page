@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+
+{% block body %}
+<div class="container">
+	{% include "navbar.html" %}
+	<div class="row span12">
+		<h1 class="page-header">How it works</h1>
+	{% block content %}
+	{% endblock %}
+{% endblock %}
