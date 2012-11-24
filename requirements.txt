@@ -2,4 +2,5 @@ Django==1.4
 django-registration
 MySQL-python==1.2.3
 south
-stripe requests
+stripe
+requests
