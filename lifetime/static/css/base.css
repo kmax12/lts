@@ -15,6 +15,10 @@ body {
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.3),0 3px 5px rgba(0, 0, 0, 0.2);s
 }
 
+.hidden{
+  display: none;
+}
+
 .btn-account{
   padding: 6px!important;
   margin:0px !important;

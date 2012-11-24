@@ -1,6 +1,7 @@
 from django.views.generic.simple import direct_to_template
 # from utils import cart
 from cart import Cart
+from utils.SubscriptionManager import SubscriptionManager
 from lifetime.models import *
 from django.http import HttpResponse
 from django.shortcuts import redirect
@@ -20,8 +21,8 @@ def home(request):
 
 def add_to_cart(request):
     quantity = 1
-    product_id = request.GET.get('id', '0')
-    if (product_id != '0'):
+    product_id = request.GET.get('id', None)
+    if (product_id):
         product = Product.objects.get(id=product_id)
         cart = Cart(request)
         cart.add(product, product.price, quantity)
@@ -29,10 +30,10 @@ def add_to_cart(request):
     return redirect('lifetime.views.view_cart')
 
 def remove_from_cart(request):
-    product_id = request.GET.get('id', '0')
+    product_id = request.GET.get('id', None)
     response_data = {}
     response_data['success'] = False
-    if (product_id != '0'):
+    if (product_id):
         product = Product.objects.get(id=product_id)
         cart = Cart(request)
         cart.remove(product)
@@ -48,8 +49,32 @@ def view_cart(request):
     }
     return direct_to_template(request, 'cart.html', template_values)
 
-def partial_cart(request):
-    return direct_to_template(request, 'cart_content.html')
+def add_card(request):
+    token = request.GET.get('token', None)
+    success = False
+
+    if (request.user and token):
+        sm = SubscriptionManager(request)
+        success =  sm.add_card(token)
+
+    return HttpResponse(json.dumps({'success':success}), mimetype="application/json")
+
+def checkout(request):
+    cart = Cart(request)
+    total = cart.total()
+    success = False
+    if (request.user and total > 0 and request.user.profile.stripe_id != ''):
+        sm = SubscriptionManager(request)
+        success = sm.charge(cart.total())
+        if success:
+            cart.checkout()
+            for item in cart:
+                sm.add(item.get_product(), 365) #todo un hardcode sub length
+
+
+    return HttpResponse(json.dumps({'success':success}), mimetype="application/json")
+
+
 
 """
 Content only pages

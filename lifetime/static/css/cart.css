@@ -1,0 +1,23 @@
+#add-card-modal{
+	padding:5px;
+}
+
+.payment-form{
+	
+}
+
+.card-number{
+	width:184px;
+}
+
+.card-expiry-month{
+	width: 40px;
+}
+
+.card-expiry-year{
+	width: 56px;
+}
+
+.card-cvc{
+	width: 56px;
+}

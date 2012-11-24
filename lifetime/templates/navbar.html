@@ -8,18 +8,18 @@
 	          <ul class="dropdown-menu dropdown-account" role="menu" aria-labelledby="drop3">
 	            <li><a tabindex="-1" href="/account">Your Account</a></li>
 	            <li class="divider"></li>
-	            <li><a tabindex="-1" href="/account/logout">Log out</a></li>
+	            <li><a tabindex="-1" href="/accounts/logout">Log out</a></li>
 	          </ul>
 	        </li>
 	      </ul>
 	{% else %}
-		<button class="login-btn btn btn-primary pull-right" type="button">Login</button>
+		<a href="/accounts/login/" class="login-btn btn btn-primary pull-right" type="button">Login</a>
 	{% endif %}
 
 	
 
 	{% if home_active == None %}
-	<a id="logo" href="/account/login/" class="pull-left logo">lifetime Supply</a>
+	<a id="logo" href="/" class="pull-left logo">lifetime Supply</a>
 	{% endif %}
 
 

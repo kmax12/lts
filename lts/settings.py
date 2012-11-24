@@ -30,7 +30,7 @@ TIME_ZONE = 'America/Chicago'
 # http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = 'en-us'
 
-SITE_ID = 2
+SITE_ID = 1
 
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
@@ -136,6 +136,13 @@ TEMPLATE_CONTEXT_PROCESSORS = {
 }
 
 ACCOUNT_ACTIVATION_DAYS = 7 # One-week activation window; 
+
+AUTH_PROFILE_MODULE = "lifetime.UserProfile"
+
+if DEBUG:
+    STRIPE_KEY = "sk_test_zRgqAeLfEjLZbD7gnkMIZ3iB"
+else:
+    STRIPE_KEY = "pk_live_mnjoApYz5X91FsZcdyBzjSiw"
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
