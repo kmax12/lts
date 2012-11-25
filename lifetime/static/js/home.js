@@ -1,5 +1,5 @@
 $(function(){
-	$('.add-to-cart').click(handleBuy);
+	// $('.add-to-cart').click(handleBuy);
 })
 
 function handleBuy(e){

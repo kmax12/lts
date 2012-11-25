@@ -1,3 +1,13 @@
+.cart-message{
+	font-size: 2em;
+	padding-bottom: 10px;
+}
+
+.checkout-body{
+	background-color: #fff;
+	padding: 10px 5px;
+}
+
 #add-card-modal{
 	padding:5px;
 }

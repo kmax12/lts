@@ -9,73 +9,15 @@ Checkout
 {% endblock %}
 
 {% block content %}
-<table class="table table-hover">
-    <thead>
-    <tr>
-        <th>Product</th>
-        <th>Price (billed yearly)</th>
-    </tr>
-    </thead>
-    <tbody>
-        {% for item in cart %}
-        <tr>
-            <td>Lifetime Supply of {{ item.product.name }}</td>
-            <td>{{ item.total_price }}</td>
-            <td><button href="/cart/remove?id={{item.object_id}}" type="button" class="btn btn-warning btn-remove" data-loading-text="Delete">Delete</button></td>
-        </tr>
-        {% endfor %}
-        <tr>
-            <td></td>
-            <td>Total (billed yearly): $<span id="total">{{cart.total}}</span></td>
-        </tr>
-    </tbody>
-</table>
 
-{% if not user.is_authenticated %}
-Log in to checkout: <a href="/accounts/login/" class="btn btn-primary" type="button">Login</a>
-{% elif user.profile.stripe_id == '' %}
-<button class="add-card btn btn-primary" type="button">Add card</button>
+{% if cart.total > 0 %}
+
+    {% include "cart-checkout.html" %}
+
 {% else %}
-<p>
-    Use the card on file and  <a href="/cart/checkout/" class="btn-checkout btn btn-primary" type="button">Checkout</a>
-</p>
-<p>note: we'll handing shipping when you place your first order</p>
+
+    {% include "cart-empty.html" %}
+
 {% endif %}
-
-
-<div id="add-card-modal" class="modal hide fade" tabindex="-1" data-width="400">
-    <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h3>Add card</h3>
-    </div>
-    <div class="modal-body">
-        <div id="add-card-error" class="alert warning hidden">
-          <!-- <button type="button" class="close" data-dismiss="alert">×</button> -->
-          <strong>Error</strong> <span class="message"></span>
-        </div>
-         <form action="" method="POST" id="payment-form" class="payment-form">
-             <div class="form-row">
-                <label>Card Number</label>
-                <input type="text" size="20" autocomplete="off" class="card-number" {% if debug == True%} value="4242424242424242" {% endif %}/>
-              </div>
-              <div class="form-row clearfix">
-                <span class="pull-left">
-                    <label>Expiration (MM/YYYY)</label>
-                    <input type="text" size="2" class="card-expiry-month" {% if debug == True %} value="08" {% endif %}/>
-                    <span> / </span>
-                    <input type="text" size="4" class="card-expiry-year" {% if debug == True %} value="2013" {% endif %}/>
-                </span>
-                <span class="pull-right">
-                    <label>CVC</label>
-                    <input type="text" size="4" autocomplete="off" class="card-cvc" {% if debug == True %} value="348" {% endif %}/>
-                </span>
-              </div>
-              
-        </form>
-    </div>
-    <div class="modal-footer">
-    <button class="add-card-submit btn btn-buy" data-loading-text="Adding">Add Card</button>
-    </div>
-</div>
 
 {% endblock %}

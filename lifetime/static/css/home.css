@@ -60,6 +60,12 @@
 	margin: 3px 0;
 }
 
+.caption .price{
+	font-size: 1.6em;
+	font-weight: bold;
+	padding: 7px 4px;
+}
+
 .product-container{
 /*	background: #bbb;
 	padding:5px;*/

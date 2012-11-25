@@ -52,10 +52,7 @@ function stripeResponseHandler(status, res){
 	$.get('/cart/add-card/', {token:res.id}, function(a){
 		$('#add-card-modal').modal('loading');
 		$('.add-card-submit').removeAttr("disabled").button('reset');
+		window.location = "/cart/";
 		$('#add-card-modal').modal('hide');
-		console.log(a);
-	})
-
-	console.log(status)
-	console.log(res)
+	});
 }

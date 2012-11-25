@@ -72,7 +72,15 @@ def checkout(request):
                 sm.add(item.get_product(), 365) #todo un hardcode sub length
 
 
-    return HttpResponse(json.dumps({'success':success}), mimetype="application/json")
+    template_values = {
+        "total" : total
+    }
+
+
+    if success:
+        return direct_to_template(request, 'checkout-success.html', template_values)
+    else:
+        return view_cart(request)
 
 
 
