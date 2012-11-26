@@ -12,8 +12,7 @@ class Migration(SchemaMigration):
         db.create_table('lifetime_userprofile', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('user', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'], unique=True)),
-            ('url', self.gf('django.db.models.fields.URLField')(max_length=200, blank=True)),
-            ('company', self.gf('django.db.models.fields.CharField')(max_length=50, blank=True)),
+            ('stripe_id', self.gf('django.db.models.fields.TextField')(default='', max_length=50)),
         ))
         db.send_create_signal('lifetime', ['UserProfile'])
 
@@ -27,28 +26,6 @@ class Migration(SchemaMigration):
         ))
         db.send_create_signal('lifetime', ['Product'])
 
-        # Adding model 'Subscription'
-        db.create_table('lifetime_subscription', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('product', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['lifetime.Product'])),
-            ('user', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'])),
-            ('creation_date', self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime.now)),
-            ('length_days', self.gf('django.db.models.fields.IntegerField')(default=0)),
-            ('total_quantity', self.gf('django.db.models.fields.IntegerField')(default=0)),
-        ))
-        db.send_create_signal('lifetime', ['Subscription'])
-
-        # Adding model 'Order'
-        db.create_table('lifetime_order', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('subscription', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['lifetime.Subscription'])),
-            ('date_placed', self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime.now)),
-            ('date_shipped', self.gf('django.db.models.fields.DateTimeField')(null=True, blank=True)),
-            ('shipped', self.gf('django.db.models.fields.BooleanField')(default=False)),
-            ('item_quanity', self.gf('django.db.models.fields.IntegerField')(default=0)),
-        ))
-        db.send_create_signal('lifetime', ['Order'])
-
 
     def backwards(self, orm):
         # Deleting model 'UserProfile'
@@ -56,12 +33,6 @@ class Migration(SchemaMigration):
 
         # Deleting model 'Product'
         db.delete_table('lifetime_product')
-
-        # Deleting model 'Subscription'
-        db.delete_table('lifetime_subscription')
-
-        # Deleting model 'Order'
-        db.delete_table('lifetime_order')
 
 
     models = {
@@ -101,15 +72,6 @@ class Migration(SchemaMigration):
             'model': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '100'})
         },
-        'lifetime.order': {
-            'Meta': {'object_name': 'Order'},
-            'date_placed': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now'}),
-            'date_shipped': ('django.db.models.fields.DateTimeField', [], {'null': 'True', 'blank': 'True'}),
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'item_quanity': ('django.db.models.fields.IntegerField', [], {'default': '0'}),
-            'shipped': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
-            'subscription': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['lifetime.Subscription']"})
-        },
         'lifetime.product': {
             'Meta': {'object_name': 'Product'},
             'description': ('django.db.models.fields.TextField', [], {}),
@@ -118,20 +80,10 @@ class Migration(SchemaMigration):
             'name': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
             'price': ('django.db.models.fields.FloatField', [], {})
         },
-        'lifetime.subscription': {
-            'Meta': {'object_name': 'Subscription'},
-            'creation_date': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now'}),
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'length_days': ('django.db.models.fields.IntegerField', [], {'default': '0'}),
-            'product': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['lifetime.Product']"}),
-            'total_quantity': ('django.db.models.fields.IntegerField', [], {'default': '0'}),
-            'user': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['auth.User']"})
-        },
         'lifetime.userprofile': {
             'Meta': {'object_name': 'UserProfile'},
-            'company': ('django.db.models.fields.CharField', [], {'max_length': '50', 'blank': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'url': ('django.db.models.fields.URLField', [], {'max_length': '200', 'blank': 'True'}),
+            'stripe_id': ('django.db.models.fields.TextField', [], {'default': "''", 'max_length': '50'}),
             'user': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['auth.User']", 'unique': 'True'})
         }
     }

@@ -2,9 +2,12 @@ from django.views.generic.simple import direct_to_template
 # from utils import cart
 from cart import Cart
 from utils.SubscriptionManager import SubscriptionManager
+from utils.models import *
 from lifetime.models import *
 from django.http import HttpResponse
 from django.shortcuts import redirect
+from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt 
 import json
 
 
@@ -43,12 +46,14 @@ def remove_from_cart(request):
     response_data['total'] = cart.total()
 
     return HttpResponse(json.dumps(response_data), mimetype="application/json")
+
 def view_cart(request):
     template_values = {
         "title": "Checkout | Lifetime Supply",
     }
     return direct_to_template(request, 'cart.html', template_values)
 
+@login_required
 def add_card(request):
     token = request.GET.get('token', None)
     success = False
@@ -59,6 +64,7 @@ def add_card(request):
 
     return HttpResponse(json.dumps({'success':success}), mimetype="application/json")
 
+@login_required
 def checkout(request):
     cart = Cart(request)
     total = cart.total()
@@ -81,6 +87,48 @@ def checkout(request):
         return direct_to_template(request, 'checkout-success.html', template_values)
     else:
         return view_cart(request)
+
+@login_required    
+def account(request):
+    template_values = {
+        'subscriptions': Subscription.objects.select_related().filter(user = request.user),
+        'form': AddressForm(),
+        'no_address': Address.objects.filter(user = request.user).count() == 0
+    }
+
+    return direct_to_template(request, 'account.html', template_values)
+
+@login_required
+@csrf_exempt
+def add_address(request):
+    address = AddressForm(request.POST)
+    address = address.save(commit=False)
+    address.user = request.user
+    address.save()
+    success = True
+
+    return HttpResponse(json.dumps({'success':success}), mimetype="application/json")
+
+@login_required
+@csrf_exempt
+def place_order(request):
+    product_id = request.POST.get("id", None)
+    if not product_id:
+        return redirect('lifetime.views.account')
+
+
+    product = Product.objects.get(id=product_id)
+    s = Subscription.objects.get(user=request.user, product=product)
+    order = Order(s)
+
+    template_values = {
+        'product': product
+    }
+
+    return direct_to_template(request, 'order-success.html', template_values) 
+
+
+
 
 
 
@@ -112,4 +160,12 @@ def faq(request):
     }
 
     return direct_to_template(request, 'faq.html',
+                              template_values)
+
+def contact(request):
+    template_values = {
+        "title": "Contact | Lifetime Supply",
+    }
+
+    return direct_to_template(request, 'contact.html',
                               template_values)

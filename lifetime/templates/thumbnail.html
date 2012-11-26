@@ -3,7 +3,7 @@
         <img src="{{STATIC_URL}}{{p.img}}" alt="">
         <div class="caption">
 	        <h3 class="product-title">{{p.name}}</h3>
-	        <div class="price label">${{p.price}}</div>
+	        <div class="price label">${{p.price|floatformat:"0"}}</div>
 	        <div class="pull-right">
 	        	<a href="/cart/add?id={{p.pk}}" data-id={{p.pk}} class="btn btn-buy add-to-cart">Buy</a>
 	        </div>

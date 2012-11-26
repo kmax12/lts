@@ -8,57 +8,15 @@ from django.db import models
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
-        # Adding model 'Subscription'
-        db.create_table('utils_subscription', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('product', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['lifetime.Product'])),
-            ('user', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'])),
-            ('creation_date', self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime.now)),
-            ('length_days', self.gf('django.db.models.fields.IntegerField')(default=0)),
-            ('total_quantity', self.gf('django.db.models.fields.IntegerField')(default=0)),
-        ))
-        db.send_create_signal('utils', ['Subscription'])
-
-        # Adding model 'Order'
-        db.create_table('utils_order', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('subscription', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['utils.Subscription'])),
-            ('date_placed', self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime.now)),
-            ('date_shipped', self.gf('django.db.models.fields.DateTimeField')(null=True, blank=True)),
-            ('shipped', self.gf('django.db.models.fields.BooleanField')(default=False)),
-            ('item_quanity', self.gf('django.db.models.fields.IntegerField')(default=0)),
-        ))
-        db.send_create_signal('utils', ['Order'])
-
-        # Adding model 'Address'
-        db.create_table('utils_address', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('address_line1', self.gf('django.db.models.fields.CharField')(max_length=45)),
-            ('address_line2', self.gf('django.db.models.fields.CharField')(max_length=45, blank=True)),
-            ('postal_code', self.gf('django.db.models.fields.CharField')(max_length=10)),
-            ('city', self.gf('django.db.models.fields.CharField')(max_length=50)),
-            ('state_province', self.gf('django.db.models.fields.CharField')(max_length=40, blank=True)),
-            ('country', self.gf('django.db.models.fields.CharField')(default='USA', max_length=40, blank=True)),
-            ('creation_date', self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime.now)),
-        ))
-        db.send_create_signal('utils', ['Address'])
-
-        # Adding unique constraint on 'Address', fields ['address_line1', 'address_line2', 'postal_code', 'city', 'state_province', 'country']
-        db.create_unique('utils_address', ['address_line1', 'address_line2', 'postal_code', 'city', 'state_province', 'country'])
+        # Adding field 'Address.user'
+        db.add_column('utils_address', 'user',
+                      self.gf('django.db.models.fields.related.ForeignKey')(default=None, to=orm['auth.User']),
+                      keep_default=False)
 
 
     def backwards(self, orm):
-        # Removing unique constraint on 'Address', fields ['address_line1', 'address_line2', 'postal_code', 'city', 'state_province', 'country']
-        db.delete_unique('utils_address', ['address_line1', 'address_line2', 'postal_code', 'city', 'state_province', 'country'])
-
-        # Deleting model 'Subscription'
-        db.delete_table('utils_subscription')
-
-        # Deleting model 'Order'
-        db.delete_table('utils_order')
-
-        # Deleting model 'Address'
-        db.delete_table('utils_address')
+        # Deleting field 'Address.user'
+        db.delete_column('utils_address', 'user_id')
 
 
     models = {
@@ -115,7 +73,8 @@ class Migration(SchemaMigration):
             'creation_date': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'postal_code': ('django.db.models.fields.CharField', [], {'max_length': '10'}),
-            'state_province': ('django.db.models.fields.CharField', [], {'max_length': '40', 'blank': 'True'})
+            'state_province': ('django.db.models.fields.CharField', [], {'max_length': '40', 'blank': 'True'}),
+            'user': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['auth.User']"})
         },
         'utils.order': {
             'Meta': {'object_name': 'Order'},

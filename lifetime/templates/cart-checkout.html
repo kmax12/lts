@@ -24,7 +24,7 @@
 
     {% if not user.is_authenticated %}
     <p class="cart-message"> You must log in to checkout: </p>
-    <p> <a href="/accounts/login/?next=/cart/" class="btn btn-primary" type="button">Login</a> </p>
+    <p> <a href="/login/?next=/cart/" class="btn btn-primary" type="button">Login</a> </p>
     {% elif user.profile.stripe_id == '' %}
     <p class="cart-message"> Add credit card to continue:</p>
     <p><button class="add-card btn btn-primary" type="button">Add card</button></p>

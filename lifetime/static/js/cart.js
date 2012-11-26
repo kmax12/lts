@@ -8,10 +8,12 @@ function handleRemove(e){
 	$target = $(e.target);
 	$target.button('loading')
 	$.getJSON($target.attr('href'), function(res){
-		console.log(res)
 		if (res.success){
 			$target.closest('tr').remove();	
 			$('#total').text(res.total);
+			if (parseInt(res.total) == 0){
+				window.location = "/cart/";
+			}
 		}
 		
 	});

@@ -138,6 +138,10 @@ TEMPLATE_CONTEXT_PROCESSORS = {
 ACCOUNT_ACTIVATION_DAYS = 7 # One-week activation window; 
 
 AUTH_PROFILE_MODULE = "lifetime.UserProfile"
+LOGIN_URL = '/login/'
+LOGOUT_URL = '/logout/'
+LOGIN_REDIRECT_URL = '/'
+
 
 if DEBUG:
     STRIPE_KEY = "sk_test_zRgqAeLfEjLZbD7gnkMIZ3iB"
