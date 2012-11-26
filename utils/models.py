@@ -19,6 +19,13 @@ class Order (models.Model):
 	shipped = models.BooleanField(default=False)
 	item_quanity = models.IntegerField(default=0) # number of items in shipment
 
+class Card(models.Model):
+    user = models.ForeignKey(User)
+    token = models.TextField(max_length=50, default='')
+    stripe_id = models.TextField(max_length=50, default='')
+    card_type = models.TextField(max_length=50, default='')
+    last4 = models.IntegerField(default=0)
+
 class Address(models.Model):
     """Model to store addresses for accounts"""
     user = models.ForeignKey(User, blank=True, null=True)
@@ -35,8 +42,7 @@ class Address(models.Model):
 
 
     def __unicode__(self):
-        return "%s, %s %s" % (self.city, self.state_province,
-                              self.country)
+        return "%s <br> %s, %s" % (self.address_line1, self.city, self.state_province)
 
     class Meta:
         verbose_name_plural = "Addresses"

@@ -1,0 +1,32 @@
+{% extends "content-page.html" %}
+
+{% block content_styles %}
+{% endblock %}
+
+{% block page-header %} 
+Order History
+{% endblock %}
+
+{% block content %}
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <th>Product</th>
+        <th>Date</th>
+        <th>Shipped</th>
+    </tr>
+    </thead>
+    <tbody>
+        {% for o in orders %}
+        <tr>
+            <td>{{o.subscription.product.name}}</td>
+            <td>{{o.date_placed}}</td>
+            <td>{{o.shipped}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
+
+{% block content_scripts %}
+{% endblock %}

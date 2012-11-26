@@ -6,6 +6,7 @@ from django.conf.urls import patterns, include, url
 
 urlpatterns = patterns('',
     url(r'^account/$', 'lifetime.views.account', name="show account"),
+    url(r'^account/history/$', 'lifetime.views.order_history', name="show order history"),
     url(r'^account/address/add/$', 'lifetime.views.add_address', name="add_address"),
     url(r'^account/order/$', 'lifetime.views.place_order', name="place_order"),
 

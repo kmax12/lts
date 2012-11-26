@@ -1,5 +1,6 @@
 from cart import Cart
 from django.contrib.auth.models import User, AnonymousUser
+from lts.settings import ORDER_TEXT
 
 
 def cart(request):
@@ -12,5 +13,6 @@ def cart(request):
 
 
     return {
-        'cart': Cart(request)
+        'cart': Cart(request),
+        'ORDER_TEXT': ORDER_TEXT
     }

@@ -142,6 +142,7 @@ LOGIN_URL = '/login/'
 LOGOUT_URL = '/logout/'
 LOGIN_REDIRECT_URL = '/'
 
+ORDER_TEXT = "Ship it"
 
 if DEBUG:
     STRIPE_KEY = "sk_test_zRgqAeLfEjLZbD7gnkMIZ3iB"

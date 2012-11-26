@@ -12,7 +12,7 @@ function openAddAddress(){
 
 function addAddress(){
 	console.log($('#address-form').serialize())
-	$.post('/account/address/add', $('#address-form').serialize(), function(a){
+	$.post('/account/address/add/', $('#address-form').serialize(), function(a){
 		if (a.success){
 			window.location = "/account/";
 		} else {

@@ -19,6 +19,9 @@ body {
   display: none;
 }
 
+.unbold {
+  font-weight: normal!important;
+}
 .btn-account{
   padding: 6px!important;
   margin:0px !important;

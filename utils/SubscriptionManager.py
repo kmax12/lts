@@ -31,23 +31,23 @@ class SubscriptionManager:
             description= self.user.email
         )
 
-        
-
-        user_profile = self.user.profile
-        user_profile.stripe_id = customer['id']
-
-        user_profile.save()
+        card = Card(user=self.user, token=token, last4=customer["active_card"]["last4"], card_type=customer["active_card"]["type"], stripe_id=customer["id"])
+        card.save()
 
 
         return True
 
     def charge(self, total):
-        if self.user.profile.stripe_id != '':
+        if (Card.objects.filter(user=self.user).count() == 0):
+            return False
+            
+        card = Card.objects.filter(user=self.user)[:1][0]
+        if card.stripe_id != '':
             # charge the Customer instead of the card
             charge = stripe.Charge.create(
                 amount=int(total*100), # in cents
                 currency="usd",
-                customer=self.user.profile.stripe_id,
+                customer=card.stripe_id,
                 description=self.user.email
             )
 

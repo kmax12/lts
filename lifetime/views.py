@@ -8,6 +8,7 @@ from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt 
+from django.db.models import F
 import json
 
 
@@ -15,8 +16,11 @@ def home(request):
     template_values = {
         "title": "Lifetime Supply",
         "home_active" : "active",
-        "products": Product.objects.all()
+        "products": Product.objects.all(),
     }
+
+    if request.user.is_authenticated():
+        template_values["subscriptions"] = Product.objects.filter(subscription__user=request.user)
 
     return direct_to_template(request, 'home.html',
                              template_values)
@@ -50,7 +54,11 @@ def remove_from_cart(request):
 def view_cart(request):
     template_values = {
         "title": "Checkout | Lifetime Supply",
+        "no_card" : True
     }
+
+    if request.user.is_authenticated():
+        template_values["no_card"] = Card.objects.filter(user=request.user).count() == 0
     return direct_to_template(request, 'cart.html', template_values)
 
 @login_required
@@ -69,7 +77,8 @@ def checkout(request):
     cart = Cart(request)
     total = cart.total()
     success = False
-    if (request.user and total > 0 and request.user.profile.stripe_id != ''):
+
+    if (request.user and total > 0 and Card.objects.filter(user=request.user).count() != 0):
         sm = SubscriptionManager(request)
         success = sm.charge(cart.total())
         if success:
@@ -96,7 +105,19 @@ def account(request):
         'no_address': Address.objects.filter(user = request.user).count() == 0
     }
 
+    if not template_values["no_address"]:
+        template_values["address"] = Address.objects.filter(user=request.user)[:1][0]
+
     return direct_to_template(request, 'account.html', template_values)
+
+@login_required
+def order_history(request):
+    template_values = {
+        'orders': Order.objects.select_related().filter(subscription__user = request.user),
+    }
+
+    print Order.objects.select_related().filter(subscription__user = request.user)
+    return direct_to_template(request, 'order_history.html', template_values)    
 
 @login_required
 @csrf_exempt
@@ -119,7 +140,9 @@ def place_order(request):
 
     product = Product.objects.get(id=product_id)
     s = Subscription.objects.get(user=request.user, product=product)
-    order = Order(s)
+    
+    order = Order(subscription=s)
+    order.save()
 
     template_values = {
         'product': product

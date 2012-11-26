@@ -1,6 +1,7 @@
 {% extends "content-page.html" %}
 
 {% block content_styles %}
+<link href="{{ STATIC_URL}}css/account.css" rel="stylesheet">
 {% endblock %}
 
 {% block page-header %} 
@@ -33,11 +34,16 @@ Your account
         {% for s in subscriptions %}
         <tr>
             <td>Lifetime Supply of {{ s.product.name }}</td>
-            <td><button data-id="{{s.product.id}}" data-name="{{s.product.name}}" type="button" class="btn btn-buy btn-order">Order</button></td>
+            <td><button data-id="{{s.product.id}}" data-name="{{s.product.name}}" type="button" class="btn btn-info btn-order">{{ORDER_TEXT}}</button></td>
         </tr>
         {% endfor %}
     </tbody>
 </table>
+
+<div>
+    View your <a href="/account/history/">order history</a>
+</div>
+
 <div id="add-address-modal" class="modal hide fade" tabindex="-1" data-width="400">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -59,17 +65,24 @@ Your account
         <h3>Place order</h3>
     </div>
     <div class="modal-body">
-    	<p>Confirm shipment of <span id="order-item"></span></p>
+    	<p>Confirm shipment of <span id="order-item"></span> to:</p>
+        <p>
+            {{address.address_line1}}
+            <br>
+            {% if address.address_line2 %}
+                {{address.address_line2}}
+                <br>
+            {% endif %}
+            {{address.city}}, {{address.state_province}} 
+        </p>
     </div>
     <div class="modal-footer">
+        <form id="order-form" class="pull-right" action="/account/order/" method="post">
+            <input id="item-id" name="id" type="hidden" value=""/>
+            <button type="submit" class="place-order btn btn-buy">{{ORDER_TEXT}}</submit>
+        </form>
 
-   	<button class="pull-right" type="button" data-dismiss="modal" class="btn">Cancel</button>
-
-    <form id="order-form" class="pull-right" action="/account/order/" method="post">
-        <input id="item-id" name="id" type="hidden" value=""/>
-        <button type="submit" class="place-order btn btn-buy">Place Order</submit>
-    </form>
-
+   	    <button class="pull-right" type="button" data-dismiss="modal" class="btn">Cancel</button>
     </div>
 </div>
 

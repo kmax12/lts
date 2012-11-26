@@ -1,10 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import User
+# from utils.models import Card
 from datetime import datetime
 
 class UserProfile(models.Model):
-    user = models.ForeignKey(User, unique=True) 
-    stripe_id = models.TextField(max_length=50, default='')
+    user = models.ForeignKey(User, unique=True)
+    # prefered_card = models.ForeignKey(Card, blank=True, null=True, on_delete=models.SET_NULL)
+
 
 User.profile = property(lambda u: UserProfile.objects.get_or_create(user=u)[0])
 
