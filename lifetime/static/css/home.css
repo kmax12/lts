@@ -74,3 +74,8 @@
 .product{
 	margin:2px;
 }
+
+.home-message{
+	font-size: 2em;
+	padding: 5px!important;
+}

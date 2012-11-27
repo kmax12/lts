@@ -38,24 +38,24 @@
             </div>
         </div>
     </div>
-        <div class="container">
+    <div class="container">
+
         <div class="row">
             <div class="span12">
-            <div class="product-container">
-                <ul class="thumbnails">
-                    {% for product in products %}
-                        {% include "thumbnail.html" with p=product li_class="span3 cutout" %}
-                    {% endfor %}
-                </ul>
+                <div class="product-container">
+                    <ul class="thumbnails">
+                        {% for product in products %}
+                            {% include "thumbnail.html" with p=product li_class="span3 cutout" %}
+                        {% endfor %}
+                    </ul>
+                </div>
             </div>
         </div>
-
         <div class="row">
-            <div class="footer span4">
-                <p> Want something you don't see? <a href="/contact/" >Let us know</a></p>
+            <div class="span12">
+                <p class="alert alert-info home-message"> Want something you don't see? <a href="/contact/" class="" >Let us know</a></p>
             </div>
         </div>
-
     </div> <!-- /container -->
 {% endblock %}
 

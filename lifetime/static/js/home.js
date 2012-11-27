@@ -1,4 +1,5 @@
 $(function(){
+	$('#marketing').carousel({interval: 4000}).carousel('cycle');
 	// $('.add-to-cart').click(handleBuy);
 })
 
