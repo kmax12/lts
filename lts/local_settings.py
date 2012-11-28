@@ -1,4 +1,6 @@
-# print "using local settings"
+DEBUG = True
+TEMPLATE_DEBUG = DEBUG
+print "using local settings"
 
 # DATABASES = {
 #     'default': {
