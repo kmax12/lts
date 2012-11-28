@@ -1,13 +1,6 @@
-{% extends "content-page.html" %}
+{% extends "account-base.html" %}
 
-{% block content_styles %}
-{% endblock %}
-
-{% block page-header %} 
-Order History
-{% endblock %}
-
-{% block content %}
+{% block account-content %}
 <table class="table table-hover">
     <thead>
     <tr>
@@ -26,7 +19,4 @@ Order History
         {% endfor %}
     </tbody>
 </table>
-{% endblock %}
-
-{% block content_scripts %}
 {% endblock %}
