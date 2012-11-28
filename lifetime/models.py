@@ -5,7 +5,7 @@ from datetime import datetime
 
 class UserProfile(models.Model):
     user = models.ForeignKey(User, unique=True)
-    # prefered_card = models.ForeignKey(Card, blank=True, null=True, on_delete=models.SET_NULL)
+    prefered_card = models.CharField(default="", max_length=100)
 
 
 User.profile = property(lambda u: UserProfile.objects.get_or_create(user=u)[0])

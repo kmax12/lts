@@ -13,31 +13,46 @@
             <td><button href="/cart/remove?id={{item.object_id}}" type="button" class="btn btn-warning btn-remove" data-loading-text="Remove">Remove</button></td>
         </tr>
         {% endfor %}
-        <tr>
-            <td></td>
-            <td>Total (billed yearly): $<span id="total">{{cart.total}}</span></td>
-        </tr>
     </tbody>
 </table>
 
-<div class="checkout-body span12">
+<table class='pull-left span4'>
+    <tr class="info">
+        <td>Summary</td>
+    </tr>
+    <tr>
+        <td>Total (billed yearly): $<span id="total">{{cart.total}}</span></td>
+    </tr>
+</table>
 
-    {% if not user.is_authenticated %}
-    <p class="cart-message"> You must log in to checkout: </p>
-    <p> <a href="/login/?next=/cart/" class="btn btn-primary" type="button">Login</a> </p>
-    {% elif no_card %}
-    <p class="cart-message"> Add credit card to continue:</p>
-    <p><button class="add-card btn btn-primary" type="button">Add card</button></p>
-    {% else %}
-    <p>
-        <a href="/cart/checkout/" class="btn-checkout btn-buy btn btn-primary" type="button">Checkout</a> with card on file or <a class="add-card" type="button">Use a different card</a>
-    </p>
-    <p>note: we'll ask for shipping info when you place your first order</p>
-    {% endif %}
+<div class="span12">
+    <div class="checkout-body">
+        {% if not user.is_authenticated %}
+        <p class="cart-message"> You must log in to checkout: </p>
+        <p> <a href="/login/?next=/cart/" class="btn btn-primary" type="button">Login</a> </p>
+        {% elif no_card %}
+        <p class="cart-message"> Add credit card to continue:</p>
+        <p><button class="add-card btn btn-primary" type="button">Add card</button></p>
+        {% else %}
+        <form action="/cart/checkout/" method="post">
+            {% csrf_token %}
 
+            <select id="card-select" name="card_id">
+                {% for card in cards %}
+                    <option value="{{card.id}}" {% if card.id == user.profile.prefered_card %}selected="selected"{% endif %}>{{card.card_type}} - {{card.last4}}</option>
+                {% endfor %}
+            </select>  or <a class="add-card" type="button">Add another card</a>
+            <div>
+                <button type="submit" class="btn-checkout btn-large btn-buy btn btn-primary"> Checkout </button>
+            </div>
+        </form>
+
+        <div>note: we'll ask for shipping info when you place your first order</div>
+        {% endif %}
+    </div>
 </div>
 
-
+ 
 <div id="add-card-modal" class="modal hide fade" tabindex="-1" data-width="400">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>

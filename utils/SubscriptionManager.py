@@ -30,18 +30,19 @@ class SubscriptionManager:
             card=token,
             description= self.user.email
         )
-
+        print customer
         card = Card(user=self.user, token=token, last4=customer["active_card"]["last4"], card_type=customer["active_card"]["type"], stripe_id=customer["id"])
         card.save()
 
 
         return True
 
-    def charge(self, total):
-        if (Card.objects.filter(user=self.user).count() == 0):
+    def charge(self, total, card_id):
+        card = Card.objects.filter(user=self.user, id=card_id) #must filter by user to ensure user own card
+        if (card.count() == 0):
             return False
             
-        card = Card.objects.filter(user=self.user)[:1][0]
+        card = card[0]
         if card.stripe_id != '':
             # charge the Customer instead of the card
             charge = stripe.Charge.create(
@@ -51,6 +52,9 @@ class SubscriptionManager:
                 description=self.user.email
             )
 
+            profile = self.user.profile
+            profile.prefered_card = card_id
+            profile.save()
 
             return True
 

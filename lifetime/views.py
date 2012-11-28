@@ -59,6 +59,8 @@ def view_cart(request):
 
     if request.user.is_authenticated():
         template_values["no_card"] = Card.objects.filter(user=request.user).count() == 0
+        template_values["cards"] = Card.objects.filter(user=request.user)
+        
     return direct_to_template(request, 'cart.html', template_values)
 
 @login_required
@@ -76,11 +78,12 @@ def add_card(request):
 def checkout(request):
     cart = Cart(request)
     total = cart.total()
+    card_id = request.POST.get("card_id", None)
     success = False
 
-    if (request.user and total > 0 and Card.objects.filter(user=request.user).count() != 0):
+    if (request.user and card_id and total > 0 and Card.objects.filter(user=request.user).count() != 0):
         sm = SubscriptionManager(request)
-        success = sm.charge(cart.total())
+        success = sm.charge(cart.total(), card_id)
         if success:
             cart.checkout()
             for item in cart:
