@@ -1,5 +1,5 @@
 $(function(){
-	$('.open-add-address').click(openAddAddress);
+	// $('.open-add-address').click(openAddAddress);
 	$('.add-address').click(addAddress);
 	$('.btn-order').click(handleOrder);
 })

@@ -1,17 +1,42 @@
 {% extends "account-base.html" %}
 
+{% block page-header %} Your Products {% endblock %}
+
 {% block account-content %}
+<h3 class="account-header">Make an order</h3>
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <td>Product</td>
+        <td>Last order</td>
+        <td></td>
+    </tr>
+    </thead>
+    <tbody>
+        {% for s in user.profile.get_subscriptions %}
+        <tr>
+            <td>Lifetime Supply of {{ s.product.name }}</td>
+            <td>{{ s.last_order }}</td>
+            <td><button data-id="{{s.product.id}}" data-name="{{s.product.name}}" type="button" class="btn btn-info btn-order">{{ORDER_TEXT}}</button></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<h3 class="account-header">Past orders</h3>
 <table class="table table-hover">
     <thead>
     <tr>
         <th>Product</th>
+        <th>Date</th>
+        <th>Shipped</th>
     </tr>
     </thead>
     <tbody>
-        {% for s in subscriptions %}
+        {% for o in user.profile.get_orders %}
         <tr>
-            <td>Lifetime Supply of {{ s.product.name }}</td>
-            <td><button data-id="{{s.product.id}}" data-name="{{s.product.name}}" type="button" class="btn btn-info btn-order">{{ORDER_TEXT}}</button></td>
+            <td>{{o.subscription.product.name}}</td>
+            <td>{{o.date_placed}}</td>
+            <td>{{o.shipped}}</td>
         </tr>
         {% endfor %}
     </tbody>

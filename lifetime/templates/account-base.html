@@ -1,44 +1,49 @@
-{% extends "content-page.html" %}
+{% extends "base.html" %}
 
-{% block content_styles %}
+{% block styles %}
 <link href="{{ STATIC_URL}}css/account.css" rel="stylesheet">
 {% endblock %}
 
-{% block page-header %} 
-Your account
-{% endblock %}
+{% block body %}
+<div class="container">
+    {% include "navbar.html" %}
+    <!-- <div class="row">
+        <div class="span4 offset3">
+            <h3 class="account-header">{% block page-header %} {% endblock %}</h3>
+        </div>
+    </div> -->
+    <div class="row">
+        <div class="span3">
+          <div class="well account-nav sidebar-nav">
+            <ul class="nav nav-list">
+              <li class="nav-header">Your account</li>
+              <li class="{{orders_active}}"><a href="/account/">Orders</a></li>
+              <li class="{{card_active}}"><a href="/account/card/">Manage Credit Cards</a></li>
+              <li class="{{address_active}}"><a href="/account/address/">Edit Address</a></li>
+              <li class="{{password_active}}"><a href="/password/change/">Change Password</a></li>
+            </ul>
+          </div><!--/.well -->
+        </div>
+        <div class="span9">
+            {% if not user.address.edited and not address_active %}
+                <script>
+                noAddress = true; //let js know there isn't an address on file
+                </script>
 
-{% block content %}
-<div class="navbar navbar-inverse">
-  <div class="navbar-inner">
-    <ul class="nav">
-      <li class="active"><a href="/account/">Ship it</a></li>
-      <li class="divider-vertical"></li>
-      <li class=""><a href="/account/history/">Past Orders</a></li>
-      <li class="divider-vertical"></li>
-      <li class=""><a href="/account/settings">Settings</a></li>
-      <li class="divider-vertical"></li>
-    </ul>
-  </div>
-</div>
-
-{% if no_address %}
-	<script>
-	noAddress = true; //let js know there isn't an address on file
-	</script>
-
-	<div class="alert">
-	  	We don't know where to send your stuff. <a class="open-add-address bt-buy">Add your address</a> now.
-	</div>
-{% else %}
-    <script>
-    noAddress = false; //let js know there isn't an address on file
-    </script>
-{% endif %}
-<div>
-{% block account-content %}
-{% endblock %}
-
+                <div class="alert">
+                    We don't know where to send your stuff. <a href="/account/address/" class="open-add-address bt-buy">Add your address</a> now.
+                </div>
+            {% else %}
+                <script>
+                noAddress = false; //let js know there isn't an address on file
+                </script>
+            {% endif %}
+            <div>
+                {% block account-content %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
 </div>
 
 <!-- <div class="alert alert-info">
@@ -68,19 +73,21 @@ Your account
     <div class="modal-body">
     	<p>Confirm shipment of <span id="order-item"></span> to:</p>
         <p>
-            {{address.address_line1}}
-            <br>
-            {% if address.address_line2 %}
-                {{address.address_line2}}
+            {% with address=user.profile.get_address %}
+                {{address.address_line1}}
                 <br>
-            {% endif %}
-            {{address.city}}, {{address.state_province}} 
+                {% if address.address_line2 %}
+                    {{address.address_line2}}
+                    <br>
+                {% endif %}
+                {{address.city}}, {{address.state_province}} 
+            {% endwith %}
         </p>
     </div>
     <div class="modal-footer">
         <form id="order-form" class="pull-right" action="/account/order/" method="post">
             <input id="item-id" name="id" type="hidden" value=""/>
-            <input type="submit" class="place-order btn btn-buy">{{ORDER_TEXT}}</input>
+            <button type="submit" class="place-order btn btn-buy">{{ORDER_TEXT}}</button>
         </form>
 
    	    <button class="pull-right" type="button" data-dismiss="modal" class="btn">Cancel</button>
@@ -89,6 +96,6 @@ Your account
 
 {% endblock %}
 
-{% block content_scripts %}
+{% block scripts %}
 	<script src="{{ STATIC_URL}}js/account.js"></script>
 {% endblock %}

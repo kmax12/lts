@@ -103,13 +103,9 @@ def checkout(request):
 @login_required    
 def account(request):
     template_values = {
-        'subscriptions': Subscription.objects.select_related().filter(user = request.user),
         'form': AddressForm(),
-        'no_address': Address.objects.filter(user = request.user).count() == 0
+        'orders_active': "active"
     }
-
-    if not template_values["no_address"]:
-        template_values["address"] = Address.objects.filter(user=request.user)[:1][0]
 
     return direct_to_template(request, 'account.html', template_values)
 
@@ -121,6 +117,30 @@ def order_history(request):
 
     print Order.objects.select_related().filter(subscription__user = request.user)
     return direct_to_template(request, 'order_history.html', template_values)    
+
+@login_required
+@csrf_exempt
+def address(request):
+    saved = False
+
+    if request.POST:
+        saved = True
+
+        form = AddressForm(request.POST, instance=request.user.address)
+        a = form.save(commit=False)
+        a.edited = True
+
+        a.save()
+
+        print a.edited
+        
+    template_values = {
+        'form': AddressForm(instance=request.user.address),
+        'address_active': "active",
+        'saved': saved
+    }
+
+    return direct_to_template(request, 'edit_address.html', template_values)
 
 @login_required
 @csrf_exempt

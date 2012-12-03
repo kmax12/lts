@@ -1,10 +1,13 @@
 body {
-	padding-top: 20px;
-	padding-bottom: 40px;
+  padding: 10px 0px 0px;
 	background-image: url(http://subtlepatterns.subtlepatterns.netdna-cdn.com/patterns/creampaper.png);
 	background-position: initial initial;
 	background-repeat: initial initial;
   font-family: 'Cabin', Helvetica, Arial, sans-serif;
+}
+
+#footer{
+  padding:20px 0px;
 }
 
 .shadow{

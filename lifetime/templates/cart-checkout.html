@@ -1,54 +1,57 @@
-<table class="table table-hover">
-    <thead>
-    <tr>
-        <th>Product</th>
-        <th>Price (billed yearly)</th>
-    </tr>
-    </thead>
-    <tbody>
-        {% for item in cart %}
-        <tr>
-            <td>Lifetime Supply of {{ item.product.name }}</td>
-            <td>{{ item.total_price }}</td>
-            <td><button href="/cart/remove?id={{item.object_id}}" type="button" class="btn btn-warning btn-remove" data-loading-text="Remove">Remove</button></td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
-
-<table class='pull-left span4'>
-    <tr class="info">
-        <td>Summary</td>
-    </tr>
-    <tr>
-        <td>Total (billed yearly): $<span id="total">{{cart.total}}</span></td>
-    </tr>
-</table>
-
-<div class="span12">
-    <div class="checkout-body">
-        {% if not user.is_authenticated %}
-        <p class="cart-message"> You must log in to checkout: </p>
-        <p> <a href="/login/?next=/cart/" class="btn btn-primary" type="button">Login</a> </p>
-        {% elif no_card %}
-        <p class="cart-message"> Add credit card to continue:</p>
-        <p><button class="add-card btn btn-primary" type="button">Add card</button></p>
-        {% else %}
-        <form action="/cart/checkout/" method="post">
-            {% csrf_token %}
-
-            <select id="card-select" name="card_id">
-                {% for card in cards %}
-                    <option value="{{card.id}}" {% if card.id == user.profile.prefered_card %}selected="selected"{% endif %}>{{card.card_type}} - {{card.last4}}</option>
+<div class="row">
+    <div class="span12">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>Product</th>
+                <th>Price (billed yearly)</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for item in cart %}
+                <tr>
+                    <td>Lifetime Supply of {{ item.product.name }}</td>
+                    <td>{{ item.total_price }}</td>
+                    <td><button href="/cart/remove?id={{item.object_id}}" type="button" class="btn btn-warning btn-remove" data-loading-text="Remove">Remove</button></td>
+                </tr>
                 {% endfor %}
-            </select>  or <a class="add-card" type="button">Add another card</a>
-            <div>
-                <button type="submit" class="btn-checkout btn-large btn-buy btn btn-primary"> Checkout </button>
-            </div>
-        </form>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="row">
+    <div id="cart-total-container" class="span2 well">
+        <p>Total</p>
+        <p>$<span id="total">{{cart.total}}</span>/year</p>
+    </div>
+</div>
 
-        <div>note: we'll ask for shipping info when you place your first order</div>
-        {% endif %}
+<div class="row">
+    <div class="span12">
+        <div class="checkout-body">
+            {% if not user.is_authenticated %}
+            <p class="cart-message"> You must log in to checkout: </p>
+            <p> <a href="/login/?next=/cart/" class="btn btn-primary" type="button">Login</a> or <a href="/register/">register</a> </p>
+            {% elif no_card %}
+            <p class="cart-message"> Add credit card to continue:</p>
+            <p><button class="add-card btn btn-primary" type="button">Add card</button></p>
+            {% else %}
+            <form action="/cart/checkout/" method="post">
+                {% csrf_token %}
+
+                <select id="card-select" name="card_id">
+                    {% for card in cards %}
+                        <option value="{{card.id}}" {% if card.id == user.profile.prefered_card %}selected="selected"{% endif %}>{{card.card_type}} - {{card.last4}}</option>
+                    {% endfor %}
+                </select>  or <a class="add-card" type="button">Add another card</a>
+                <div>
+                    <button type="submit" class="btn-checkout btn-large btn-buy btn btn-primary"> Checkout </button>
+                </div>
+            </form>
+
+            <div>note: we'll ask for shipping info when you place your first order</div>
+            {% endif %}
+        </div>
     </div>
 </div>
 

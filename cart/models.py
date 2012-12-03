@@ -10,6 +10,8 @@ from django.contrib.auth.models import User
 
 class Cart(models.Model):
     owner = models.ForeignKey(User, related_name='cart', blank=True, null=True)
+    gift = models.BooleanField(verbose_name=_('cart is gift'), \
+                                      default=False)
     creation_date = models.DateTimeField(verbose_name=_('creation date'))
     checked_out = models.BooleanField(verbose_name=_('checked out'), \
                                       default=False)

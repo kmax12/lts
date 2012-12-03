@@ -141,6 +141,9 @@ AUTH_PROFILE_MODULE = "lifetime.UserProfile"
 LOGIN_URL = '/login/'
 LOGOUT_URL = '/logout/'
 LOGIN_REDIRECT_URL = '/'
+ABSOLUTE_URL_OVERRIDES = {
+    'auth.user': lambda o: "/",
+}
 
 ORDER_TEXT = "Ship it"
 

@@ -5,17 +5,13 @@
 <link href="{{ STATIC_URL}}css/registration.css" rel="stylesheet">
 {% endblock %}
 
-{% block page-header %} 
-Register
-{% endblock %}
-
-
 
 {% block content %}
-<form method="post" action=".">
+<form method="post" action="." class="form-reg">
+	<h2 class="form-reg-heading">Register</h2>
 	{% csrf_token %}
   {{ form.as_p }}
 
-  <input class="btn" type="submit" value="{% trans 'Submit' %}" />
+  <input class="btn btn-reg" type="submit" value="{% trans 'Submit' %}" />
 </form>
 {% endblock %}

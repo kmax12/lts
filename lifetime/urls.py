@@ -7,8 +7,10 @@ from django.conf.urls import patterns, include, url
 urlpatterns = patterns('',
     url(r'^account/$', 'lifetime.views.account', name="show account"),
     url(r'^account/history/$', 'lifetime.views.order_history', name="show order history"),
+    url(r'^account/address/$', 'lifetime.views.address', name="address"),
     url(r'^account/address/add/$', 'lifetime.views.add_address', name="add_address"),
     url(r'^account/order/$', 'lifetime.views.place_order', name="place_order"),
+    url(r'^account/card/$', 'lifetime.views.place_order', name="place_order"),
 
     url(r'^cart/add/$', 'lifetime.views.add_to_cart', name="add to cart"),
     url(r'^cart/remove/$', 'lifetime.views.remove_from_cart', name="remove from cart"),
