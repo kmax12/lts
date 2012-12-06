@@ -21,3 +21,11 @@ Checkout
 {% endif %}
 
 {% endblock %}
+
+{% block content_scripts %}
+	<script src="{{ STATIC_URL}}js/cart.js"></script>
+{% endblock %}
+
+{% block c_includes %}
+	{% include "partial/add-card.html" %}    
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "account-base.html" %}
+
+{% block account-content %}
+<h3 class="account-header">Your Cards</h3>
+<div class="span12">
+	<a class="btn btn-buy add-card" type="button">Add another card</a>
+</div>
+
+<div class="card-container span4">
+	{% for card in user.profile.get_cards %}
+		<div class="card well">
+			<div>Last four digits: {{card.last4}}</div>
+			<div>Type: {{card.card_type}}</div>
+		</div>
+	{% endfor %}
+</div>
+{% endblock %}
+
+
+{% block c_includes %}
+	{% include "partial/add-card.html" %}    
+{% endblock %}

@@ -20,6 +20,20 @@
     </div>
 </div>
 <div class="row">
+    <div class="span12">
+        <div class="alert">
+            <p class="cart-message">Is this purchase a gift?</p>
+            <div class="btn-group" data-toggle="buttons-radio">
+              <a  type="button" href="/cart?gift=1" class="btn large {% if cart.is_gift %} active {% endif %}">Yes</a>
+              <a type="button" href="/cart?gift=0" class="btn large {% if not cart.is_gift %} active {% endif %}">No</a>
+            </div>
+            {% if cart.is_gift %}
+                <p>Note: We'll send you a certificate to present</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+<div class="row">
     <div id="cart-total-container" class="span2 well">
         <p>Total</p>
         <p>$<span id="total">{{cart.total}}</span>/year</p>
@@ -32,7 +46,7 @@
             {% if not user.is_authenticated %}
             <p class="cart-message"> You must log in to checkout: </p>
             <p> <a href="/login/?next=/cart/" class="btn btn-primary" type="button">Login</a> or <a href="/register/">register</a> </p>
-            {% elif no_card %}
+            {% elif not user.profile.get_cards %}
             <p class="cart-message"> Add credit card to continue:</p>
             <p><button class="add-card btn btn-primary" type="button">Add card</button></p>
             {% else %}
@@ -40,9 +54,11 @@
                 {% csrf_token %}
 
                 <select id="card-select" name="card_id">
-                    {% for card in cards %}
-                        <option value="{{card.id}}" {% if card.id == user.profile.prefered_card %}selected="selected"{% endif %}>{{card.card_type}} - {{card.last4}}</option>
-                    {% endfor %}
+                    {% with cards=user.profile.get_cards %}
+                        {% for card in cards %}
+                            <option value="{{card.id}}" {% if card.id == user.profile.prefered_card %}selected="selected"{% endif %}>{{card.card_type}} - {{card.last4}}</option>
+                        {% endfor %}
+                    {% endwith %}
                 </select>  or <a class="add-card" type="button">Add another card</a>
                 <div>
                     <button type="submit" class="btn-checkout btn-large btn-buy btn btn-primary"> Checkout </button>
@@ -52,41 +68,5 @@
             <div>note: we'll ask for shipping info when you place your first order</div>
             {% endif %}
         </div>
-    </div>
-</div>
-
- 
-<div id="add-card-modal" class="modal hide fade" tabindex="-1" data-width="400">
-    <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h3>Add card</h3>
-    </div>
-    <div class="modal-body">
-        <div id="add-card-error" class="alert warning hidden">
-          <!-- <button type="button" class="close" data-dismiss="alert">×</button> -->
-          <strong>Error</strong> <span class="message"></span>
-        </div>
-         <form action="" method="POST" id="payment-form" class="payment-form">
-             <div class="form-row">
-                <label>Card Number</label>
-                <input type="text" size="20" autocomplete="off" class="card-number" {% if debug == True%} value="4242424242424242" {% endif %}/>
-              </div>
-              <div class="form-row clearfix">
-                <span class="pull-left">
-                    <label>Expiration (MM/YYYY)</label>
-                    <input type="text" size="2" class="card-expiry-month" {% if debug == True %} value="08" {% endif %}/>
-                    <span> / </span>
-                    <input type="text" size="4" class="card-expiry-year" {% if debug == True %} value="2013" {% endif %}/>
-                </span>
-                <span class="pull-right">
-                    <label>CVC</label>
-                    <input type="text" size="4" autocomplete="off" class="card-cvc" {% if debug == True %} value="348" {% endif %}/>
-                </span>
-              </div>
-              
-        </form>
-    </div>
-    <div class="modal-footer">
-    <button class="add-card-submit btn btn-buy" data-loading-text="Adding">Add Card</button>
     </div>
 </div>

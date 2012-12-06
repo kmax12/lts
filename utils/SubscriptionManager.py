@@ -8,10 +8,15 @@ class SubscriptionManager:
     def __init__(self, request):
         self.user = request.user
 
-    def add(self, product, length):
+    def add(self, product, length, gift=False):
         created = False
         if (self.user):
-            sub, created = Subscription.objects.get_or_create(user = self.user, product=product, length_days=length)
+            print gift
+            if gift:
+                sub, created = GiftModel.objects.get_or_create(user = self.user, product=product, length_days=length)
+            else:
+                sub, created = Subscription.objects.get_or_create(user = self.user, product=product, length_days=length)
+                
         return created
     def get_subscriptions(self):
         return Subscription.object.filter(user = self.user)

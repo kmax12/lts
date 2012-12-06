@@ -152,6 +152,12 @@ if DEBUG:
 else:
     STRIPE_KEY = "pk_live_mnjoApYz5X91FsZcdyBzjSiw"
 
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST_USER = 'lifetime'
+EMAIL_HOST_PASSWORD = 'lifetime12'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
 # the site admins on every HTTP 500 error when DEBUG=False.

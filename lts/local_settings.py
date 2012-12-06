@@ -1,6 +1,7 @@
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 STRIPE_KEY = "sk_test_zRgqAeLfEjLZbD7gnkMIZ3iB"
+TEMPLATE_STRING_IF_INVALID = "template error"
 print "using local settings"
 
 # DATABASES = {

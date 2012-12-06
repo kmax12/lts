@@ -1,7 +1,6 @@
 $(function(){
 	// $('.open-add-address').click(openAddAddress);
 	$('.add-address').click(addAddress);
-	$('.btn-order').click(handleOrder);
 })
 
 
@@ -20,20 +19,3 @@ function addAddress(){
 		}
 	})
 }
-
-function handleOrder(e){
-	if (noAddress){
-		openAddAddress();
-		return;
-	}
-
-	var $modal = $('#order-modal');
-	var $target = $(e.target);
-
-	$modal.find('#order-item').text($target.data('name'));
-	$modal.find('#item-id').val($target.data('id'));
-	console.log($('#order-form').serialize())
-
-	$modal.modal();
-}
-

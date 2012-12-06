@@ -79,7 +79,6 @@
 
 
 	<script type="text/javascript" src="https://js.stripe.com/v1/"></script>
-	<script src="{{ STATIC_URL}}js/cart.js"></script>
 
 	<script type="text/javascript">
 	    // this identifies your website in the createToken call below
@@ -89,9 +88,8 @@
 	    	Stripe.setPublishableKey('pk_live_mnjoApYz5X91FsZcdyBzjSiw');
 	    {% endif %}
 	</script>
-	{%block scripts %}
-
-  {% endblock %}
+	{%block scripts %}{% endblock %}
+  	{%block c_includes %}{% endblock %}
 
   </body>
 </html>

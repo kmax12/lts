@@ -82,6 +82,11 @@ class Cart:
 
         self.cart = cart
 
+    def set_gift(self,gift=False):
+        self.cart.gift = gift
+        print gift
+        self.cart.save()
+
     def clear(self):
         for item in self.cart.item_set.all():
             item.delete()
@@ -95,6 +100,9 @@ class Cart:
 
     def num_items(self):
         return self.cart.item_set.count()
+
+    def is_gift(self):
+        return self.cart.gift
 
 
     def checkout(self):

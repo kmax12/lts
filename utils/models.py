@@ -1,7 +1,7 @@
 from django.db import models
 from django.forms import ModelForm
 from django.contrib.auth.models import User
-import random
+import random, string
 from datetime import datetime
 
 class Subscription(models.Model):
@@ -34,20 +34,24 @@ class Card(models.Model):
     card_type = models.TextField(max_length=50, default='')
     last4 = models.IntegerField(default=0)
 
-@property
-def promotion_code_generate(self):
+def promotion_code_generate():
+    chars=string.ascii_uppercase+string.digits+string.ascii_lowercase
     while 1:
-        prom_code = str(random.random())[2:]
+        prom_code = ''.join(random.choice(chars) for x in range(8))
         try:
-            Promotion.objects.get(promotion_code=prom_code)
+            GiftModel.objects.get(code=prom_code)
         except:
             return prom_code
 
 class GiftModel(Subscription):
     subscription = models.ForeignKey(Subscription, blank=True, null=True, related_name="gift")
-    code = models.CharField(default=property(promotion_code_generate), max_length=8)
+    code = models.CharField(default=promotion_code_generate, unique=True, max_length=8)
+
     def last_order(self):
         pass
+
+    def claim(self, user):
+        s = Subscription(user=user, product=self.product)
 
 class Address(models.Model):
     """Model to store addresses for accounts"""

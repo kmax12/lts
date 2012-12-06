@@ -21,22 +21,27 @@
               <li class="{{card_active}}"><a href="/account/card/">Manage Credit Cards</a></li>
               <li class="{{address_active}}"><a href="/account/address/">Edit Address</a></li>
               <li class="{{password_active}}"><a href="/password/change/">Change Password</a></li>
+              <li class="{{cancel_active}}"><a href="/account/cancel/">Cancel Subscriptions</a></li>
             </ul>
           </div><!--/.well -->
         </div>
         <div class="span9">
             {% if not user.address.edited and not address_active %}
+                <!-- 
                 <script>
                 noAddress = true; //let js know there isn't an address on file
                 </script>
 
+ -->
                 <div class="alert">
                     We don't know where to send your stuff. <a href="/account/address/" class="open-add-address bt-buy">Add your address</a> now.
                 </div>
             {% else %}
+                <!-- 
                 <script>
                 noAddress = false; //let js know there isn't an address on file
                 </script>
+                 -->
             {% endif %}
             <div>
                 {% block account-content %}
@@ -65,37 +70,12 @@
     </div>
 </div>
 
-<div id="order-modal" class="modal hide fade" tabindex="-1" data-width="400">
-    <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h3>Place order</h3>
-    </div>
-    <div class="modal-body">
-    	<p>Confirm shipment of <span id="order-item"></span> to:</p>
-        <p>
-            {% with address=user.profile.get_address %}
-                {{address.address_line1}}
-                <br>
-                {% if address.address_line2 %}
-                    {{address.address_line2}}
-                    <br>
-                {% endif %}
-                {{address.city}}, {{address.state_province}} 
-            {% endwith %}
-        </p>
-    </div>
-    <div class="modal-footer">
-        <form id="order-form" class="pull-right" action="/account/order/" method="post">
-            <input id="item-id" name="id" type="hidden" value=""/>
-            <button type="submit" class="place-order btn btn-buy">{{ORDER_TEXT}}</button>
-        </form>
-
-   	    <button class="pull-right" type="button" data-dismiss="modal" class="btn">Cancel</button>
-    </div>
-</div>
-
 {% endblock %}
 
 {% block scripts %}
 	<script src="{{ STATIC_URL}}js/account.js"></script>
+{% endblock %}
+
+{% block c_includes %}
+    {% include "partial/ship-it.html" %}    
 {% endblock %}
