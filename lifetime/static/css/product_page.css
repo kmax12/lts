@@ -1,0 +1,31 @@
+#product-image{
+	background-color: #fff;
+	padding: 10px 0px;
+}
+#product-content{
+}
+
+#product-content .description {
+	margin-top: 10px;
+}
+#product-content .overview {
+	margin-top: 10px;
+	font-size: 1.5em;
+	line-height: 1.2em;
+	margin: 5px 0px;
+}
+
+#price{
+	font-size: 30px;
+	line-height: 30px;
+	padding:5px;
+	margin: 3px;
+}
+
+#product-title{
+	/*color: #efefef;
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+	background-color: #888;*/
+	margin-bottom: 10px;
+	text-indent: 5px;
+}

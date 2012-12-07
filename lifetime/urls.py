@@ -26,6 +26,10 @@ urlpatterns = patterns('',
     url(r'^cart/$', 'lifetime.views.view_cart', name="view_cart"),
 
 
+    #product stuff
+    url(r'^product/(\w+)$', 'lifetime.views.view_product', name="view_cart"),    
+
+
 
     #static pages
     url(r'^how/$', direct_to_template,{'template': 'how.html', 'extra_context': {"title": "How it works | Lifetime Supply", "how_active" : "active"}}),

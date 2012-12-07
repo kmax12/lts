@@ -1,9 +1,11 @@
 <li class="{{li_class}}" style="">
-    <div class="">
+    <div class="thumbnail-containter">
         
-        <img src="{{STATIC_URL}}{{p.img}}" alt="">
-        <div class="caption">
+        <a href="/product/{{p.id}}">
+            <img src="{{STATIC_URL}}{{p.img}}" alt="">
             <h3 class="product-title">{{p.name}}</h3>
+        </a>
+        <div class="caption">
             <div class="price label">${{p.price|floatformat:"0"}}</div>
             <div class="pull-right">
                 {% if p in user.products %}

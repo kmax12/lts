@@ -55,9 +55,11 @@
 	padding: 4px;
 }
 
-.caption > h3{
+.thumbnail-containter h3{
 	line-height: 22px;
 	margin: 3px 0;
+	text-indent: 4px;
+	color:#444;
 }
 
 .caption .price{

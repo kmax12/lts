@@ -22,6 +22,18 @@ def home(request):
     return direct_to_template(request, 'home.html',
                              template_values)
 
+def view_product(request, product):
+    product = Product.objects.get(id=product) 
+
+    template_values = {
+        "title": product.name + " | Lifetime Supply",
+        "product" : product
+    }
+
+    return direct_to_template(request, 'product_page.html',
+                             template_values)
+
+
 
 def add_to_cart(request):
     quantity = 1
