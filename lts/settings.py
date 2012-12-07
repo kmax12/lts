@@ -1,6 +1,9 @@
 # Django settings for lts project.
-
 DEBUG = False
+try:
+    from local_settings import *
+except ImportError:
+    pass
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
