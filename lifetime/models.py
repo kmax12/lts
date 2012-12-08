@@ -37,3 +37,10 @@ class Product(models.Model):
     
     def __unicode__(self):
         return u'%s' % (self.name)
+
+class ProductDetails(models.Model):
+    product = models.ForeignKey(Product)
+    text = models.TextField()
+    
+    def __unicode__(self):
+        return u'%s' % (self.text)
