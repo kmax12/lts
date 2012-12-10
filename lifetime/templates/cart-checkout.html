@@ -10,7 +10,7 @@
             <tbody>
                 {% for item in cart %}
                 <tr>
-                    <td>Lifetime Supply of {{ item.product.name }}</td>
+                    <td>{{ item.product.name }}</td>
                     <td>{{ item.total_price }}</td>
                     <td><button href="/cart/remove?id={{item.object_id}}" type="button" class="btn btn-warning btn-remove" data-loading-text="Remove">Remove</button></td>
                 </tr>
@@ -62,10 +62,10 @@
                 </select>  or <a class="add-card" type="button">Add another card</a>
                 <div>
                     <button type="submit" class="btn-checkout btn-large btn-buy btn btn-primary"> Checkout </button>
+                    <span class="muted">note: we'll ask for shipping info when you place your first order</span>
                 </div>
             </form>
 
-            <div>note: we'll ask for shipping info when you place your first order</div>
             {% endif %}
         </div>
     </div>

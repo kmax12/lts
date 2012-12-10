@@ -35,8 +35,9 @@
 	                <div class="details">
 	                	<div>Details</div>
 	                	<ul>
-	                		<li>Comes in shipments of two 13.7 oz jars. </li>
-	                		<li>Make up to 2 shipments a week and 52 a year</li>
+	                		{% for d in product.productdetail_set.all %}
+	                			<li>{{d.text}}</li>
+	                		{% endfor %}
 	                	</ul>
 	                </div>
 	            </div>

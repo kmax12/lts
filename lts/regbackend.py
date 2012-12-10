@@ -1,6 +1,6 @@
 from utils.SubscriptionManager import SubscriptionManager
 from reg_form import UserRegistrationForm
-from utils.models import *
+from lifetime.models import *
 
 def user_created(sender, user, request, **kwargs):
     form = UserRegistrationForm(request.POST)

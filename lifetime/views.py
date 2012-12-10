@@ -2,7 +2,6 @@ from django.views.generic.simple import direct_to_template
 # from utils import cart
 from cart import Cart
 from utils.SubscriptionManager import SubscriptionManager
-from utils.models import *
 from lifetime.models import *
 from django.http import HttpResponse
 from django.shortcuts import redirect
@@ -91,7 +90,7 @@ def checkout(request):
     card_id = request.POST.get("card_id", None)
     success = False
 
-    if (request.user and card_id and total > 0 and Card.objects.filter(user=request.user).count() != 0):
+    if (request.user and card_id and total > 0 and Card.objects.filter(owner=request.user).count() != 0):
         sm = SubscriptionManager(request)
         success = sm.charge(cart.total(), card_id)
         if success:
@@ -114,7 +113,8 @@ def checkout(request):
 def account(request):
     template_values = {
         'form': AddressForm(),
-        'orders_active': "active"
+        'orders_active': "active",
+        'title': "Account | Lifetime Supply"
     }
 
     return direct_to_template(request, 'account.html', template_values)
@@ -122,7 +122,7 @@ def account(request):
 @login_required
 def order_history(request):
     template_values = {
-        'orders': Order.objects.select_related().filter(subscription__user = request.user),
+        'orders': Order.objects.select_related().filter(subscription__owner = request.user),
     }
 
     return direct_to_template(request, 'order_history.html', template_values)    
@@ -156,7 +156,7 @@ def address(request):
 def add_address(request):
     address = AddressForm(request.POST)
     address = address.save(commit=False)
-    address.user = request.user
+    address.owner = request.user
     address.save()
     success = True
 
@@ -171,7 +171,7 @@ def place_order(request):
 
 
     product = Product.objects.get(id=product_id)
-    s = Subscription.objects.get(user=request.user, product=product)
+    s = Subscription.objects.get(owner=request.user, product=product)
     
     order = Order(subscription=s)
     order.save()

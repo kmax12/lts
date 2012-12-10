@@ -1,6 +1,6 @@
 from registration.forms import RegistrationForm
 from django import forms
-from utils.models import GiftModel
+from lifetime.models import *
 
 class UserRegistrationForm(RegistrationForm):
     code = forms.CharField(min_length=8, max_length=8, required=False, label="Gift Code (optional)")
