@@ -1,1 +1,77 @@
-sendgrid
+{% extends "base.html" %}
+
+{% block styles %}
+<link href="{{ STATIC_URL}}css/home.css" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        {% include "navbar.html" %}
+        
+        <div class="row">
+             
+            <h1 id="logo-home" class="logo">lifetimeSupply.com</h1>
+<!-- <img src="http://joshuaweigel.com/wp-content/themes/JoshWeigel/images/sunburst.jpg" alt=""> --> 
+            <div id="marketing" class="carousel slide span12 shadow">
+              <!-- Carousel items -->
+              <div class="carousel-inner">
+                <div class="active background-polka-dot item">
+                    <p class="large" >We only sell</p>
+                    <p class="large" >lifetime quantities <a href="/how/" class="btn btn-large btn-buy">How it works</a></p>
+                </div>
+                <div class="item background-diagonal-stripes">
+                    <p class="large">Give the gift</p>
+                    <p class="large">that keeps on giving</p>
+                </div>
+                <div class="item background-stripes-straight">
+                    <p class="large">Get more</p>
+                    <p class="large"><strong>whenever</strong> you need it</p>
+                </div>
+                <div class="item background-cicada-stripes">
+                    <p class="large">Want something you</p>
+                    <p class="large">don't see? <a href="/contact/" class="btn btn-large btn-buy">Let us know</a></p>
+                </div>
+              </div>
+              <!-- Carousel nav -->
+              <a class="carousel-control left" href="#marketing" data-slide="prev">&lsaquo;</a>
+              <a class="carousel-control right" href="#marketing" data-slide="next">&rsaquo;</a>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+
+        <div class="row">
+            <div class="span12">
+                <div class="product-container">
+                    <ul class="thumbnails">
+                        {% for product in products %}
+                            {% include "thumbnail.html" with p=product li_class="span3 cutout" %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="span12">
+                <p class="alert alert-info home-message"> Want something you don't see? <a href="/contact/" class="" >Let us know</a></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="span12">
+                {% if user.is_authenticated %}
+                <h3>Quick order</h3>
+                    {% include "partial/order_table.html" %}
+                {% endif %}
+            </div>
+        </div>
+
+    </div> <!-- /container -->
+{% endblock %}
+
+{%block scripts %}
+    <script src="{{ STATIC_URL}}js/home.js"></script>
+{% endblock %}
+
+{% block c_includes %}
+    {% include "partial/ship-it.html" %}    
+{% endblock %}

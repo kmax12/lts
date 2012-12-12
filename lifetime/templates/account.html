@@ -4,34 +4,7 @@
 
 {% block account-content %}
 <h3 class="account-header">Make an order</h3>
-<table class="table table-hover">
-    <thead>
-    <tr>
-        <td>Product</td>
-        <td>Last order</td>
-        <td></td>
-    </tr>
-    </thead>
-    <tbody>
-        <!-- TODO: Think about optimizing. it is making more queries then necessary probably -->
-        {% for s in user.subscription_set.all %}
-        <tr>
-            <td>{{ s.product.name }}</td>
-            <td>
-                {% with date=s.order_set.all.latest.date_placed %}
-                    {% if date %}
-                   {{date}}    
-                    {% else %}
-                        Make your first order!
-                    {% endif %}
-                {% endwith %}
-
-            </td>
-            <td><button data-id="{{s.product.id}}" data-name="{{s.product.name}}" type="button" class="btn btn-info btn-ship-it">{{ORDER_TEXT}}</button></td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+{% include "partial/order_table.html" %}
 <h3 class="account-header">Past orders</h3>
 <table class="table table-hover">
     <thead>

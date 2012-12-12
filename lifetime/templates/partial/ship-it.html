@@ -8,6 +8,8 @@
     <div class="modal-body">
         <p>Confirm shipment of <span id="order-item"></span> to:</p>
         <p>
+            {{user.first_name}}
+            <br>
             {% with address=user.address %}
                 {{address.address_line1}}
                 <br>
@@ -22,7 +24,7 @@
     <div class="modal-footer">
         <form id="order-form" class="pull-right" action="/account/order/" method="post">
             <input id="item-id" name="id" type="hidden" value=""/>
-            <button type="submit" class="place-order btn btn-bu">{{ORDER_TEXT}}</button>
+            <button type="submit" class="place-order btn btn-buy">{{ORDER_TEXT}}</button>
         </form>
 
         <button class="pull-right" type="button" data-dismiss="modal" class="btn">Cancel</button>

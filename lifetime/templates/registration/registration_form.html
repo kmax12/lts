@@ -10,8 +10,15 @@
 <form method="post" action="." class="form-reg">
 	<h2 class="form-reg-heading">Register</h2>
 	{% csrf_token %}
-  {{ form.as_p }}
-
-  <input class="btn btn-reg" type="submit" value="{% trans 'Submit' %}" />
+  	{% for field in form %}
+        <div class="fieldWrapper">
+            {{ field.errors }}
+            <div>{{ field.label|safe }}</div>
+            {{ field }}
+        </div>
+    {% endfor %}
+    <p>
+  		<input class="btn btn-reg" type="submit" value="{% trans 'Submit' %}" />
+  	</p>
 </form>
 {% endblock %}

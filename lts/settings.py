@@ -147,7 +147,7 @@ LOGIN_REDIRECT_URL = '/'
 ABSOLUTE_URL_OVERRIDES = {
     'auth.user': lambda o: "/",
 }
-REGISTRATION_OPEN=False
+REGISTRATION_OPEN=True
 
 ORDER_TEXT = "Ship it"
 
