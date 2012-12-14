@@ -1,5 +1,5 @@
 # Django settings for lts project.
-DEBUG = False
+DEBUG = True
 try:
     from local_settings import *
 except ImportError:
