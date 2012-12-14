@@ -1,4 +1,5 @@
 *.pyc
+lts/static/*
 venv
 local_settings.py
 local_settings.pyc
