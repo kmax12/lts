@@ -38,6 +38,9 @@ urlpatterns = patterns('',
     url(r'^contact/$', direct_to_template,{'template': 'contact.html', 'extra_context': {"title": "Contact | Lifetime Supply", "contact_active" : "active"}}),
 
 
+
+    # url(r'^$', direct_to_template,{'template': 'signup.html'}),
+
     #home
     url(r'^$', 'lifetime.views.home', name='home')
     # Examples:
