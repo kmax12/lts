@@ -11,9 +11,11 @@
         <div class="row">
             <h1 id="logo-home" class="logo">lifetimeSupply.com</h1>
 <!-- <img src="http://joshuaweigel.com/wp-content/themes/JoshWeigel/images/sunburst.jpg" alt=""> --> 
-            {% if user.is_authenticated %}
+            {% if not user.is_authenticated %}
                 <div class="span12">
-                    <p class="alert alert-info home-message"> We are still in private beta. Request an invite <a href="http://www.lifetimesupply.com" class="" >here</a></p>
+                    <div class="alert alert-info"> 
+                        <div class="home-message">We are still in private beta. Request an invite <a href="http://www.lifetimesupply.com" class="" >here</a></div>
+                    </div>
                 </div>
             {% endif %}
 
@@ -41,9 +43,25 @@
               <a class="carousel-control left" href="#marketing" data-slide="prev">&lsaquo;</a>
               <a class="carousel-control right" href="#marketing" data-slide="next">&rsaquo;</a>
             </div>
+            <!-- <div class="span12">
+                <div class="alert alert-success"> 
+                    <div class="home-message">Want something you don't see? <a href="/contact/" class="" >Let us know</a></div>
+                </div>
+            </div> -->
         </div>
+
     </div>
     <div class="container">
+        
+        <div class="row">
+            <div class="pull-right">
+            Want something you don't see? <a href="/contact/" class="" >Let us know</a>
+            </div>
+            <div class="product_count_container label span12">
+                <div class="product_count">Showing {{products.count}} of {{products.count}} products</div> 
+            </div>
+            
+        </div>
 
         <div class="row">
             <div class="span12">
@@ -57,9 +75,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="span12">
-                <p class="alert alert-info home-message"> Want something you don't see? <a href="/contact/" class="" >Let us know</a></p>
-            </div>
+            
         </div>
         <div class="row">
             <div class="span12">

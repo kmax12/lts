@@ -1,0 +1,31 @@
+{% extends 'content-page.html' %}
+
+{% block content_styles %}
+<link href="{{ STATIC_URL}}css/cart.css" rel="stylesheet">
+{% endblock %}
+
+{% block page-header %} 
+Checkout
+{% endblock %}
+
+{% block content %}
+
+{% if cart.total > 0 %}
+
+    {% include "cart-checkout.html" %}
+
+{% else %}
+
+    {% include "cart-empty.html" %}
+
+{% endif %}
+
+{% endblock %}
+
+{% block content_scripts %}
+	<script src="{{ STATIC_URL}}js/cart.js"></script>
+{% endblock %}
+
+{% block c_includes %}
+	{% include "partial/add-card.html" %}    
+{% endblock %}

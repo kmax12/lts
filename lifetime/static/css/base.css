@@ -6,8 +6,21 @@ body {
   font-family: 'Cabin', Helvetica, Arial, sans-serif;
 }
 
+#footer_container{
+  width:100%;
+  margin: 20px auto -5px;
+  /*background-color:#546d81;rgba(84, 109, 129,.8);*/
+}
+
 #footer{
-  padding:20px 0px;
+  width:940px;
+  margin: 0px auto;
+  padding:10px 0px;
+  color: #444;
+}
+
+#footer a{
+  color: #444;
 }
 
 .shadow{

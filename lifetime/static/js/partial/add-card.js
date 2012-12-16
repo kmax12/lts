@@ -34,7 +34,7 @@ function stripeResponseHandler(status, res){
 		return;
 	}
 
-	$.get('/cart/add-card/', {token:res.id}, function(a){
+	$.get('/account/add-card/', {token:res.id}, function(a){
 		$('#add-card-modal').modal('loading');
 		$('.add-card-submit').removeAttr("disabled").button('reset');
 		$('#add-card-modal').modal('hide');

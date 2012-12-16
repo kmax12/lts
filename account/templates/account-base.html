@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block styles %}
+<link href="{{ STATIC_URL}}css/account.css" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    {% include "navbar.html" with account_active="active" %}
+    <!-- <div class="row">
+        <div class="span4 offset3">
+            <h3 class="account-header">{% block page-header %} {% endblock %}</h3>
+        </div>
+    </div> -->
+    <div class="row">
+        <div class="span3">
+          <div class="well account-nav sidebar-nav">
+            <ul class="nav nav-list">
+              <li class="nav-header">Your account</li>
+              <li class="{{orders_active}}"><a href="/account/">Orders</a></li>
+              <li class="{{card_active}}"><a href="/account/card/">Manage Credit Cards</a></li>
+              <li class="{{address_active}}"><a href="/account/address/">Edit Address</a></li>
+              <li class="{{password_active}}"><a href="/password/change/">Change Password</a></li>
+              <li class="{{cancel_active}}"><a href="/account/cancel/">Cancel Subscriptions</a></li>
+            </ul>
+          </div><!--/.well -->
+        </div>
+        <div class="span9">
+            {% if not user.address.edited and not address_active %}
+                <!-- 
+                <script>
+                noAddress = true; //let js know there isn't an address on file
+                </script>
+
+ -->
+                <div class="alert">
+                    We don't know where to send your stuff. <a href="/account/address/" class="open-add-address bt-buy">Add your address</a> now.
+                </div>
+            {% else %}
+                <!-- 
+                <script>
+                noAddress = false; //let js know there isn't an address on file
+                </script>
+                 -->
+            {% endif %}
+            <div>
+                {% block account-content %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <div class="alert alert-info">
+    View your <a href="/account/history/">order history</a>
+</div> -->
+
+<div id="add-address-modal" class="modal hide fade" tabindex="-1" data-width="400">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3>Add Address</h3>
+    </div>
+    <div class="modal-body">
+    	<form id="address-form">
+        	{{form}}
+        </form>
+    </div>
+    <div class="modal-footer">
+    <button class="add-address btn btn-buy" data-loading-text="Adding">Add Address</button>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+	<script src="{{ STATIC_URL}}js/account.js"></script>
+{% endblock %}
+
+{% block c_includes %}
+    {% include "partial/ship-it.html" %}    
+{% endblock %}

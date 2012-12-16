@@ -10,6 +10,7 @@
 <form method="post" class="form-signin" action=".">
     <h2 class="form-signin-heading">Please sign in</h2>
     {% csrf_token %}
+    
     {{ form.as_p }}
 
     <label class="checkbox">

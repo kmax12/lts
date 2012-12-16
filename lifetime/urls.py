@@ -1,31 +1,14 @@
 from django.conf.urls import patterns, include, url
 from django.contrib.auth.decorators import login_required
 from django.views.generic.simple import direct_to_template
+from lifetime.models import Product
+from django.conf import settings
 
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
 # admin.autodiscover()
 
 urlpatterns = patterns('',
-    
-    #all the account management stuff
-    url(r'^account/$', 'lifetime.views.account', name="show account"),
-    url(r'^account/history/$', 'lifetime.views.order_history', name="show order history"),
-    url(r'^account/address/$', 'lifetime.views.address', name="address"),
-    url(r'^account/address/add/$', 'lifetime.views.add_address', name="add_address"),
-    url(r'^account/order/$', 'lifetime.views.place_order', name="place_order"),
-    url(r'^account/card/$', login_required(direct_to_template), {'template': 'edit_cards.html', 'extra_context':{'card_active': 'active'}}),
-    url(r'^account/cancel/$', login_required(direct_to_template), {'template': 'cancel_subscription.html', 'extra_context':{'cancel_active': 'active'}}),
-
-
-    #cart stuff
-    url(r'^cart/add/$', 'lifetime.views.add_to_cart', name="add to cart"),
-    url(r'^cart/remove/$', 'lifetime.views.remove_from_cart', name="remove from cart"),
-    url(r'^cart/add-card/$', 'lifetime.views.add_card', name="add card to user"),
-    url(r'^cart/checkout/$', 'lifetime.views.checkout', name="checkout"),
-    url(r'^cart/$', 'lifetime.views.view_cart', name="view_cart"),
-
-
     #product stuff
     url(r'^product/(\w+)$', 'lifetime.views.view_product', name="view_cart"),    
 
@@ -40,9 +23,11 @@ urlpatterns = patterns('',
 
 
     # url(r'^$', direct_to_template,{'template': 'signup.html'}),
-
-    #home
-    url(r'^$', 'lifetime.views.home', name='home')
+    url(r'^$', direct_to_template,{'template': 'home.html', 'extra_context': {
+                                                                            "title": "Lifetime Supply",
+                                                                            "home_active" : "active",
+                                                                            "products": Product.objects.all(),
+                                                                        }}),
     # Examples:
     # url(r'^$', 'lts.views.home', name='home'),
     # url(r'^lts/', include('lts.foo.urls')),

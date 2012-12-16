@@ -1,3 +1,4 @@
+from account.models import *
 from lifetime.models import *
 from lts.settings import STRIPE_KEY
 import stripe

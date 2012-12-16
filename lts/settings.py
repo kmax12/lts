@@ -92,6 +92,10 @@ TEMPLATE_LOADERS = (
 #     'django.template.loaders.eggs.Loader',
 )
 
+AUTHENTICATION_BACKENDS = (
+    'lts.email-auth.EmailBackend',
+ )
+
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -126,6 +130,7 @@ INSTALLED_APPS = (
     'registration',
     'cart',
     'utils',
+    'account',
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
     'south',
@@ -142,7 +147,7 @@ TEMPLATE_CONTEXT_PROCESSORS = {
 
 ACCOUNT_ACTIVATION_DAYS = 7 # One-week activation window; 
 
-AUTH_PROFILE_MODULE = "lifetime.UserProfile"
+AUTH_PROFILE_MODULE = "account.UserProfile"
 LOGIN_URL = '/login/'
 LOGOUT_URL = '/logout/'
 LOGIN_REDIRECT_URL = '/'

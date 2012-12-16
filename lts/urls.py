@@ -2,18 +2,31 @@ from django.conf.urls import patterns, include, url
 from reg_form import UserRegistrationForm
 from registration.views import register
 import regbackend
-
 from django.conf import settings
+
+
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 admin.autodiscover()
 
 
 urlpatterns = patterns('',
-	url(r'^register/$', register, {'backend': 'registration.backends.simple.SimpleBackend','form_class': UserRegistrationForm}, name='registration_register'),
+    #static files
     url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),
-	(r'', include('registration.backends.simple.urls')),
-	url(r'', include('lifetime.urls')),
+
+    #registration app
+    url(r'^register/$', register, {'backend': 'registration.backends.simple.SimpleBackend','form_class': UserRegistrationForm}, name='registration_register'),
+    (r'', include('registration.backends.simple.urls')),
+
+    #cart app
+    url(r'cart/', include('cart.urls')),
+
+    #account app
+    url(r'account/', include('account.urls')),
+    
+    #lifetime app
+    url(r'', include('lifetime.urls')),
+
     # Examples:
     # url(r'^$', 'lts.views.home', name='home'),
     # url(r'^lts/', include('lts.foo.urls')),
