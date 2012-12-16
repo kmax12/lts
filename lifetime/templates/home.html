@@ -11,9 +11,12 @@
         <div class="row">
             <h1 id="logo-home" class="logo">lifetimeSupply.com</h1>
 <!-- <img src="http://joshuaweigel.com/wp-content/themes/JoshWeigel/images/sunburst.jpg" alt=""> --> 
-            <div class="span12">
-                <p class="alert alert-info home-message"> We are still in private beta. Request an invite <a href="http://www.lifetimesupply.com" class="" >here</a></p>
-            </div>
+            {% if user.is_authenticated %}
+                <div class="span12">
+                    <p class="alert alert-info home-message"> We are still in private beta. Request an invite <a href="http://www.lifetimesupply.com" class="" >here</a></p>
+                </div>
+            {% endif %}
+
             <div id="marketing" class="carousel slide span12 shadow">
               <!-- Carousel items -->
               <div class="carousel-inner">
