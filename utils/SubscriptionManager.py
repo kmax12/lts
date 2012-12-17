@@ -1,9 +1,9 @@
 from account.models import *
 from lifetime.models import *
-from lts.settings import STRIPE_KEY
+from lts.settings import STRIPE_SECRET
 import stripe
 
-stripe.api_key = STRIPE_KEY
+stripe.api_key = STRIPE_SECRET
 
 class SubscriptionManager:
     def __init__(self, request):
