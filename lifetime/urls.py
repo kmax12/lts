@@ -19,6 +19,8 @@ urlpatterns = patterns('',
     url(r'^about/$', direct_to_template,{'template': 'about.html', 'extra_context': {"title": "About us | Lifetime Supply", "about_active" : "active"}}),
     url(r'^faq/$', direct_to_template,{'template': 'faq.html', 'extra_context': {"title": "FAQ | Lifetime Supply", "faq_active" : "active"}}),
     url(r'^contact/$', direct_to_template,{'template': 'contact.html', 'extra_context': {"title": "Contact | Lifetime Supply", "contact_active" : "active"}}),
+    url(r'^terms/$', direct_to_template,{'template': 'terms.html', 'extra_context': {"title": "Terms of Use | Lifetime Supply"}}),
+    url(r'^privacy/$', direct_to_template,{'template': 'privacy.html', 'extra_context': {"title": "Privacy Policy| Lifetime Supply"}}),
 
 
 

@@ -5,9 +5,7 @@
 {% endblock %}
 
 {% block body %}
-    <div class="container">
-        {% include "navbar.html" %}
-        
+    <div class="container">        
         <div class="row">
             <h1 id="logo-home" class="logo">lifetimeSupply.com</h1>
 <!-- <img src="http://joshuaweigel.com/wp-content/themes/JoshWeigel/images/sunburst.jpg" alt=""> --> 
@@ -23,16 +21,16 @@
               <!-- Carousel items -->
               <div class="carousel-inner">
                 <div class="active background-polka-dot item">
-                    <p class="large" >We only sell</p>
-                    <p class="large" >lifetime quantities <a href="/how/" class="btn btn-large btn-buy">How it works</a></p>
-                </div>
-                <div class="item background-diagonal-stripes">
-                    <p class="large">Give the gift</p>
-                    <p class="large">that keeps on giving</p>
+                    <p class="large">Unlimited access</p>
+                    <p class="large">to great products <a href="/how/" class="btn btn-large btn-buy">How it works</a></p>
                 </div>
                 <div class="item background-stripes-straight">
                     <p class="large">Get more</p>
                     <p class="large"><strong>whenever</strong> you need it</p>
+                </div>
+                <div class="item background-diagonal-stripes">
+                    <p class="large">Give the gift</p>
+                    <p class="large">that keeps on giving</p>
                 </div>
                 <div class="item background-cicada-stripes">
                     <p class="large">Want something you</p>
@@ -54,14 +52,14 @@
     <div class="container">
         
         <div class="row">
-            <div class="pull-right">
-            Want something you don't see? <a href="/contact/" class="" >Let us know</a>
-            </div>
             <div class="product_count_container label span12">
                 <div class="product_count">Showing {{products.count}} of {{products.count}} products</div> 
             </div>
             
         </div>
+            <p class="">
+            Want something you don't see? <a href="/contact/" class="" >Let us know</a>
+            </p>
 
         <div class="row">
             <div class="span12">

@@ -12,7 +12,7 @@ import json
 def account(request):
     template_values = {
         'form': AddressForm(),
-        'orders_active': "active",
+        'account_active': "active",
         'title': "Account | Lifetime Supply"
     }
 

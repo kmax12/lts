@@ -8,12 +8,15 @@
 
 {% block body %}
 <div class="container">
-	{% include "navbar.html" %}
-	<div class="row span12 ">
-		<span id="page-content">
-			<h1 class="page-header">{% block page-header %} {% endblock %}</h1>
+	<div class="row">
+		<div class="span12 label">
+				<h1 class="">{% block page-header %} {% endblock %}</h1>
+		</div>
+	</div>
+	<div class="row">
+		<div id="page-content" class="span12">
 			{% block content %}{% endblock %}
-		</span>	
+		</div>	
 	</div>
 </div>
 {% endblock %}

@@ -9,8 +9,10 @@
 
 	<link id="page_favicon" href="{{STATIC_URL}}favicon.ico" rel="icon" type="image/x-icon" />
 
+	
 	<!-- Le styles -->
 	<link href="{{ STATIC_URL}}css/bootstrap.css" rel="stylesheet">
+	<link href="{{ STATIC_URL}}css/bootstrap-responsive.css" rel="stylesheet">
 	<link href="{{ STATIC_URL}}css/bootstrap-modal.css" rel="stylesheet">
 <!-- 	<link href="{{ STATIC_URL}}css/bootstrap-responsive.css" rel="stylesheet">-->
 	<link href="{{ STATIC_URL}}css/base.css" rel="stylesheet">
@@ -35,16 +37,20 @@
   </head>
 
   <body>
-
+  	<div class="container-fluid">
+		{% include "partial/navbar.html" %}
+	</div>
   	<!-- <div id="wrap"> -->
 		  {%block body %}
 
 		  {% endblock %}
+	<div class="container-fluid">
+		{% include "partial/footer.html" %}
+	</div>
 	<!-- </div> -->
 
   	<div id="ajax-modal" class="modal hide fade" tabindex="-1"></div>
 
-	{% include "partial/footer.html" %}
 	<script type="text/javascript">
 
 	  var _gaq = _gaq || [];

@@ -41,7 +41,7 @@ class UserRegistrationForm(forms.Form):
     code = forms.CharField(min_length=7, max_length=8, required=False, label="Gift/Beta access code")
     
     tos = forms.BooleanField(widget=forms.CheckboxInput(attrs=attrs_dict),
-                             label=_(u'I have read and agree to the Terms of Service'),
+                             label=_(u'I have read and agree to the Terms of Use'),
                              error_messages={'required': _("You must agree to the terms to register")})
     
     def clean_username(self):

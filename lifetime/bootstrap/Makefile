@@ -63,7 +63,7 @@ clean:
 #
 
 bootstrap:
-	mkdir -p bootstrap/imgls
+	mkdir -p bootstrap/img
 
 	mkdir -p bootstrap/css
 	mkdir -p bootstrap/js

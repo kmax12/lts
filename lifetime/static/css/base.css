@@ -6,21 +6,24 @@ body {
   font-family: 'Cabin', Helvetica, Arial, sans-serif;
 }
 
+.container-fluid {
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 979px; /* or 950px */
+}
+
 #footer_container{
-  width:100%;
-  margin: 20px auto -5px;
   /*background-color:#546d81;rgba(84, 109, 129,.8);*/
 }
 
 #footer{
-  width:940px;
   margin: 0px auto;
   padding:10px 0px;
   color: #444;
 }
 
 #footer a{
-  color: #444;
+  color: #BD362F;
 }
 
 .shadow{
