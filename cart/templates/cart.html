@@ -9,17 +9,19 @@ Checkout
 {% endblock %}
 
 {% block content %}
+<div class="container-fluid">
+    <div class="row-fluid">
+		{% if cart.total > 0 %}
 
-{% if cart.total > 0 %}
+		    {% include "cart-checkout.html" %}
 
-    {% include "cart-checkout.html" %}
+		{% else %}
 
-{% else %}
+		    {% include "cart-empty.html" %}
 
-    {% include "cart-empty.html" %}
-
-{% endif %}
-
+		{% endif %}
+	</div>
+</div>
 {% endblock %}
 
 {% block content_scripts %}
