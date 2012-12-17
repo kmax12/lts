@@ -158,10 +158,8 @@ REGISTRATION_OPEN=True
 
 ORDER_TEXT = "Ship it"
 
-if DEBUG:
-    STRIPE_KEY = "sk_test_zRgqAeLfEjLZbD7gnkMIZ3iB"
-else:
-    STRIPE_KEY = "pk_live_mnjoApYz5X91FsZcdyBzjSiw"
+STRIPE_KEY = "pk_live_mnjoApYz5X91FsZcdyBzjSiw"
+STRIPE_SECRET = "sk_live_kqMFbpyk6UhnaMaxOhher2RX"
 
 EMAIL_HOST = 'smtp.sendgrid.net'
 EMAIL_HOST_USER = 'lifetime'
