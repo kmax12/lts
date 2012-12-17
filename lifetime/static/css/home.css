@@ -1,8 +1,9 @@
 #logo-home{
 	font-size: 5em;
-	margin-bottom:30px;
+	line-height: normal!important;
 	text-align: center;
 	font-weight: normal;
+	margin-top:-15px;
 }
 
 #marketing{

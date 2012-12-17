@@ -1,5 +1,5 @@
 body {
-  padding: 10px 0px 0px;
+  padding: 10px 5px 0px 5px;
 	background-image: url(http://subtlepatterns.subtlepatterns.netdna-cdn.com/patterns/creampaper.png);
 	background-position: initial initial;
 	background-repeat: initial initial;
@@ -47,7 +47,7 @@ body {
 }
 
 #logo{
-	font-size: 2.2em;
+	font-size: 2em;
   line-height: 30px;
   text-decoration: none;
 }
@@ -69,7 +69,7 @@ body {
 }
 
 .page-nav{
-    margin-right: 60px !important;
+    margin-right: 25px !important;
 }
 
 .dropdown-account{
@@ -97,6 +97,10 @@ body {
   color: #fff !important;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.13);
   -webkit-font-smoothing: antialiased;
+}
+
+.btn-ship-it{
+  min-width: 65px;
 }
 
 .body-content{

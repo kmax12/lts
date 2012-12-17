@@ -5,19 +5,22 @@
 {% endblock %}
 
 {% block body %}
-    <div class="container">        
-        <div class="row">
-            <h1 id="logo-home" class="logo">lifetimeSupply.com</h1>
+    <div class="container-fluid">        
+        <div class="row-fluid">
+            <h1 id="logo-home" class="logo">lifetime Supply</h1>
 <!-- <img src="http://joshuaweigel.com/wp-content/themes/JoshWeigel/images/sunburst.jpg" alt=""> --> 
-            {% if not user.is_authenticated %}
+        </div>
+        {% if not user.is_authenticated %}
+            <div class="row-fluid">
                 <div class="span12">
                     <div class="alert alert-info"> 
                         <div class="home-message">We are still in private beta. Request an invite <a href="http://www.lifetimesupply.com" class="" >here</a></div>
                     </div>
                 </div>
-            {% endif %}
-
-            <div id="marketing" class="carousel slide span12 shadow">
+            </div>
+        {% endif %}
+        <div class="row-fluid">
+            <div id="marketing" class="carousel slide span12 shadow hidden-phone">
               <!-- Carousel items -->
               <div class="carousel-inner">
                 <div class="active background-polka-dot item">
@@ -49,19 +52,19 @@
         </div>
 
     </div>
-    <div class="container">
+    <div class="container-fluid">
         
-        <div class="row">
+        <div class="row-fluid">
             <div class="product_count_container label span12">
                 <div class="product_count">Showing {{products.count}} of {{products.count}} products</div> 
             </div>
-            
-        </div>
-            <p class="">
+              <p class="">
             Want something you don't see? <a href="/contact/" class="" >Let us know</a>
             </p>
+        </div>
+          
 
-        <div class="row">
+        <div class="row-fluid">
             <div class="span12">
                 <div class="product-container">
                     <ul class="thumbnails">
@@ -72,10 +75,7 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            
-        </div>
-        <div class="row">
+        <div class="row-fluid">
             <div class="span12">
                 {% if user.is_authenticated %}
                 <h3>Quick order</h3>
