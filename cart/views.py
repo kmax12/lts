@@ -2,6 +2,7 @@ from django.views.generic.simple import direct_to_template
 from cart import Cart
 from utils.SubscriptionManager import SubscriptionManager
 from lifetime.models import *
+from account.models import *
 from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
