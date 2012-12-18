@@ -3,6 +3,24 @@
 	[
 		{
 			"path": "/home/kanter/Documents/lts"
+		},
+		{
+			"path": "account"
+		},
+		{
+			"path": "cart"
+		},
+		{
+			"path": "lifetime"
+		},
+		{
+			"path": "lts"
+		},
+		{
+			"path": "utils"
+		},
+		{
+			"path": "venv"
 		}
 	]
 }
