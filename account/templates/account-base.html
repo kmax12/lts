@@ -5,13 +5,13 @@
 {% endblock %}
 
 {% block body %}
-<div class="container-fluid">
+<div class="container">
     <!-- <div class="row">
         <div class="span4 offset3">
             <h3 class="account-header">{% block page-header %} {% endblock %}</h3>
         </div>
     </div> -->
-    <div class="row-fluid">
+    <div class="row">
         <div class="span3">
           <div class="well account-nav sidebar-nav">
             <ul class="nav nav-list">
@@ -32,7 +32,7 @@
                 </script>
 
  -->
-                <div class="alert row-fluid">
+                <div class="alert row">
                     We don't know where to send your stuff. <a href="/account/address/" class="open-add-address bt-buy">Add your address</a> now.
                 </div>
             {% else %}
@@ -42,7 +42,7 @@
                 </script>
                  -->
             {% endif %}
-            <div class="row-fluid">
+            <div class="row">
                 {% block account-content %}
                 {% endblock %}
             </div>

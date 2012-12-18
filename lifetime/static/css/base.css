@@ -1,9 +1,29 @@
 body {
-  padding: 10px 5px 0px 5px;
-	background-image: url(http://subtlepatterns.subtlepatterns.netdna-cdn.com/patterns/creampaper.png);
+  padding: 56px 0px 0px 0px;
+	background-image: url(http://subtlepatterns.subtlepatterns.netdna-cdn.com/patterns/grey.png);
 	background-position: initial initial;
 	background-repeat: initial initial;
+  background-attachment:fixed;  
   font-family: 'Cabin', Helvetica, Arial, sans-serif;
+}
+
+#wrap{
+  background-color:#F1F5F7;
+  color: #8A9298;
+  padding: 0px 10px;
+   -moz-box-shadow:
+         5px 0 12px -5px #aaa,
+         -5px 0 12px -5px #aaa;
+    -webkit-box-shadow:
+         5px 0 12px -5px #aaa,
+         -5px 0 12px -5px #aaa;
+    box-shadow:
+         5px 0 12px -5px #aaa,
+         -5px 0 12px -5px #aaa;
+}
+
+.navbar-inner{
+  padding: 10px 0px;
 }
 
 .container-fluid {

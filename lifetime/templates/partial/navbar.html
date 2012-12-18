@@ -1,37 +1,39 @@
-<div class="row-fluid">
-	<div class="navbar clearfix span12">
-		<a href="/cart/" class="pull-right navbar-cart">Cart: <span class="badge badge-primary">{{cart.num_items}}</span></a>
-		<div class="pull-right divider-vertical"></div>
-		{% if user.is_authenticated %}
-			<ul class="nav pull-right">
-		        <li id="" class="dropdown">
-		          <a href="#" id="drop3" role="button" class="dropdown-toggle btn btn-account" data-toggle="dropdown">Account <b class="caret"></b></a>
-		          <ul class="dropdown-menu dropdown-account" role="menu" aria-labelledby="drop3">
-		            <li><a tabindex="-1" href="/account/">Your Account</a></li>
-		            <li class="divider"></li>
-		            <li><a tabindex="-1" href="/logout/">Log out</a></li>
-		          </ul>
-		        </li>
-		      </ul>
-		{% else %}
-			<a href="/login/" class="login-btn btn btn-primary pull-right" type="button">Login</a>
-		{% endif %}
+<div class="navbar clearfix navbar-fixed-top">
+	<div class="navbar-inner">  
+    	<div class="container">  
+			<a href="/cart/" class="pull-right navbar-cart">Cart: <span class="badge badge-primary">{{cart.num_items}}</span></a>
+			<div class="pull-right divider-vertical"></div>
+			{% if user.is_authenticated %}
+				<ul class="nav pull-right">
+			        <li id="" class="dropdown">
+			          <a href="#" id="drop3" role="button" class="dropdown-toggle btn btn-account" data-toggle="dropdown">Account <b class="caret"></b></a>
+			          <ul class="dropdown-menu dropdown-account" role="menu" aria-labelledby="drop3">
+			            <li><a tabindex="-1" href="/account/">Your Account</a></li>
+			            <li class="divider"></li>
+			            <li><a tabindex="-1" href="/logout/">Log out</a></li>
+			          </ul>
+			        </li>
+			      </ul>
+			{% else %}
+				<a href="/login/" class="login-btn btn btn-primary pull-right" type="button">Login</a>
+			{% endif %}
 
-		
+			
 
-		{% if home_active == None %}
-		<a id="logo" href="/" class="pull-left logo">lifetime Supply</a>
-		{% endif %}
+			{% if home_active == None %}
+			<a id="logo" href="/" class="pull-left logo">lifetime Supply</a>
+			{% endif %}
 
 
-		<ul class="nav nav-pills pull-right page-nav">
-			<li class="{{home_active}}">
-				<a href="/">Home</a>
-			</li>
-			<li class="{{about_active}}"><a href="/about/">About</a></li>
-			<li class="{{how_active}}"><a href="/how/">How it works</a></li>
-			<li class="{{account_active}}"><a href="/account/">Account</a></li>
-			<!-- <li class="{{faq_active}}"><a href="/faq/">FAQ</a></li> -->
-		</ul>
-	</div>
+			<ul class="nav nav-pills pull-right page-nav">
+				<li class="{{home_active}}">
+					<a href="/">Home</a>
+				</li>
+				<li class="{{about_active}}"><a href="/about/">About</a></li>
+				<li class="{{how_active}}"><a href="/how/">How it works</a></li>
+				<li class="{{account_active}}"><a href="/account/">Account</a></li>
+				<!-- <li class="{{faq_active}}"><a href="/faq/">FAQ</a></li> -->
+			</ul>
+		</div>
+	</div>			
 </div>

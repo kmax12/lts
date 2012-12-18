@@ -5,13 +5,13 @@
 {% endblock %}
 
 {% block body %}
-    <div class="container-fluid">        
-        <div class="row-fluid">
+    <div class="container">        
+        <div class="row">
             <h1 id="logo-home" class="logo">lifetime Supply</h1>
 <!-- <img src="http://joshuaweigel.com/wp-content/themes/JoshWeigel/images/sunburst.jpg" alt=""> --> 
         </div>
         {% if not user.is_authenticated %}
-            <div class="row-fluid">
+            <div class="row">
                 <div class="span12">
                     <div class="alert alert-info"> 
                         <div class="home-message">We are still in private beta. Request an invite <a href="http://www.lifetimesupply.com" class="" >here</a></div>
@@ -19,7 +19,7 @@
                 </div>
             </div>
         {% endif %}
-        <div class="row-fluid">
+        <div class="row">
             <div id="marketing" class="carousel slide span12 shadow hidden-phone">
               <!-- Carousel items -->
               <div class="carousel-inner">
@@ -52,30 +52,30 @@
         </div>
 
     </div>
-    <div class="container-fluid">
+    <div class="container">
         
-        <div class="row-fluid">
+        <div class="row">
             <div class="product_count_container label span12">
                 <div class="product_count">Showing {{products.count}} of {{products.count}} products</div> 
             </div>
-              <p class="">
-            Want something you don't see? <a href="/contact/" class="" >Let us know</a>
+            <p class="span12">
+                Want something you don't see? <a href="/contact/" class="" >Let us know</a>
             </p>
         </div>
           
 
-        <div class="row-fluid">
+        <div class="row">
             <div class="span12">
                 <div class="product-container">
                     <ul class="thumbnails">
                         {% for product in products %}
-                            {% include "thumbnail.html" with p=product li_class="span3 cutout" %}
+                            {% include "thumbnail.html" with p=product li_class="span3" %}
                         {% endfor %}
                     </ul>
                 </div>
             </div>
         </div>
-        <div class="row-fluid">
+        <div class="row">
             <div class="span12">
                 {% if user.is_authenticated %}
                 <h3>Quick order</h3>

@@ -37,17 +37,16 @@
   </head>
 
   <body>
-  	<div class="container-fluid">
 		{% include "partial/navbar.html" %}
-	</div>
-  	<!-- <div id="wrap"> -->
-		  {%block body %}
+  	<div id="wrap" class="container">
+	 	{%block body %}
 
-		  {% endblock %}
-	<div class="container-fluid">
-		{% include "partial/footer.html" %}
+		{% endblock %}
+		
+		<div class="container">
+			{% include "partial/footer.html" %}
+		</div>
 	</div>
-	<!-- </div> -->
 
   	<div id="ajax-modal" class="modal hide fade" tabindex="-1"></div>
 

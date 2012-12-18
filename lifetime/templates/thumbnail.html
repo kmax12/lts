@@ -1,22 +1,19 @@
-<li class="{{li_class}}" style="">
-    <div class="thumbnail-containter">
-        
-        <a href="/product/{{p.id}}">
-            <img src="{{STATIC_URL}}{{p.img}}" alt="">
-            <h3 class="product-title">{{p.name}}</h3>
-        </a>
-        <div class="caption">
-            <div class="price label">${{p.price|floatformat:"0"}}/year</div>
-            <div class="pull-right">
-                {% if p in user.subscription_set %}
-                    <span data-id={{p.id}} class="btn btn-info btn-ship-it">{{ORDER_TEXT}}</span>
-                {% else %}
-                    <a href="/cart/add?id={{p.id}}" data-id={{p.id}} class="btn btn-buy add-to-cart">Buy</a>
-                {% endif %}
-            </div>
-            <div class="description">
-                {{p.description}}
-            </div>
-         </div>
-    </div>
+<li class="{{li_class}} thumbnail-containter">
+    <a href="/product/{{p.id}}">
+        <img src="{{STATIC_URL}}{{p.img}}" alt="">
+        <h3 class="product-title">{{p.name}}</h3>
+    </a>
+    <div class="caption">
+        <div class="price label">${{p.price|floatformat:"0"}}/year</div>
+        <div class="pull-right">
+            {% if p in user.subscription_set %}
+                <span data-id={{p.id}} class="btn btn-info btn-ship-it">{{ORDER_TEXT}}</span>
+            {% else %}
+                <a href="/cart/add?id={{p.id}}" data-id={{p.id}} class="btn btn-buy add-to-cart">Buy</a>
+            {% endif %}
+        </div>
+        <div class="description">
+            {{p.description}}
+        </div>
+     </div>
 </li>
