@@ -26,13 +26,7 @@
         </div>
         <div class="span9">
             {% if not user.address.edited and not address_active %}
-                <!-- 
-                <script>
-                noAddress = true; //let js know there isn't an address on file
-                </script>
-
- -->
-                <div class="alert row">
+                <div class="alert">
                     We don't know where to send your stuff. <a href="/account/address/" class="open-add-address bt-buy">Add your address</a> now.
                 </div>
             {% else %}
@@ -42,10 +36,10 @@
                 </script>
                  -->
             {% endif %}
-            <div class="row">
-                {% block account-content %}
-                {% endblock %}
-            </div>
+
+            {% block account-content %}
+            
+            {% endblock %}
         </div>
     </div>
 </div>

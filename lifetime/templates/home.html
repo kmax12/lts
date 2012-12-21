@@ -10,15 +10,6 @@
             <h1 id="logo-home" class="logo">lifetime Supply</h1>
 <!-- <img src="http://joshuaweigel.com/wp-content/themes/JoshWeigel/images/sunburst.jpg" alt=""> --> 
         </div>
-        {% if not user.is_authenticated %}
-            <div class="row">
-                <div class="span12">
-                    <div class="alert alert-info"> 
-                        <div class="home-message">We are still in private beta. Request an invite <a href="http://www.lifetimesupply.com" class="" >here</a></div>
-                    </div>
-                </div>
-            </div>
-        {% endif %}
         <div class="row">
             <div id="marketing" class="carousel slide span12 shadow hidden-phone">
               <!-- Carousel items -->
@@ -51,18 +42,26 @@
             </div> -->
         </div>
 
+        {% if not user.is_authenticated %}
+            <div class="row">
+                <div class="span12">
+                    <div class="alert alert-info"> 
+                        <div class="home-message">We are still in private beta. Request an invite <a href="http://www.lifetimesupply.com" class="" >here</a></div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
     </div>
     <div class="container">
         
         <div class="row">
-            <div class="product_count_container label span12">
+            <div class="product_count_container lts-label span12">
                 <div class="product_count">Showing {{products.count}} of {{products.count}} products</div> 
             </div>
             <p class="span12">
                 Want something you don't see? <a href="/contact/" class="" >Let us know</a>
             </p>
         </div>
-          
 
         <div class="row">
             <div class="span12">

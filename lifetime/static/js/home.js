@@ -6,6 +6,8 @@ $(function(){
 });
 
 
+
+
 function handleBuy(e){
 	//todo update number of items in cart
 

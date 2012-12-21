@@ -38,14 +38,20 @@
 
   <body>
 		{% include "partial/navbar.html" %}
-  	<div id="wrap" class="container">
-	 	{%block body %}
+		<div class="top-bar"></div>
+  	<!-- <div id="page-container" class="container"> -->
+	  	<div id="wrap" class="container">
+	  		<div id="nav-push"></div>
+			<div id="container-body">
+				{%block body %}
 
-		{% endblock %}
-		
-		<div class="container">
-			{% include "partial/footer.html" %}
+				{% endblock %}
+			</div>
+			<div id="push"></div>
 		</div>
+	<!-- </div> -->
+	<div id="footer-container" class="container">
+		{% include "partial/footer.html" %}
 	</div>
 
   	<div id="ajax-modal" class="modal hide fade" tabindex="-1"></div>
@@ -80,6 +86,7 @@
 	<script src="{{ STATIC_URL}}js/bootstrap-collapse.js"></script>
 	<script src="{{ STATIC_URL}}js/bootstrap-carousel.js"></script>
 	<script src="{{ STATIC_URL}}js/bootstrap-typeahead.js"></script>
+	<script src="{{ STATIC_URL}}js/bootstrap-affix.js"></script>
 
  	<script src="https://raw.github.com/davatron5000/FitText.js/master/jquery.fittext.js"></script>
 
