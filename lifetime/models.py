@@ -8,6 +8,7 @@ class Product(models.Model):
     description = models.TextField()
     img = models.CharField(max_length=100)
     price = models.FloatField()
+    active = models.BooleanField(default=False)
     
     def __unicode__(self):
         return u'%s' % (self.name)

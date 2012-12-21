@@ -15,7 +15,7 @@ def home(request):
     template_values = {
         "title": "Lifetime Supply",
         "home_active" : "active",
-        "products": Product.objects.all(),
+        "products": Product.objects.filter(active=True),
     }
 
     return direct_to_template(request, 'home.html',
