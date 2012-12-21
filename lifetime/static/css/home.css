@@ -3,8 +3,12 @@
 	line-height: normal!important;
 	text-align: center;
 	font-weight: normal;
-	margin-top:-15px;
+	text-indent: -99999px;
+	margin-top: 0px;
 	background-image: url(/static/img/logo.png);
+	background-size: 511px;
+	background-repeat: no-repeat;
+	background-position: center;
 }
 
 #marketing{
