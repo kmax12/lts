@@ -83,6 +83,8 @@ class Cart:
         self.cart = cart
 
     def set_gift(self,gift=False):
+        print 'gift'
+        print gift
         self.cart.gift = gift
         self.cart.save()
 
