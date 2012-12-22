@@ -4,13 +4,10 @@
 <link href="{{ STATIC_URL}}css/product_page.css" rel="stylesheet">
 {% endblock %}
 
+{% block page-header %} 
+{{product.name}}{% endblock %}
 
 {% block content %}
-	<div class="row">
-		<div id="product-title" class="span10 label offset1">
-			<h1 class="">{{product.name}}</h1>
-		</div>
-	</div>
 	<div class="row">
 		<div class="span4 offset1">
 			<div id="product-image">
@@ -38,6 +35,9 @@
 	                		{% for d in product.productdetail_set.all %}
 	                			<li>{{d.text}}</li>
 	                		{% endfor %}
+	                		<li>{{product.units_per_shipment}} {{product.unit_name}} per shipment</li>
+	                		<li>Up to {{product.units_per_week}} {{product.unit_name}} per week</li>
+	                		<li>Up to {{product.units_per_year}} {{product.unit_name}} per year</li>
 	                	</ul>
 	                </div>
 	            </div>

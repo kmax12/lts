@@ -9,6 +9,11 @@ class Product(models.Model):
     img = models.CharField(max_length=100)
     price = models.FloatField()
     active = models.BooleanField(default=False)
+    units_per_shipment = models.IntegerField(default=0) #length of subscription in days
+    units_per_week = models.IntegerField(default=0) #length of subscription in days
+    units_per_year = models.IntegerField(default=0) #length of subscription in days
+    unit_name =models.CharField(max_length=100, default="units")
+
     
     def __unicode__(self):
         return u'%s' % (self.name)

@@ -1,15 +1,9 @@
 #logo-home{
-	font-size: 5em;
-	line-height: normal!important;
-	text-align: center;
-	font-weight: normal;
-	text-indent: -99999px;
-	margin-top: 0px;
-	background-image: url(/static/img/logo.png);
-	background-size: 511px;
-	background-repeat: no-repeat;
-	background-position: center;
+	width: 511px;
+	margin: 0px auto;
+	padding: 10px;
 }
+
 
 #marketing{
 	height:200px;
@@ -76,10 +70,11 @@
 	margin: 3px 0;
 	text-indent: 4px;
 	color:#444;
+	font-size: 1.8em;
 }
 
 .caption .price{
-	font-size: 1.6em;
+	font-size: 1.4em;
 	font-weight: bold;
 	padding: 7px 5px;
 	margin: 1px 0;

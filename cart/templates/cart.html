@@ -9,19 +9,15 @@ Checkout
 {% endblock %}
 
 {% block content %}
-<div class="container">
-    <div class="row">
-		{% if cart.total > 0 %}
+	{% if cart.total > 0 %}
 
-		    {% include "cart-checkout.html" %}
+	    {% include "cart-checkout.html" %}
 
-		{% else %}
+	{% else %}
 
-		    {% include "cart-empty.html" %}
+	    {% include "cart-empty.html" %}
 
-		{% endif %}
-	</div>
-</div>
+	{% endif %}
 {% endblock %}
 
 {% block content_scripts %}

@@ -69,7 +69,7 @@ def view_cart(request):
     #switch cart type to gift
     gift = request.GET.get("gift", None)
     if gift:
-        Cart(request).set_gift(gift=="1")
-        return redirect("lifetime.views.view_cart")
+        Cart(request).set_gift(gift==True)
+        return redirect("cart.views.view_cart")
         
     return direct_to_template(request, 'cart.html', template_values)

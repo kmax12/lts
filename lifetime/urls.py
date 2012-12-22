@@ -28,7 +28,7 @@ urlpatterns = patterns('',
     url(r'^$', direct_to_template,{'template': 'home.html', 'extra_context': {
                                                                             "title": "Lifetime Supply",
                                                                             "home_active" : "active",
-                                                                            "products": Product.objects.all(),
+                                                                            "products": Product.objects.filter(active=True),
                                                                         }}),
     # Examples:
     # url(r'^$', 'lts.views.home', name='home'),

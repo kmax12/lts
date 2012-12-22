@@ -11,16 +11,6 @@ from django.db.models import F
 import json
 
 
-def home(request):
-    template_values = {
-        "title": "Lifetime Supply",
-        "home_active" : "active",
-        "products": Product.objects.filter(active=True),
-    }
-
-    return direct_to_template(request, 'home.html',
-                             template_values)
-
 def view_product(request, product):
     product = Product.objects.get(id=product) 
 

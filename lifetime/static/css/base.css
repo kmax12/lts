@@ -12,8 +12,17 @@ html, body {
   margin: 0;
   height: 100%;
 }
+
+.large{
+  font-size: 2em;
+}
+
+.large li {
+  line-height: normal!important;
+}
+
 .top-bar {
-  background: url(https://gumroad.s3.amazonaws.com/assets/top-bar-30330d8679dd72f24442cfe76e75ed57.png) top center;
+  background: url(../img/top-bar.png) top center;
   height: 3px;
   width: 100%;
   position: fixed;
@@ -124,7 +133,7 @@ html, body {
 }
 
 #footer a{
-  color: #BD362F;
+  /*color: #BD362F;*/
 }
 
 .shadow{
@@ -147,19 +156,26 @@ html, body {
   margin:0px !important;
 }
 
-#logo{
+/*#logo{
 	font-size: 2.2em;
   line-height: 30px;
   text-decoration: none;
 }
-
-@media (max-width: 767px) {
-  #logo{
-    font-size: 1.8em;
-  }
+*/
+#logo-nav{
+  width: 190px;
+  margin: 0px auto;
+  line-height: normal;
+  font-size: 1em;
 }
 
-#logo:hover{
+@media (max-width: 767px) {
+  /*#logo{
+    font-size: 1.8em;
+  }*/
+}
+
+/*#logo:hover{
   color:#BD362F;
 }
 
@@ -169,7 +185,7 @@ html, body {
   font-weight: normal;
   color:#BD362F;
   text-shadow: 1px 1px 1px #3E4045, 3px 3px 5px #fff;
-}
+}*/
 
 .logo:first-letter{
   font-size:1.2em;

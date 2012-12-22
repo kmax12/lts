@@ -84,7 +84,6 @@ class Cart:
 
     def set_gift(self,gift=False):
         self.cart.gift = gift
-        print gift
         self.cart.save()
 
     def clear(self):
