@@ -37,7 +37,7 @@ html, body {
   margin-bottom: -100px;
   height:100%;
   /*color: #8A9298;*/
-  padding: 0 10px;
+  padding: 0 35px;
    -moz-box-shadow:
          5px 0 12px -5px #aaa,
          -5px 0 12px -5px #aaa;
@@ -64,6 +64,7 @@ html, body {
 #navbar{
   height: 62px;
   margin: 0px;
+  font-family: Verdana;
 }
 
 .navbar .container {
@@ -71,9 +72,8 @@ html, body {
 }
 
 #nav-push{
-  height: 80px;
+  height: 110px;
 }
-
 
 #wrap{
   /*margin-top: 25px;*/
@@ -167,6 +167,7 @@ html, body {
   }
   #wrap{
     margin: 0px 10px;
+    padding: 0 15px;
   }
   #navbar{
     height: 105px;
@@ -178,9 +179,13 @@ html, body {
   }
 }
 
-@media (max-width: 979px) {
+@media (max-width: 979px) and (min-width: 768px){
   #nav-push{
      display: none;
+  }
+  #wrap{
+    margin: 0px 6px;
+    padding: 0 16px;
   }
 }
 
