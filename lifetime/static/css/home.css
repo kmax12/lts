@@ -73,13 +73,15 @@
 	padding: 4px;
 }
 
-.thumbnail-containter a{
-	/*border: 1px solid rgba(0, 0, 0, 0.1);*/
+.thumbnail-containter .image-contianer{
+	height: 220px;
 }
+
+
 
 .thumbnail-containter h3{
 	line-height: 22px;
-	margin: 3px 0;
+	margin: 20px 0 5px;
 	text-indent: 4px;
 	color:#444;
 	font-size: 1.8em;

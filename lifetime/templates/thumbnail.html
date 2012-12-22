@@ -1,8 +1,10 @@
 <li class="{{li_class}} shadow thumbnail-containter">
-    <a href="/product/{{p.id}}">
-        <img src="{{STATIC_URL}}{{p.img}}" alt="">
-        <h3 class="product-title">{{p.name}}</h3>
-    </a>
+        <a href="/product/{{p.id}}">
+            <div class="image-contianer clearfix">
+                <img src="{{STATIC_URL}}{{p.img}}" alt="">
+            </div>
+            <h3 class="product-title">{{p.name}}</h3>
+        </a>
     <div class="caption">
         <div class="price label">${{p.price|floatformat:"0"}}/year</div>
         <div class="pull-right">
