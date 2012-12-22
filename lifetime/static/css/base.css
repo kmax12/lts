@@ -74,14 +74,6 @@ html, body {
   height: 80px;
 }
 
-@media (max-width: 979px) {
-  body {
-    padding: 0px 0px 0px 0px;
-  }
-  #wrap{
-    margin: 0px 10px;
-  }
-}
 
 #wrap{
   /*margin-top: 25px;*/
@@ -157,7 +149,7 @@ html, body {
 }
 
 /*#logo{
-	font-size: 2.2em;
+  font-size: 2.2em;
   line-height: 30px;
   text-decoration: none;
 }
@@ -170,9 +162,26 @@ html, body {
 }
 
 @media (max-width: 767px) {
-  /*#logo{
-    font-size: 1.8em;
-  }*/
+  body {
+    padding: 0px 0px 0px 0px;
+  }
+  #wrap{
+    margin: 0px 10px;
+  }
+  #navbar{
+    height: 105px;
+  }
+
+  #logo-nav{
+    width: 117px;
+    padding-top: 5px;
+  }
+}
+
+@media (max-width: 979px) {
+  #nav-push{
+     display: none;
+  }
 }
 
 /*#logo:hover{

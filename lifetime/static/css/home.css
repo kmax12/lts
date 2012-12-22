@@ -1,7 +1,8 @@
 #logo-home{
-	width: 511px;
+	max-width: 511px;
 	margin: 0px auto;
 	padding: 10px;
+	width: 80%;
 }
 
 
@@ -35,11 +36,10 @@
 }
 
 
-.large{
+#marketing p{
 	font-size: 5em;
 	color: #F7FCF5;
 	text-shadow: 1px 1px 1px #444, 2px 2px 5px #666;
-
 }
 
 /*Prodcut thumbnails*/
@@ -50,6 +50,17 @@
 	padding: 3px 0px;
 	text-indent: 5px;
 }
+
+@media (max-width: 979px) {
+  #marketing{
+    height: 250px;
+  }
+  
+  .carousel-inner .item {
+    height: 240px;
+  }
+}
+
 .thumbnails > li{
 	background: #fff;
 	box-shadow: inset 0 1px 1px rgba(49, 77, 94, 0.06),0 1px 0 rgba(255, 255, 255, 0.33);
