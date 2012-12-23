@@ -14,7 +14,35 @@
             </span>
 <!-- <img src="http://joshuaweigel.com/wp-content/themes/JoshWeigel/images/sunburst.jpg" alt=""> --> 
         </div>
+
+         <div class="row">
+            <div id="subtitle-container" class="shadow span12">
+                <h2 class="large">We sell unlimited, on demand access to products you use on a daily basis.</h2> 
+            </div>
+        <!--     <div class="product_count_container lts-label span12">
+                <div class="product_count">Showing {{products.count}} of {{products.count}} products</div> 
+            </div> -->
+            <div class="products-header section-header span8 offset2">
+                ▼ Our Products ▼
+            </div>
+            <p class="span12">
+                Want something you don't see? <a href="/contact/" class="" >Let us know</a>
+            </p>
+        </div>
+
         <div class="row">
+            <div class="span12">
+                <div class="product-container">
+                    <ul class="thumbnails">
+                        {% for product in products %}
+                            {% include "thumbnail.html" with p=product li_class="span3" %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row hidden">
             <div id="marketing" class="carousel slide span12 shadow hidden-phone">
               <!-- Carousel items -->
               <div class="carousel-inner">
@@ -45,9 +73,6 @@
                 </div>
             </div> -->
         </div>
-
-    </div>
-    <div class="container">
         
         <div class="row">
             <div class="section-header span8 offset2">
@@ -56,29 +81,6 @@
         </div>
         {% include 'partial/how_it_works.html' %}
 
-        <div class="row">
-        <!--     <div class="product_count_container lts-label span12">
-                <div class="product_count">Showing {{products.count}} of {{products.count}} products</div> 
-            </div> -->
-            <div class="products-header section-header span8 offset2">
-                ▼ Our Products ▼
-            </div>
-            <p class="span12">
-                Want something you don't see? <a href="/contact/" class="" >Let us know</a>
-            </p>
-        </div>
-
-        <div class="row">
-            <div class="span12">
-                <div class="product-container">
-                    <ul class="thumbnails">
-                        {% for product in products %}
-                            {% include "thumbnail.html" with p=product li_class="span3" %}
-                        {% endfor %}
-                    </ul>
-                </div>
-            </div>
-        </div>
         <div class="row">
             <div class="span12">
                 {% if user.is_authenticated %}
