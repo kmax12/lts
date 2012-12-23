@@ -45,16 +45,30 @@
 	text-shadow: 1px 1px 1px #444, 2px 2px 5px #666;
 }
 
-/*Prodcut thumbnails*/
-.products-header{
-	font-size: 3em;
+.how-step{
+	padding: 10px 0;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.how-step:nth-child(2){
+	/*border-left: 3px solid #aaa;
+	border-right: 3px solid #aaa;*/
+}
+
+.how-step .title{
+	font-size: 1.8em;
 	text-align: center;
-	border-bottom: 2px solid #333;
-	padding: 19px 0px;
-	border-top: 2px solid #333;
-	/*font-variant:small-caps;*/
-	margin-bottom: 8px;
-	margin-top: 25px;
+}
+
+.how-step .description{
+	font-size: 1em;
+	margin: 8px 0px;
+}
+
+.how-step img{
+	width:100%;
 }
 
 .product_count_container{
