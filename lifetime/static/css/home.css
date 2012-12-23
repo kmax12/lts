@@ -7,11 +7,16 @@
 
 #subtitle-container{
 	background-image: url(http://subtlepatterns.subtlepatterns.netdna-cdn.com/patterns/grey.png);
-	padding: 13px;
 	text-align: center;
+	color: #666;
 	border-radius: 6px;
+	margin-top: 20px;
+	margin-bottom: 20px;
 }
 
+#subtitle{
+	margin: 13px
+}
 
 #marketing{
 	height:200px;
@@ -104,7 +109,8 @@
 
 .thumbnail-containter .image-contianer{
 	height: 190px;
-	margin: 10px;
+	margin: 10px auto;
+	width: 180px;
 }
 
 

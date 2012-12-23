@@ -150,9 +150,9 @@ ACCOUNT_ACTIVATION_DAYS = 7 # One-week activation window;
 AUTH_PROFILE_MODULE = "account.UserProfile"
 LOGIN_URL = '/login/'
 LOGOUT_URL = '/logout/'
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/account/'
 ABSOLUTE_URL_OVERRIDES = {
-    'auth.user': lambda o: "/",
+    'auth.user': lambda o: "/account/",
 }
 REGISTRATION_OPEN=True
 
