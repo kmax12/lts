@@ -168,12 +168,12 @@ body {
 }
 
 a {
-  color: #67a6a6;
+  color: #546d81;
   text-decoration: none;
 }
 
 a:hover {
-  color: #477979;
+  color: #364653;
   text-decoration: underline;
 }
 
@@ -2823,29 +2823,29 @@ table th[class*="span"],
 .dropdown-submenu:hover > a {
   color: #ffffff;
   text-decoration: none;
-  background-color: #62a1a1;
-  background-image: -moz-linear-gradient(top, #67a6a6, #5a9a9a);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#67a6a6), to(#5a9a9a));
-  background-image: -webkit-linear-gradient(top, #67a6a6, #5a9a9a);
-  background-image: -o-linear-gradient(top, #67a6a6, #5a9a9a);
-  background-image: linear-gradient(to bottom, #67a6a6, #5a9a9a);
+  background-color: #50687b;
+  background-image: -moz-linear-gradient(top, #546d81, #4a6072);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#546d81), to(#4a6072));
+  background-image: -webkit-linear-gradient(top, #546d81, #4a6072);
+  background-image: -o-linear-gradient(top, #546d81, #4a6072);
+  background-image: linear-gradient(to bottom, #546d81, #4a6072);
   background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff67a6a6', endColorstr='#ff5a9a9a', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff546d81', endColorstr='#ff4a6072', GradientType=0);
 }
 
 .dropdown-menu .active > a,
 .dropdown-menu .active > a:hover {
   color: #333333;
   text-decoration: none;
-  background-color: #62a1a1;
-  background-image: -moz-linear-gradient(top, #67a6a6, #5a9a9a);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#67a6a6), to(#5a9a9a));
-  background-image: -webkit-linear-gradient(top, #67a6a6, #5a9a9a);
-  background-image: -o-linear-gradient(top, #67a6a6, #5a9a9a);
-  background-image: linear-gradient(to bottom, #67a6a6, #5a9a9a);
+  background-color: #50687b;
+  background-image: -moz-linear-gradient(top, #546d81, #4a6072);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#546d81), to(#4a6072));
+  background-image: -webkit-linear-gradient(top, #546d81, #4a6072);
+  background-image: -o-linear-gradient(top, #546d81, #4a6072);
+  background-image: linear-gradient(to bottom, #546d81, #4a6072);
   background-repeat: repeat-x;
   outline: 0;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff67a6a6', endColorstr='#ff5a9a9a', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff546d81', endColorstr='#ff4a6072', GradientType=0);
 }
 
 .dropdown-menu .disabled > a,
@@ -3214,17 +3214,17 @@ input[type="button"].btn-block {
 .btn-primary {
   color: #ffffff;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-  background-color: #679ea6;
-  *background-color: #6791a6;
-  background-image: -moz-linear-gradient(top, #67a6a6, #6791a6);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#67a6a6), to(#6791a6));
-  background-image: -webkit-linear-gradient(top, #67a6a6, #6791a6);
-  background-image: -o-linear-gradient(top, #67a6a6, #6791a6);
-  background-image: linear-gradient(to bottom, #67a6a6, #6791a6);
+  background-color: #546781;
+  *background-color: #545e81;
+  background-image: -moz-linear-gradient(top, #546d81, #545e81);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#546d81), to(#545e81));
+  background-image: -webkit-linear-gradient(top, #546d81, #545e81);
+  background-image: -o-linear-gradient(top, #546d81, #545e81);
+  background-image: linear-gradient(to bottom, #546d81, #545e81);
   background-repeat: repeat-x;
-  border-color: #6791a6 #6791a6 #476979;
+  border-color: #545e81 #545e81 #363c53;
   border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff67a6a6', endColorstr='#ff6791a6', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff546d81', endColorstr='#ff545e81', GradientType=0);
   filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
 }
 
@@ -3234,13 +3234,13 @@ input[type="button"].btn-block {
 .btn-primary.disabled,
 .btn-primary[disabled] {
   color: #ffffff;
-  background-color: #6791a6;
-  *background-color: #5a849a;
+  background-color: #545e81;
+  *background-color: #4a5372;
 }
 
 .btn-primary:active,
 .btn-primary.active {
-  background-color: #517689 \9;
+  background-color: #404762 \9;
 }
 
 .btn-warning {
@@ -3444,7 +3444,7 @@ input[type="submit"].btn.btn-mini {
 }
 
 .btn-link {
-  color: #67a6a6;
+  color: #546d81;
   cursor: pointer;
   border-color: transparent;
   -webkit-border-radius: 0;
@@ -3453,7 +3453,7 @@ input[type="submit"].btn.btn-mini {
 }
 
 .btn-link:hover {
-  color: #477979;
+  color: #364653;
   text-decoration: underline;
   background-color: transparent;
 }
@@ -3615,7 +3615,7 @@ input[type="submit"].btn.btn-mini {
 }
 
 .btn-group.open .btn-primary.dropdown-toggle {
-  background-color: #6791a6;
+  background-color: #545e81;
 }
 
 .btn-group.open .btn-warning.dropdown-toggle {
@@ -3826,7 +3826,7 @@ input[type="submit"].btn.btn-mini {
 .nav-list > .active > a:hover {
   color: #ffffff;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2);
-  background-color: #67a6a6;
+  background-color: #546d81;
 }
 
 .nav-list [class^="icon-"],
@@ -3920,7 +3920,7 @@ input[type="submit"].btn.btn-mini {
 .nav-pills > .active > a,
 .nav-pills > .active > a:hover {
   color: #ffffff;
-  background-color: #67a6a6;
+  background-color: #546d81;
 }
 
 .nav-stacked > li {
@@ -3987,13 +3987,13 @@ input[type="submit"].btn.btn-mini {
 
 .nav .dropdown-toggle .caret {
   margin-top: 6px;
-  border-top-color: #67a6a6;
-  border-bottom-color: #67a6a6;
+  border-top-color: #546d81;
+  border-bottom-color: #546d81;
 }
 
 .nav .dropdown-toggle:hover .caret {
-  border-top-color: #477979;
-  border-bottom-color: #477979;
+  border-top-color: #364653;
+  border-bottom-color: #364653;
 }
 
 /* move down carets for tabs */
@@ -5333,7 +5333,7 @@ input[type="submit"].btn.btn-mini {
 }
 
 a.thumbnail:hover {
-  border-color: #67a6a6;
+  border-color: #546d81;
   -webkit-box-shadow: 0 1px 4px rgba(0, 105, 214, 0.25);
      -moz-box-shadow: 0 1px 4px rgba(0, 105, 214, 0.25);
           box-shadow: 0 1px 4px rgba(0, 105, 214, 0.25);
