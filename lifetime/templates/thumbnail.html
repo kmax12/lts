@@ -7,15 +7,15 @@
             <h3 class="product-title">{{p.name}}</h3>
         </a>
         <div class="price label">${{p.price|floatformat:"0"}}/year</div>
-        <div class="pull-right">
+        <!-- <div class="">
             {% if p in user.subscription_set %}
                 <span data-id={{p.id}} class="btn btn-info btn-ship-it">{{ORDER_TEXT}}</span>
             {% else %}
-                <a href="/cart/add?id={{p.id}}" data-id={{p.id}} class="btn btn-buy add-to-cart">Buy</a>
+                <a href="/cart/add?id={{p.id}}" data-id={{p.id}} class="btn btn-buy add-to-cart">Subscribe</a>
             {% endif %}
-        </div>
+        </div> -->
         <div class="description">
-            {{p.description}}
+            {{p.description}} <a href="/product/{{p.id}}"> More info.</a>
         </div>
      </div>
 </li>

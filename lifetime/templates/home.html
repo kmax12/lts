@@ -19,20 +19,20 @@
               <!-- Carousel items -->
               <div class="carousel-inner">
                 <div class="active background-polka-dot item">
-                    <p class="large">Unlimited access</p>
-                    <p class="large">to great products <a href="/how/" class="btn btn-large btn-buy">How it works</a></p>
+                    <p class="large">Unlimited Access &</p>
+                    <p class="large">Free Shipping <a href="/how/" class="btn btn-large btn-buy">How it works</a></p>
                 </div>
                 <div class="item background-stripes-straight">
-                    <p class="large">Get more only</p>
-                    <p class="large">when you need it</p>
+                    <p class="large">Great savings</p>
+                    <p class="large">for members-only</p>
+                </div>
+                <div class="item background-diagonal-stripes">
+                    <p class="large">Get more</p>
+                    <p class="large">when you want it</p>
                 </div>
                 <div class="item background-cicada-stripes">
                     <p class="large">Want something you</p>
                     <p class="large">don't see? <a href="/contact/" class="btn btn-large btn-buy">Let us know</a></p>
-                </div>
-                <div class="item background-diagonal-stripes">
-                    <p class="large">Give the gift</p>
-                    <p class="large">that keeps on giving</p>
                 </div>
               </div>
               <!-- Carousel nav -->
@@ -46,15 +46,6 @@
             </div> -->
         </div>
 
-        {% if not user.is_authenticated %}
-            <div class="row">
-                <div class="span12">
-                    <div class="alert alert-info"> 
-                        <div class="home-message">We are still in private beta. Request an invite <a href="http://www.lifetimesupply.com" class="" >here</a></div>
-                    </div>
-                </div>
-            </div>
-        {% endif %}
     </div>
     <div class="container">
         <div class="row">
@@ -64,6 +55,13 @@
             <div class="products-header span12">
                 Our Great Products
             </div>
+            {% if not user.is_authenticated %}
+                <div class="span12">
+                    <div class="alert alert-info"> 
+                        <div class="home-message">We are still in private beta. Request an invite <a href="http://www.lifetimesupply.com" class="" >here</a></div>
+                    </div>
+                </div>
+            {% endif %}
             <p class="span12">
                 Want something you don't see? <a href="/contact/" class="" >Let us know</a>
             </p>
