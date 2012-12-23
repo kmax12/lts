@@ -45,36 +45,8 @@
 	text-shadow: 1px 1px 1px #444, 2px 2px 5px #666;
 }
 
-.how-step{
-	padding: 10px 0;
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
-}
-
-.how-step:nth-child(2){
-	/*border-left: 3px solid #aaa;
-	border-right: 3px solid #aaa;*/
-}
-
-.how-step .title{
-	font-size: 1.8em;
-	font-weight: bold;
-}
-
-.how-step .description{
-	font-size: 1em;
-	margin: 8px 0px;
-	font-size: 1.5em;
-	margin: 8px 0px;
-	line-height: normal;
-}
-
-.how-step img{
-	text-align: center;
-	height:150px;
-	display: block;
-	margin: 0 auto 20px auto;
+.products-header{
+	border: none;
 }
 
 .product_count_container{
