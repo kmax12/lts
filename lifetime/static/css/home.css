@@ -59,16 +59,22 @@
 
 .how-step .title{
 	font-size: 1.8em;
-	text-align: center;
+	font-weight: bold;
 }
 
 .how-step .description{
 	font-size: 1em;
 	margin: 8px 0px;
+	font-size: 1.5em;
+	margin: 8px 0px;
+	line-height: normal;
 }
 
 .how-step img{
-	width:100%;
+	text-align: center;
+	height:150px;
+	display: block;
+	margin: 0 auto 20px auto;
 }
 
 .product_count_container{
