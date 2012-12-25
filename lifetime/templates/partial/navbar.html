@@ -27,6 +27,12 @@
 	                <img src="{{STATIC_URL}}img/logo-2.png" alt="Lifetime Supply" title="Click to return to Lifetime Supply homepage" />
 	              </a>
 	            </h1>
+	            {% else %}
+		            <h1 id="logo-s" class="pull-left">
+		              <a href="/">
+		                <img src="{{STATIC_URL}}img/logo-s.png" alt="Lifetime Supply" title="Click to return to Lifetime Supply homepage" />
+		              </a>
+		            </h1>
 				{% endif %}
 
 
@@ -34,9 +40,9 @@
 					<li class="{{home_active}}">
 						<a href="/">Home</a>
 					</li>
-					<!-- <li class="{{about_active}}"><a href="/about/">About</a></li> -->
-					<li class="{{how_active}}"><a href="/how/">How it works</a></li>
-					<li class="{{account_active}}"><a href="/account/">Place an order</a></li>
+					<li class="{{about_active}}"><a href="/about/">About</a></li>
+					<!-- <li class="{{how_active}}"><a href="/how/">How it works</a></li> -->
+					{% if user.is_authenticated %}<li class="{{account_active}}"><a href="/account/">Place an order</a></li>{% endif %}
 					<!-- <li class="{{faq_active}}"><a href="/faq/">FAQ</a></li> -->
 				</ul>
 			</div>

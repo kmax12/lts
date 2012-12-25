@@ -43,7 +43,7 @@ html, body {
   margin-bottom: -100px;
   height:100%;
   /*color: #8A9298;*/
-  padding: 0 35px;
+  /*padding: 0 35px;*/
  /*  -moz-box-shadow:
          5px 0 12px -5px #aaa,
          -5px 0 12px -5px #aaa;
@@ -173,6 +173,13 @@ html, body {
 */
 #logo-nav{
   width: 190px;
+  margin: 0px auto;
+  line-height: normal;
+  font-size: 1em;
+}
+
+#logo-s{
+  width: 29px;
   margin: 0px auto;
   line-height: normal;
   font-size: 1em;

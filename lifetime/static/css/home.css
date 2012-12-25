@@ -113,8 +113,6 @@
 	width: 180px;
 }
 
-
-
 .thumbnail-containter h3{
 	line-height: 22px;
 	margin: 20px 0 5px; 	
@@ -138,6 +136,10 @@
 
 .caption a:hover, .caption a:hover h3 {
 	color: #BD362F;
+}
+
+.more-info{
+	/*padding: 10px 0px;*/
 }
 
 .product-container{
