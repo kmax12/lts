@@ -78,19 +78,19 @@ def add_address(request):
 @login_required
 @csrf_exempt
 def place_order(request):
-    product_id = request.POST.get("id", None)
-    if not product_id:
+    supply_id = request.POST.get("id", None)
+    if not supply_id:
         return redirect('lifetime.views.account')
 
 
-    product = Product.objects.get(id=product_id)
-    s = Subscription.objects.get(owner=request.user, product=product)
+    supply = Supply.objects.get(id=supply_id)
+    s = Subscription.objects.get(owner=request.user, supply=supply)
     
     order = Order(subscription=s)
     order.save()
 
     template_values = {
-        'product': product
+        'supply': supply
     }
 
     return direct_to_template(request, 'order-success.html', template_values) 

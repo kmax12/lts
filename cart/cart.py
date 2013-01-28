@@ -30,40 +30,34 @@ class Cart:
         
         return cart
 
-    def add(self, product, unit_price, quantity=1):
+    def add(self, supply, unit_price, quantity=1):
         try:
             item = models.Item.objects.get(
                 cart=self.cart,
-                product=product,
+                product=supply,
             )
+        #add item to cart since it does not exist
         except models.Item.DoesNotExist:
             item = models.Item()
             item.cart = self.cart
-            item.product = product
+            item.supply = supply
             item.unit_price = unit_price
             item.quantity = quantity
-            item.save()
-        else:
-            item = models.Item.objects.get(
-                cart=self.cart,
-                product=product,
-            )
-            # item.quantity += 1
             item.save()
 
     def remove(self, item):
         try:
-            item = models.Item.objects.get(cart=self.cart, product=item)
+            item = models.Item.objects.get(cart=self.cart, item=item)
         except models.Item.DoesNotExist:
             raise ItemDoesNotExist
         else:
             item.delete()
 
-    def update(self, product, quantity, unit_price=None):
+    def update(self, supply, quantity, unit_price=None):
         try:
             item = models.Item.objects.get(
                 cart=self.cart,
-                product=product,
+                product=supply,
             )
         except models.Item.DoesNotExist:
             raise ItemDoesNotExist
@@ -83,7 +77,6 @@ class Cart:
         self.cart = cart
 
     def set_gift(self,gift=False):
-        print 'gift'
         print gift
         self.cart.gift = gift
         self.cart.save()

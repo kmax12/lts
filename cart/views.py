@@ -38,22 +38,22 @@ def checkout(request):
 
 def add_to_cart(request):
     quantity = 1
-    product_id = request.GET.get('id', None)
-    if (product_id):
-        product = Product.objects.get(id=product_id)
+    supply_id = request.GET.get('id', None)
+    if (supply_id):
+        supply = Supply.objects.get(id=product_id)
         cart = Cart(request)
-        cart.add(product, product.price, quantity)
+        cart.add(supply, supply.price, quantity)
         
     return redirect('cart.views.view_cart')
 
 def remove_from_cart(request):
-    product_id = request.GET.get('id', None)
+    supply_id = request.GET.get('id', None)
     response_data = {}
     response_data['success'] = False
-    if (product_id):
-        product = Product.objects.get(id=product_id)
+    if (supply):
+        supply = Supply.objects.get(id=supply_id)
         cart = Cart(request)
-        cart.remove(product)
+        cart.remove(supply)
         response_data['success'] = True
 
     
