@@ -6,11 +6,15 @@ import random, string
 
 class Category(models.Model):
     name = models.CharField(max_length=100)
+    def __unicode__(self):
+        return self.name
 
 class Supply(models.Model):
     name = models.CharField(max_length=100)
     price = models.FloatField()
     categories = models.ManyToManyField(Category)
+    def __unicode__(self):
+        return "%s | Cats: %s"%(self.name, ", ".join([str(x) for x in self.categories.all()]))
 
 class Subscription(models.Model):
     owner = models.ForeignKey(User)
@@ -29,12 +33,12 @@ class Subscription(models.Model):
 
 class Product(models.Model):
     name = models.CharField(max_length=100)
-    description = models.TextField()
-    img = models.CharField(max_length=100)
-    price = models.FloatField()
+    description = models.TextField(default="This is a description")
+    img = models.CharField(max_length=100, default="/img/default_product.jpg")
     active = models.BooleanField(default=False)
     categories = models.ManyToManyField(Category)
 
+    # price = models.FloatField()
     # units_per_shipment = models.IntegerField(default=0) #length of Supply in days
     # units_per_week = models.IntegerField(default=0) #length of Supply in days
     # units_per_year = models.IntegerField(default=0) #length of Supply in days
@@ -42,7 +46,7 @@ class Product(models.Model):
 
     
     def __unicode__(self):
-        return u'%s' % (self.name)
+        return u'%s | %s' % (self.name, ", ".join([str(x) for x in self.categories.all()]))
 
 class ProductDetail(models.Model):
     product = models.ForeignKey(Product)
