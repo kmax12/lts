@@ -24,7 +24,7 @@ def home(request):
     return direct_to_template(request, 'home.html',
                              template_values)
 
-def view_product(request, slug):
+def view_supply(request, slug):
     supply = Supply.objects.get(url_slug=slug) 
 
 
@@ -35,6 +35,20 @@ def view_product(request, slug):
 
 
     return direct_to_template(request, 'supply_page.html',
+                             template_values)
+
+def view_product(request, slug):
+    product = Product.objects.get(id=slug) 
+
+    similar = Product.objects.filter(categories__in=product.categories.all()).exclude(pk=product.pk)
+
+    template_values = {
+        "title": product.name + " | Lifetime Supply",
+        "product": product,
+        "similar": similar
+    }
+
+    return direct_to_template(request, 'product_page.html',
                              template_values)
 
 def shop(request):
@@ -50,7 +64,8 @@ def shop(request):
 
     template_values = {
         "supplys": supplys,
-        "categories": categories
+        "categories": categories,
+        "shop_active": "active"
     }  
 
     return direct_to_template(request, 'shop.html',

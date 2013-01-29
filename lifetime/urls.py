@@ -10,8 +10,9 @@ from django.conf import settings
 
 urlpatterns = patterns('',
     #product stuff
-    url(r'^supply/(.+)$', 'lifetime.views.view_product', name="view_cart"),    
+    url(r'^supply/(.+)$', 'lifetime.views.view_supply', name="view_cart"),    
     url(r'^shop/$', 'lifetime.views.shop', name="shop"),    
+    url(r'^product/([0-9]+)$', 'lifetime.views.view_product', name="view_cart"),    
 
 
 

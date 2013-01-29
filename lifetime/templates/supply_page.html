@@ -8,12 +8,6 @@
 {{product.name}}{% endblock %}
 
 {% block scripts %}
-<script type="text/javascript">
-$(".product .btn").click(function(e){
-  e.preventDefault();
-  $(this).toggleClass("disabled").closest(".product").toggleClass("full", 200);
-})
-</script>
 {% endblock %}
 
 {% block body %}

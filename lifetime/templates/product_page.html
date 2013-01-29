@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block styles %}
+{% endblock %}
+
+{% block page-header %} 
+{{product.name}}{% endblock %}
+
+{% block scripts %}
+{% endblock %}
+
+{% block body %}
+<div class="container">
+  <div class="row">
+    <div class="span9">
+    	<h1>{{product.name}}</h1>
+	    <div class="lightbg">
+      	<div class="prod-detail">
+        	<img style="width:238px;height:273px;" src="{{STATIC_URL}}{{product.img}}" />
+      	</div>
+      </div>
+    </div>
+    <div class="span3">
+    	<h3>Similar Products</h3>
+  		{% include "partial/cat_products.html" with products=similar shop=0 %}
+    </div>
+  </div>
+</div>
+{% endblock %}
