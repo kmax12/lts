@@ -9,7 +9,7 @@ def user_created(sender, user, request, **kwargs):
     user.save()
     if code:
         # try:
-        gift = GiftModel.objects.filter(code=code)         
+        gift = Gift.objects.filter(code=code)         
         if gift.exists():
             s, created = Subscription.objects.get_or_create(user = user, product=gift.product, length_days=gift.length_days)
             gift.subscription = s
