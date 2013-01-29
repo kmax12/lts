@@ -24,6 +24,8 @@
           </li>
 					{% else %}
           <li class="dropdown small">
+          	<a href="/login">Login</a>
+          	<!-- 
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               Login <b class="caret"></b>
             </a>
@@ -36,6 +38,7 @@
               <p class="submit"><button class="btn btn-small">Login</button></p>
               </form>
             </div>
+          	-->
           </li>
           {% endif %}
 
@@ -47,59 +50,3 @@
     </div>
   </div>
 </div>
-
-<!--
-<div id="navbar" class="navbar clearfix navbar-fixed-top">
-	<div class="navbar-inner" >  
-		<div class="container">
-	    	<div class="span12">  
-				<a href="/cart/" class="pull-right navbar-cart">Cart: <span class="badge badge-primary">{{cart.num_items}}</span></a>
-				<div class="pull-right divider-vertical"></div>
-				{% if user.is_authenticated %}
-					<ul class="nav pull-right">
-				        <li id="" class="dropdown">
-				          <a href="#" id="drop3" role="button" class="dropdown-toggle btn btn-account" data-toggle="dropdown">Account <b class="caret"></b></a>
-				          <ul class="dropdown-menu dropdown-account" role="menu" aria-labelledby="drop3">
-				            <li><a tabindex="-1" href="/account/">Your Account</a></li>
-				            <li class="divider"></li>
-				            <li><a tabindex="-1" href="/logout/">Log out</a></li>
-				          </ul>
-				        </li>
-				      </ul>
-				{% else %}
-					<a href="/login/" class="login-btn btn btn-primary pull-right" type="button">Login</a>
-				{% endif %}
-
-				
-
-				{% if home_active == None %}
-				<h1 id="logo-nav" class="pull-left">
-	              <a href="/">
-	                <img src="{{STATIC_URL}}img/logo-2.png" alt="Lifetime Supply" title="Click to return to Lifetime Supply homepage" />
-	              </a>
-	            </h1>
-	            {% else %}
-		            <h1 id="logo-s" class="pull-left">
-		              <a href="/">
-		                <img src="{{STATIC_URL}}img/logo-s.png" alt="Lifetime Supply" title="Click to return to Lifetime Supply homepage" />
-		              </a>
-		            </h1>
-				{% endif %}
-
-
-				<ul class="nav nav-pills pull-right page-nav">
-					<li class="{{home_active}}">
-						<a href="/">Home</a>
-					</li>
-					<li class="{{about_active}}"><a href="/about/">About</a></li>
-					<!-- <li class="{{how_active}}"><a href="/how/">How it works</a></li>
-					{% if user.is_authenticated %}<li class="{{account_active}}"><a href="/account/">Place an order</a></li>{% endif %}
-					<!-- <li class="{{faq_active}}"><a href="/faq/">FAQ</a></li>
-				</ul>
-			</div>
-		</div>
-	</div>			
-</div>
--->
-
-
