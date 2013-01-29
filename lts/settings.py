@@ -145,7 +145,8 @@ TEMPLATE_CONTEXT_PROCESSORS = {
     'django.contrib.messages.context_processors.messages',
     'django.contrib.auth.context_processors.auth',
     'django.core.context_processors.static',
-    'utils.context_processors.cart'
+    'utils.context_processors.cart',
+    'django.core.context_processors.request',
 }
 
 ACCOUNT_ACTIVATION_DAYS = 7 # One-week activation window; 
