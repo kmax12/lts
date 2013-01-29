@@ -68,7 +68,8 @@ def view_cart(request):
 
     #switch cart type to gift
     gift = request.GET.get("gift", None)
-    if gift:
+    if gift == '0' or gift == "1":
+        gift = True if gift == "1" else False
         Cart(request).set_gift(gift=gift)
         return redirect("cart.views.view_cart")
         
