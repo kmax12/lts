@@ -11,15 +11,17 @@ from django.db.models import F
 import json
 
 
-def view_product(request, product):
-    product = Product.objects.get(id=product) 
+def view_product(request, slug):
+    supply = Supply.objects.get(url_slug=slug) 
+
 
     template_values = {
-        "title": product.name + " | Lifetime Supply",
-        "product" : product
+        "title": supply.name + " | Lifetime Supply",
+        "supply" : supply
     }
 
-    return direct_to_template(request, 'product_page.html',
+
+    return direct_to_template(request, 'supply_page.html',
                              template_values)
 
 

@@ -5,99 +5,45 @@
 {% endblock %}
 
 {% block body %}
-    <div class="container">        
-        <div class="row">
-            <span class="span12">
-              <h1 id="logo-home">
-                    <img align="middle" src="{{STATIC_URL}}img/logo-2.png" alt="Lifetime Supply" title="Click to return to Lifetime Supply homepage" />
-                </h1>
-            </span>
-<!-- <img src="http://joshuaweigel.com/wp-content/themes/JoshWeigel/images/sunburst.jpg" alt=""> --> 
+
+<div class="container content">
+  <div class="row">
+
+    <div class="span4">
+      <h2>How it Works</h2>
+      <div class="how">
+        <!--  List designed by P.J. Onori from The Noun Project -->
+        <h3 class="title">Subscribe</h3>
+        <img class="svg" src="{{STATIC_URL}}img/subscribe.svg">
+        <div class="description">
+          Pick what you need and pay once for the semester
         </div>
 
-         <div class="row">
-            <div id="subtitle-container" class="shadow span10 offset1">
-                <h2 id="subtitle" class="large">We sell unlimited, on demand access to products you use regularly.</h2> 
-            </div>
+        <!-- Button designed by Anna Weiss from The Noun Project -->
+        <h3 class="title">Ship & Re-ship</h3>
+        <img class="svg" src="{{STATIC_URL}}img/order.svg">
+        <div class="description">
+          Request more at any time for no additional cost
         </div>
-        <!--     <div class="product_count_container lts-label span12">
-                <div class="product_count">Showing {{products.count}} of {{products.count}} products</div> 
-            </div> -->
-        <div class="row">
-            <div class="section-header span8 offset2">
-                How it Works
-            </div>
+      
+        <!-- Box designed by Jerome Tave from The Noun Project -->
+        <h3 class="title">Free Shipping</h3>
+        <img class="svg" src="{{STATIC_URL}}img/ship.svg">
+        <div class="description">
+          We ship your products to your doorstep for free!
         </div>
+      </div>
+    </div>
 
-        {% include 'partial/how_it_works.html' %}
+    <div class="span8">
+      <h1>Buy a Supply</h1>
+      {% for supply in supplys %}
+          {% include "partial/supply_item.html" with s=supply %}
+      {% endfor %}
+    </div>
 
-        
-        <div class="row">
-            <div class="products-header section-header span8 offset2">
-                Our Products
-            </div>
-            <p class="span12">
-                Want something you don't see? <a href="/contact/" class="" >Let us know</a>
-            </p>
-        </div>
-
-        <div class="row">
-            <div class="span12">
-                <div class="product-container">
-                    <ul class="thumbnails">
-                        {% for product in products %}
-                            {% include "thumbnail.html" with p=product li_class="span3" %}
-                        {% endfor %}
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        {% if user.is_authenticated %}
-            <div class="row">
-                <div class="section-header span8 offset2">
-                    Your Subscriptions
-                </div>
-                <div class="span12">
-                    {% include "partial/order_table.html" %}
-                </div>
-            </div>
-        {% endif %}
-
-        <div class="row hidden">
-            <div id="marketing" class="carousel slide span12 shadow hidden-phone">
-              <!-- Carousel items -->
-              <div class="carousel-inner">
-                <div class="active background-polka-dot item">
-                    <p class="large">Unlimited Access &</p>
-                    <p class="large">Free Shipping <a href="/how/" class="btn btn-large btn-buy">How it works</a></p>
-                </div>
-                <div class="item background-stripes-straight">
-                    <p class="large">Great savings</p>
-                    <p class="large">for members-only</p>
-                </div>
-                <div class="item background-diagonal-stripes">
-                    <p class="large">Get more</p>
-                    <p class="large">when you want it</p>
-                </div>
-                <div class="item background-cicada-stripes">
-                    <p class="large">Want something you</p>
-                    <p class="large">don't see? <a href="/contact/" class="btn btn-large btn-buy">Let us know</a></p>
-                </div>
-              </div>
-              <!-- Carousel nav -->
-              <a class="carousel-control left" href="#marketing" data-slide="prev">&lsaquo;</a>
-              <a class="carousel-control right" href="#marketing" data-slide="next">&rsaquo;</a>
-            </div>
-            <!-- <div class="span12">
-                <div class="alert alert-success"> 
-                    <div class="home-message">Want something you don't see? <a href="/contact/" class="" >Let us know</a></div>
-                </div>
-            </div> -->
-        </div>
-        
-
-    </div> <!-- /container -->
+  </div>
+</div>
 {% endblock %}
 
 {%block scripts %}

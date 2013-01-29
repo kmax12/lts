@@ -1,3 +1,54 @@
+<div class="header">
+  <div class="container">
+    <div class="row">
+      <div class="span4">
+        <a href="/"><img class="logo" src="{{STATIC_URL}}img/logo-2.png" /></a>
+        <a href="/" class="tagline">Never Run Out.</a>
+      </div>
+      <div class="span8">
+        <ul class="nav nav-pills pull-right">
+          <li class="{{home_active}}"><a href="/">Home</a></li>
+          <li class="{{about_active}}"><a href="/about">About</a></li>
+          <li class="vr"></li>
+
+					{% if user.is_authenticated %}
+          <li class="dropdown small">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            	Account <b class="caret"></b>
+            </a>
+	          <ul class="dropdown-menu dropdown-account">
+	            <li><a tabindex="-1" href="/account/">Your Account</a></li>
+	            <li class="divider"></li>
+	            <li><a tabindex="-1" href="/logout/">Log out</a></li>
+	          </ul>
+          </li>
+					{% else %}
+          <li class="dropdown small">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              Login <b class="caret"></b>
+            </a>
+            <div class="login dropdown-menu">
+              <form action="#">
+              <p>Username</p>
+              <input type="text" name="username" />
+              <p>Password</p>
+              <input type="password" name="password" />
+              <p class="submit"><button class="btn btn-small">Login</button></p>
+              </form>
+            </div>
+          </li>
+          {% endif %}
+
+          <li class="cart small">
+            <a href="/cart">Cart: <span class="badge">{{cart.num_items}}</span></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--
 <div id="navbar" class="navbar clearfix navbar-fixed-top">
 	<div class="navbar-inner" >  
 		<div class="container">
@@ -41,12 +92,14 @@
 						<a href="/">Home</a>
 					</li>
 					<li class="{{about_active}}"><a href="/about/">About</a></li>
-					<!-- <li class="{{how_active}}"><a href="/how/">How it works</a></li> -->
+					<!-- <li class="{{how_active}}"><a href="/how/">How it works</a></li>
 					{% if user.is_authenticated %}<li class="{{account_active}}"><a href="/account/">Place an order</a></li>{% endif %}
-					<!-- <li class="{{faq_active}}"><a href="/faq/">FAQ</a></li> -->
+					<!-- <li class="{{faq_active}}"><a href="/faq/">FAQ</a></li>
 				</ul>
 			</div>
 		</div>
 	</div>			
 </div>
+-->
+
 

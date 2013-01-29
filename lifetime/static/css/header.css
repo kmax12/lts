@@ -1,0 +1,155 @@
+.header {
+  position:fixed;
+  z-index: 10;
+  top:0;
+  width:100%;
+  background-color: white;
+  box-shadow: 0 0 10px #222;
+  background: #eee; /* Old browsers */
+  background: -moz-linear-gradient(top, #eee 0%, #ddd 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#eee), color-stop(100%,#ddd)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #eee 0%,#ddd 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #eee 0%,#ddd 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #eee 0%,#ddd 100%); /* IE10+ */
+  background: linear-gradient(to bottom, #eee 0%,#ddd 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eee', endColorstr='#494949',GradientType=0 ); /* IE6-9 */
+}
+.header .logo {
+  height: 50px;
+  margin-top:10px;
+}
+.header .tagline {
+  display:block;
+  margin: -14px 0 9px 26px;
+  color: #444;
+}
+.header .tagline:hover {
+  text-decoration: none;
+}
+
+.header .nav {
+  margin-top:19px;
+}
+.header .nav .dropdown-toggle .caret {
+  margin-top:8px;
+  border-top-color: #546d81;
+  border-bottom-color: #546d81;
+}
+.header .nav .dropdown-toggle:hover .caret {
+  border-top-color: #3f5261;
+  border-bottom-color: #3f5261;
+}
+
+.header .nav-pills > li > a {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  -webkit-border-radius: 2px;
+     -moz-border-radius: 2px;
+          border-radius: 2px;
+  font-size: 17.5px;
+  line-height:18px;
+  font-weight: 400;
+  margin-left:8px;
+}
+.header .nav-pills > li > a:hover {
+  background-color: #d6d6d6;
+}
+
+.header .nav-pills > li.small > a {
+  font-size: 14px;
+  line-height: 18px;
+  padding: 3px 6px;
+  margin-top: 5px;
+  margin-left: 4px;
+}
+
+.header .nav-pills > .active > a, 
+.header .nav-pills > .active > a:hover {
+  color: #fff;
+  background-color: #6d8da5;
+}
+.header .vr {
+  height: 34px;
+  margin: 0 1px 0 8px;
+  border-right: 1px solid #fff;
+  border-left: 1px solid #ccc;
+}
+
+.header .nav-pills.pull-right > li > .dropdown-menu, 
+.header .nav-pills > li > .dropdown-menu.pull-right {
+  right: 0;
+  left: auto;
+}
+
+.header .nav-pills.pull-right > li > .dropdown-menu::before, 
+.header .nav-pills > li > .dropdown-menu.pull-right::before {
+  right: 4px;
+  left: auto;
+}
+
+.header .nav-pills > li > .dropdown-menu::before {
+  position: absolute;
+  top: -7px;
+  left: 9px;
+  display: inline-block;
+  border-right: 7px solid transparent;
+  border-bottom: 7px solid #ccc;
+  border-left: 7px solid transparent;
+  border-bottom-color: rgba(0, 0, 0, 0.2);
+  content: '';
+}
+
+.header .nav-pills.pull-right > li > .dropdown-menu::after, 
+.header .nav-pills > li > .dropdown-menu.pull-right::after {
+  right: 5px;
+  left: auto;
+}
+
+.header .nav-pills > li > .dropdown-menu::after {
+  position: absolute;
+  top: -6px;
+  left: 10px;
+  display: inline-block;
+  border-right: 6px solid transparent;
+  border-bottom: 6px solid #ffffff;
+  border-left: 6px solid transparent;
+  content: '';
+}
+
+.header .nav-pills .dropdown-menu {
+  -webkit-border-radius: 3px;
+     -moz-border-radius: 3px;
+          border-radius: 3px;      
+}
+
+.header .login {
+  padding: 0 12px;
+  margin-top: 6px;
+}
+.header .login p {
+  line-height: 14px;
+  margin: 11px 0 2px;
+}
+.header .login form {
+  margin-bottom: 0;
+}
+.header .login input {
+  margin: 0;
+  width: 156px;
+  padding:2px 3px;
+  -webkit-border-radius: 2px;
+     -moz-border-radius: 2px;
+          border-radius: 2px;  
+}
+.header .login .submit {
+  text-align: right;
+}
+.header .login button {
+  margin: 0 0 9px;
+  font-size: 14px;
+}
+.header .nav-pills > li.cart > a {
+  margin-left: 0;
+}

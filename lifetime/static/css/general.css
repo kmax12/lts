@@ -1,0 +1,37 @@
+body {
+  font-family: 'Source Sans Pro', sans-serif;
+  color: #444;
+  background: url(http://subtlepatterns.subtlepatterns.netdna-cdn.com/patterns/navy_blue.png) fixed;
+}
+input, button, select, textarea {
+  font-family: 'Source Sans Pro', sans-serif;
+}
+h1 {
+  color: rgb(173, 177, 180);
+  text-shadow: 0px 0px 5px #222;
+}
+h2 {
+  color: rgb(173, 177, 180);
+  text-shadow: 0px 0px 4px #222;
+}
+h3 {
+  color: rgb(173, 177, 180);
+  text-shadow: 0px 0px 3px #222;
+}
+
+h6 {
+  text-transform: uppercase;
+}
+.btn {
+  border-radius:2px;
+}
+.content {
+  margin-top: 83px;
+}
+
+a {
+  color: #546d81;
+}
+a:hover {
+  color: #3f5261;
+}

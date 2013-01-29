@@ -1,0 +1,86 @@
+
+.how {
+  margin: 1em 0;
+  background-image: url(/static/img/darklinen.png);
+  box-shadow: 0 0 5px #222;
+  padding: 10px 20px;
+  color: #CCC;
+}
+
+.how img {
+  display:block;
+  margin: 0 auto 10px;
+  fill: red;
+}
+
+.how .title {
+  font-weight:200;
+  margin:0 0 5px;
+  text-align:center;
+}
+
+.how .description {
+  margin-bottom:10px;
+}
+
+.prod-detail {
+  margin: 1em 0;
+  position: relative;
+  box-shadow: 0 0 5px #EEE;
+  background-image: url(http://subtlepatterns.com/patterns/fabric_plaid.png);      
+}
+
+.product {
+  margin: 1em 0;
+  box-shadow: 0 0 5px #EEE;
+  background-image: url(http://subtlepatterns.com/patterns/fabric_plaid.png);
+}
+
+.product .basic {
+  height: 105px;
+  padding-left: 150px;
+  padding-right: 10px;
+  position: relative;
+}
+
+.product .details {
+  display: none;
+  background-color: rgba(0, 0, 0, .06);
+  padding: 5px 10px 10px;
+}
+.product.full .details{
+  display: block;
+}
+
+.product .feature {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.product .title {
+  font-weight: 200;
+  padding-top: 3px;
+  color: #444;
+  text-shadow: none;
+  margin: 0;
+}
+
+.product .netwt {
+  position: absolute;
+  bottom: 4px;
+}
+
+.product h6 {
+  margin: 5px 0 0;
+}
+
+.product .buttons {
+  position: absolute;
+  bottom:10px;
+  right:10px;
+}
+
+.product .buttons .btn.disabled {
+  cursor: pointer;
+}
