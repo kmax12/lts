@@ -17,7 +17,10 @@ def checkout(request):
     card_id = request.POST.get("card_id", None)
     success = False
 
-    if (request.user and card_id and total > 0 and Card.objects.filter(owner=request.user).exists()):
+    if (request.user and card_id and total > 0):
+        if not Card.objects.filter(owner=request.user, id=card_id).exists():
+            return redirect("cart.views.view_cart") # person doesn't own card they checked out with
+
         sm = SubscriptionManager(request)
         success = sm.charge(cart.total(), card_id)
         if success:

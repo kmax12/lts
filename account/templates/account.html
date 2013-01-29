@@ -17,7 +17,7 @@
     <tbody>
         {% for o in user.profile.get_orders %}
         <tr>
-            <td>{{o.subscription.product.name}}</td>
+            <td>{{o.subscription.supply.name}}</td>
             <td>{{o.date_placed}}</td>
 
             <td>

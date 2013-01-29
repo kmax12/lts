@@ -9,15 +9,14 @@ class SubscriptionManager:
     def __init__(self, request):
         self.user = request.user
 
-    def add(self, product, length, gift=False):
+    def add(self, supply, length, gift=False):
         created = False
-        if (self.user):
-            print gift
+        if self.user:
             if gift:
-                sub, created = GiftModel.objects.get_or_create(owner = self.user, product=product, length_days=length)
+                 raise Exception('gift checkout not implemented')# sub, created = Gift.objects.get_or_create(owner = self.user, product=product, length_days=length)
             else:
-                sub, created = Subscription.objects.get_or_create(owner = self.user, product=product, length_days=length)
-                
+                sub, created = Subscription.objects.get_or_create(owner = self.user, supply=supply, length_days=length)
+        print sub                
         return created
     def get_subscriptions(self):
         return Subscription.object.filter(user = self.user)

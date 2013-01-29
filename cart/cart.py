@@ -100,6 +100,9 @@ class Cart:
 
 
     def checkout(self):
-        self.cart.checked_out = True
-        self.cart.save()
-        return True
+        try:
+            self.cart.checked_out = True
+            self.cart.save()
+            return True
+        except:
+            return False

@@ -35,7 +35,7 @@ class Subscription(models.Model):
         return None
 
     def __unicode__(self):
-        return self.owner.first_name + "," + self.product.name
+        return self.owner.first_name + "," + self.supply.name
 
 class Product(models.Model):
     name = models.CharField(max_length=100)
@@ -81,7 +81,7 @@ class Gift(models.Model):
         s = Supply(user=user, product=self.product)
 
 class Order (models.Model):
-    supply = models.ForeignKey(Supply)
+    subscription = models.ForeignKey(Subscription)
     date_placed = models.DateTimeField(default=datetime.now, verbose_name='date placed') #date placed
     date_shipped =  models.DateTimeField(blank=True, null=True)
     item_quanity = models.IntegerField(default=0) # number of items in shipment
