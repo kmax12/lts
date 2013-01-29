@@ -11,6 +11,18 @@ from django.views.decorators.csrf import csrf_exempt
 from django.db.models import F
 import json
 
+def home(request):
+    if request.user.is_authenticated() and request.GET.get("src", None) != "click":
+        return redirect("lifetime.views.shop")
+
+    template_values = {
+                    "title": "Lifetime Supply",
+                    "home_active" : "active",
+                    "supplys": Supply.objects.all(),
+                }
+
+    return direct_to_template(request, 'home.html',
+                             template_values)
 
 def view_product(request, slug):
     supply = Supply.objects.get(url_slug=slug) 
@@ -30,7 +42,11 @@ def shop(request):
     
     # print request.user.subscription_set.all().values_list('supply__categories', flat=True)
     supplys = [sub.supply for sub in subscriptions]
-    categories = sum([list(sup.categories.all()) for sup in supplys], [])
+    
+    #get list of distinct categories
+    categories = [list(sup.categories.all()) for sup in supplys]
+    categories = sum(categories, [])
+    categories = set(categories)
 
     template_values = {
         "supplys": supplys,

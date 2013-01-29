@@ -8,112 +8,15 @@ from django.db import models
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
-        # Adding model 'Category'
-        db.create_table('lifetime_category', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('name', self.gf('django.db.models.fields.CharField')(max_length=100)),
-        ))
-        db.send_create_signal('lifetime', ['Category'])
-
-        # Adding model 'Supply'
-        db.create_table('lifetime_supply', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('name', self.gf('django.db.models.fields.CharField')(max_length=100)),
-            ('price', self.gf('django.db.models.fields.FloatField')()),
-            ('url_slug', self.gf('django.db.models.fields.CharField')(unique=True, max_length=100)),
-        ))
-        db.send_create_signal('lifetime', ['Supply'])
-
-        # Adding M2M table for field categories on 'Supply'
-        db.create_table('lifetime_supply_categories', (
-            ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
-            ('supply', models.ForeignKey(orm['lifetime.supply'], null=False)),
-            ('category', models.ForeignKey(orm['lifetime.category'], null=False))
-        ))
-        db.create_unique('lifetime_supply_categories', ['supply_id', 'category_id'])
-
-        # Adding model 'Subscription'
-        db.create_table('lifetime_subscription', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('owner', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'])),
-            ('supply', self.gf('django.db.models.fields.related.ForeignKey')(related_name='subscription', to=orm['lifetime.Supply'])),
-            ('creation_date', self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime.now)),
-            ('length_days', self.gf('django.db.models.fields.IntegerField')(default=0)),
-        ))
-        db.send_create_signal('lifetime', ['Subscription'])
-
-        # Adding model 'Product'
-        db.create_table('lifetime_product', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('name', self.gf('django.db.models.fields.CharField')(max_length=100)),
-            ('description', self.gf('django.db.models.fields.TextField')(default='This is a description')),
-            ('img', self.gf('django.db.models.fields.CharField')(default='/img/default_product.jpg', max_length=100)),
-            ('active', self.gf('django.db.models.fields.BooleanField')(default=False)),
-        ))
-        db.send_create_signal('lifetime', ['Product'])
-
-        # Adding M2M table for field categories on 'Product'
-        db.create_table('lifetime_product_categories', (
-            ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
-            ('product', models.ForeignKey(orm['lifetime.product'], null=False)),
-            ('category', models.ForeignKey(orm['lifetime.category'], null=False))
-        ))
-        db.create_unique('lifetime_product_categories', ['product_id', 'category_id'])
-
-        # Adding model 'ProductDetail'
-        db.create_table('lifetime_productdetail', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('product', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['lifetime.Product'])),
-            ('text', self.gf('django.db.models.fields.TextField')()),
-        ))
-        db.send_create_signal('lifetime', ['ProductDetail'])
-
-        # Adding model 'Gift'
-        db.create_table('lifetime_gift', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('supply', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['lifetime.Supply'], null=True, blank=True)),
-            ('code', self.gf('django.db.models.fields.CharField')(default='RNi2XzIc', unique=True, max_length=8)),
-        ))
-        db.send_create_signal('lifetime', ['Gift'])
-
-        # Adding model 'Order'
-        db.create_table('lifetime_order', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('subscription', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['lifetime.Subscription'])),
-            ('date_placed', self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime.now)),
-            ('date_shipped', self.gf('django.db.models.fields.DateTimeField')(null=True, blank=True)),
-            ('item_quanity', self.gf('django.db.models.fields.IntegerField')(default=0)),
-        ))
-        db.send_create_signal('lifetime', ['Order'])
+        # Adding field 'Category.url_slug'
+        db.add_column('lifetime_category', 'url_slug',
+                      self.gf('django.db.models.fields.CharField')(default='a', max_length=100),
+                      keep_default=False)
 
 
     def backwards(self, orm):
-        # Deleting model 'Category'
-        db.delete_table('lifetime_category')
-
-        # Deleting model 'Supply'
-        db.delete_table('lifetime_supply')
-
-        # Removing M2M table for field categories on 'Supply'
-        db.delete_table('lifetime_supply_categories')
-
-        # Deleting model 'Subscription'
-        db.delete_table('lifetime_subscription')
-
-        # Deleting model 'Product'
-        db.delete_table('lifetime_product')
-
-        # Removing M2M table for field categories on 'Product'
-        db.delete_table('lifetime_product_categories')
-
-        # Deleting model 'ProductDetail'
-        db.delete_table('lifetime_productdetail')
-
-        # Deleting model 'Gift'
-        db.delete_table('lifetime_gift')
-
-        # Deleting model 'Order'
-        db.delete_table('lifetime_order')
+        # Deleting field 'Category.url_slug'
+        db.delete_column('lifetime_category', 'url_slug')
 
 
     models = {
@@ -156,11 +59,12 @@ class Migration(SchemaMigration):
         'lifetime.category': {
             'Meta': {'object_name': 'Category'},
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'name': ('django.db.models.fields.CharField', [], {'max_length': '100'})
+            'name': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
+            'url_slug': ('django.db.models.fields.CharField', [], {'max_length': '100'})
         },
         'lifetime.gift': {
             'Meta': {'object_name': 'Gift'},
-            'code': ('django.db.models.fields.CharField', [], {'default': "'flCNKgDE'", 'unique': 'True', 'max_length': '8'}),
+            'code': ('django.db.models.fields.CharField', [], {'default': "'JgR1LWoh'", 'unique': 'True', 'max_length': '8'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'supply': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['lifetime.Supply']", 'null': 'True', 'blank': 'True'})
         },

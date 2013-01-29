@@ -6,6 +6,7 @@ import random, string
 
 class Category(models.Model):
     name = models.CharField(max_length=100)
+    url_slug = models.CharField(max_length=100, unique=True)
 
     def __unicode__(self):
         return self.name

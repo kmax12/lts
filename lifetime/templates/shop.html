@@ -23,12 +23,12 @@ $(".product .btn").click(function(e){
       <div class="darkbg">
         <h6>Supply's</h6>
         {% for s in supplys %}
-          <div>{{s.name}}</div>
+          <div><a href="?supply={{s.url_slug}}">{{s.name}}</a></div>
         {% endfor %}
 
         <h6>Categories</h6>
         {% for c in categories %}
-          <div>{{c.name}} ({{c.product_set.count}})</div>
+          <div> <a href="?cat={{c.url_slug}}">{{c.name}}</a> ({{c.product_set.count}})</div>
         {% endfor %}
       </div>
     </div>
@@ -40,14 +40,17 @@ $(".product .btn").click(function(e){
       <div class="row">
         {% for p in c.product_set.all %}
         <div class="span3 product">
+
           <div class="lightbg" style="padding:0;margin-top:4px;">
-            <img src="http://placehold.it/220x150" />
-            <div style="padding:10px;">
-              <p style="font-weight:bold;">{{p.name}}</p>
-              <div>
-                <a href="/product/{{p.id}}" class="btn btn-inverse">Details</a>
-                <a href="#" class="btn btn-warning pull-right">Ship It!</a>
-              </div>
+            <a href="/product/{{p.id}}">
+              <img src="http://placehold.it/220x150" />
+              <h5 style="font-weight:bold; padding:5px 10px 0px; margin:0px;">Colgate Cavity Protection</h5>
+            </a>
+            <div style="padding:0px 10px 10px;" >
+              <div class="muted">$0 &mdash; Free Shipping</div>
+                <div style="text-align:right">
+                  <a href="#" class="btn btn-warning">Ship It!</a>
+                </div>
             </div>
           </div>
         </div>

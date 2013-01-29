@@ -23,14 +23,8 @@ urlpatterns = patterns('',
     url(r'^terms/$', direct_to_template,{'template': 'terms.html', 'extra_context': {"title": "Terms of Use | Lifetime Supply"}}),
     url(r'^privacy/$', direct_to_template,{'template': 'privacy.html', 'extra_context': {"title": "Privacy Policy| Lifetime Supply"}}),
 
-
-
     # url(r'^$', direct_to_template,{'template': 'signup.html'}),
-    url(r'^$', direct_to_template,{'template': 'home.html', 'extra_context': {
-                                                                            "title": "Lifetime Supply",
-                                                                            "home_active" : "active",
-                                                                            "supplys": Supply.objects.all(),
-                                                                        }}),
+    url(r'^$', 'lifetime.views.home', name="home"),    
     # Examples:
     # url(r'^$', 'lts.views.home', name='home'),
     # url(r'^lts/', include('lts.foo.urls')),
