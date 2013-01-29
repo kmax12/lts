@@ -1,0 +1,20 @@
+<div class="supply">
+  <img class="feature" style="height:195px; width:170px;" src="{{STATIC_URL}}{{s.img}}" />
+  <h3 class="title">{{s.name}}</h3>
+  <h3 class="price">${{s.price|floatformat:"0"}}<span>/semester</span></h3>
+  <h6>Products</h6>
+  <p>{{s.categories.all|join:", "}}</p>
+
+  <h6>Sample Brands</h6>
+  <p class="brands">Colgate, Crest, Listerine, Johnson &amp; Johnson
+    <!-- 
+    <img src="colgate.png" />
+    <img src="crest.png" />
+    <img src="listerine.png" />
+    <img src="johnson.png" /> -->
+  </p>
+  <div class="buttons">
+    <a class="btn btn-inverse" href="/supply/{{s.url_slug}}">Learn More</a>
+    <button class="btn btn-warning">Add to Cart</button>
+  </div>
+</div>

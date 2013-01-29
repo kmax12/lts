@@ -1,7 +1,7 @@
 from django.conf.urls import patterns, include, url
 from django.contrib.auth.decorators import login_required
 from django.views.generic.simple import direct_to_template
-from lifetime.models import Product
+from lifetime.models import Supply
 from django.conf import settings
 
 # Uncomment the next two lines to enable the admin:
@@ -10,7 +10,7 @@ from django.conf import settings
 
 urlpatterns = patterns('',
     #product stuff
-    url(r'^product/(\w+)$', 'lifetime.views.view_product', name="view_cart"),    
+    url(r'^supply/(.+)$', 'lifetime.views.view_product', name="view_cart"),    
 
 
 
@@ -28,7 +28,7 @@ urlpatterns = patterns('',
     url(r'^$', direct_to_template,{'template': 'home.html', 'extra_context': {
                                                                             "title": "Lifetime Supply",
                                                                             "home_active" : "active",
-                                                                            "products": Product.objects.filter(active=True),
+                                                                            "supplys": Supply.objects.all(),
                                                                         }}),
     # Examples:
     # url(r'^$', 'lts.views.home', name='home'),

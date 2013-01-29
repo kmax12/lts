@@ -1,0 +1,53 @@
+{% extends "content-page.html" %}
+
+{% block styles %}
+<link href="{{ STATIC_URL}}css/supply_page.css" rel="stylesheet">
+{% endblock %}
+
+{% block page-header %} 
+{{product.name}}{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript">
+$(".product .btn").click(function(e){
+  e.preventDefault();
+  $(this).toggleClass("disabled").closest(".product").toggleClass("full", 200);
+})
+</script>
+{% endblock %}
+
+{% block content %}
+<div class="container content">
+  <div class="row">
+    <div class="span12">
+      <h1>{{supply.name}} Supply</h1>
+      <div class="prod-detail">
+        <img style="width:238px;height:273px;" src="{{STATIC_URL}}{{supply.img}}" />
+      </div>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="span8">
+
+    {% for cat in supply.categories.all %}
+    	<h2>Current {{cat.name}} Products</h2>
+
+    	{% for prod in cat.product_set.all %}
+    	{% include "partial/product_item.html" with p=prod %}
+    	{% endfor %}
+
+    {% endfor %}
+
+    </div>
+    <div class="span4">
+      <h3>What are these?</h3>
+      <div class="how">
+        <p>Whenever you run out of a product in your supply, you can replace it with any other product we currently have available.</p>
+        <p>These products may change throughout the course of the year, but we try and keep the staples available.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+{% endblock %}

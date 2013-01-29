@@ -2,28 +2,30 @@
 {% load i18n %}
 
 {% block content_styles %}
-<link href="{{ STATIC_URL}}css/login.css" rel="stylesheet">
 {% endblock %}
 
 {% block page-header %}Login{% endblock %}
 
 {% block content %}
+<div class="container content">
+    <div class="row">
+    <div class="span4 offset4">
+    <form method="post" class="form-signin" action=".">
+        <h2 class="form-signin-heading">Please sign in</h2>
+        {% csrf_token %}
+        
+        {{ form.as_p }}
 
-<form method="post" class="form-signin" action=".">
-    <h2 class="form-signin-heading">Please sign in</h2>
-    {% csrf_token %}
-    
-    {{ form.as_p }}
+        <label class="checkbox">
+            <input type="checkbox" value="remember-me"> Remember me
+        </label>
 
-    <label class="checkbox">
-        <input type="checkbox" value="remember-me"> Remember me
-    </label>
-
-    <input type="submit" class="btn-login btn" value="{% trans 'Log in' %}" />
-    <input type="hidden" name="next" value="{{ next }}" />
-    <p>{% trans "Not a member" %}? <a href="{% url registration_register %}">{% trans "Register" %}</a></p>
-    <p>{% trans "Forgot password" %}? <a href="{% url auth_password_reset %}">{% trans "Reset it" %}</a></p>
-</form>
-
-
+        <input type="submit" class="btn-login btn" value="{% trans 'Log in' %}" />
+        <input type="hidden" name="next" value="{{ next }}" />
+        <p>{% trans "Not a member" %}? <a href="{% url registration_register %}">{% trans "Register" %}</a></p>
+        <p>{% trans "Forgot password" %}? <a href="{% url auth_password_reset %}">{% trans "Reset it" %}</a></p>
+    </form>
+    </div>
+    </div>
+</div>
 {% endblock %}

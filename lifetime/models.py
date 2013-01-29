@@ -6,6 +6,7 @@ import random, string
 
 class Category(models.Model):
     name = models.CharField(max_length=100)
+
     def __unicode__(self):
         return self.name
 
@@ -13,8 +14,13 @@ class Supply(models.Model):
     name = models.CharField(max_length=100)
     price = models.FloatField()
     categories = models.ManyToManyField(Category)
+    url_slug = models.CharField(max_length=100, unique=True)
+
+    def category_names(self):
+        return map(str, self.categories.all())
+
     def __unicode__(self):
-        return "%s | Cats: %s"%(self.name, ", ".join([str(x) for x in self.categories.all()]))
+        return "%s | Cats: %s"%(self.name, ", ".join(self.category_names()))
 
 class Subscription(models.Model):
     owner = models.ForeignKey(User)
