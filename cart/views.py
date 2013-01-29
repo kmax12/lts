@@ -40,7 +40,7 @@ def add_to_cart(request):
     quantity = 1
     supply_id = request.GET.get('id', None)
     if (supply_id):
-        supply = Supply.objects.get(id=product_id)
+        supply = Supply.objects.get(id=supply_id)
         cart = Cart(request)
         cart.add(supply, supply.price, quantity)
         
@@ -69,7 +69,7 @@ def view_cart(request):
     #switch cart type to gift
     gift = request.GET.get("gift", None)
     if gift:
-        Cart(request).set_gift(gift=True)
+        Cart(request).set_gift(gift=gift)
         return redirect("cart.views.view_cart")
         
     return direct_to_template(request, 'cart.html', template_values)

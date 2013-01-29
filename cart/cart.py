@@ -40,7 +40,7 @@ class Cart:
         except models.Item.DoesNotExist:
             item = models.Item()
             item.cart = self.cart
-            item.supply = supply
+            item.product = supply
             item.unit_price = unit_price
             item.quantity = quantity
             item.save()

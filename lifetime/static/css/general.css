@@ -2,6 +2,7 @@ body {
   font-family: 'Source Sans Pro', sans-serif;
   color: #444;
   background: url(http://subtlepatterns.subtlepatterns.netdna-cdn.com/patterns/navy_blue.png) fixed;
+  margin-top: 75px;
 }
 input, button, select, textarea {
   font-family: 'Source Sans Pro', sans-serif;
@@ -25,9 +26,6 @@ h6 {
 .btn {
   border-radius:2px;
 }
-.content {
-  margin-top: 83px;
-}
 
 a {
   color: #546d81;
@@ -35,3 +33,4 @@ a {
 a:hover {
   color: #3f5261;
 }
+
