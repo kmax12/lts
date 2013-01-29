@@ -35,27 +35,9 @@ $(".product .btn").click(function(e){
 
     <div class="span9">
       {% for c in categories %}
+      
       <h2>{{c.name}}</h2>
-
-      <div class="row">
-        {% for p in c.product_set.all %}
-        <div class="span3 product">
-
-          <div class="lightbg" style="padding:0;margin-top:4px;">
-            <a href="/product/{{p.id}}">
-              <img src="http://placehold.it/220x150" />
-              <h5 style="font-weight:bold; padding:5px 10px 0px; margin:0px;">Colgate Cavity Protection</h5>
-            </a>
-            <div style="padding:0px 10px 10px;" >
-              <div class="muted">$0 &mdash; Free Shipping</div>
-                <div style="text-align:right">
-                  <a href="#" class="btn btn-warning">Ship It!</a>
-                </div>
-            </div>
-          </div>
-        </div>
-        {% endfor %}
-      </div>
+      {% include "partial/cat_products.html" with products=c.product_set.all shop=1 %}
       
       {% endfor %}
     </div>

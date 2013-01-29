@@ -100,3 +100,24 @@ Supply item styles
   bottom:10px;
   right:10px;
 }
+
+.product {
+  margin-top: 4px;
+  padding-top: 155px;
+  position: relative;
+}
+.product img {
+  position: absolute;
+  top:0;
+  left:0;
+}
+
+.product h5 {
+  font-weight: bold; 
+  margin: 0px;
+}
+
+.product .buttons {
+  text-align: right;
+  margin-top: 5px;
+}

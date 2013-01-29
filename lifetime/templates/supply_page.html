@@ -28,19 +28,15 @@ $(".product .btn").click(function(e){
   </div>
   
   <div class="row">
-    <div class="span8">
+    <div class="span9">
 
     {% for cat in supply.categories.all %}
     	<h2>Current {{cat.name}} Products</h2>
-
-    	{% for prod in cat.product_set.all %}
-    	{% include "partial/product_item.html" with p=prod %}
-    	{% endfor %}
-
+      {% include "partial/cat_products.html" with products=cat.product_set.all shop=False %}
     {% endfor %}
 
     </div>
-    <div class="span4">
+    <div class="span3">
       <h3>What are these?</h3>
       <div class="how">
         <p>Whenever you run out of a product in your supply, you can replace it with any other product we currently have available.</p>

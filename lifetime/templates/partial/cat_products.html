@@ -1,0 +1,20 @@
+<div class="row">
+  {% for p in products %}
+  <div class="span3">
+    <div class="lightbg product">
+      <a href="/product/{{p.id}}">
+        <img src="http://placehold.it/220x150" />
+        <h5>{{p.name}}</h5>
+      </a>
+      <div>
+        <div class="muted">$0 &minus; Free Shipping</div>
+        {% if shop %}
+        <div class="buttons">
+          <a href="#" class="btn btn-warning">Ship It!</a>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
