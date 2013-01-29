@@ -11,6 +11,7 @@ from django.conf import settings
 urlpatterns = patterns('',
     #product stuff
     url(r'^supply/(.+)$', 'lifetime.views.view_product', name="view_cart"),    
+    url(r'^shop/$', 'lifetime.views.shop', name="shop"),    
 
 
 

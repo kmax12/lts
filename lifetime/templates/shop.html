@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block styles %}
+{% endblock %}
+
+{% block page-header %} 
+{{product.name}}{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript">
+$(".product .btn").click(function(e){
+  e.preventDefault();
+  $(this).toggleClass("disabled").closest(".product").toggleClass("full", 200);
+})
+</script>
+{% endblock %}
+
+{% block body %}
+<div class="container">
+  <div class="row">
+    <div class="span3">
+      <h3>Filters</h3>
+      <div class="darkbg">
+        <h6>Supply's</h6>
+        {% for s in supplys %}
+          <div>{{s.name}}</div>
+        {% endfor %}
+
+        <h6>Categories</h6>
+        {% for c in categories %}
+          <div>{{c.name}} ({{c.product_set.count}})</div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="span9">
+      {% for c in categories %}
+      <h2>{{c.name}}</h2>
+
+      <div class="row">
+        {% for p in c.product_set.all %}
+        <div class="span3 product">
+          <div class="lightbg" style="padding:0;margin-top:4px;">
+            <img src="http://placehold.it/220x150" />
+            <div style="padding:10px;">
+              <p style="font-weight:bold;">{{p.name}}</p>
+              <div>
+                <a href="/product/{{p.id}}" class="btn btn-inverse">Details</a>
+                <a href="#" class="btn btn-warning pull-right">Ship It!</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      
+      {% endfor %}
+    </div>
+
+</div>
+{% endblock %}

@@ -3,6 +3,7 @@ from django.views.generic.simple import direct_to_template
 from cart import Cart
 from utils.SubscriptionManager import SubscriptionManager
 from lifetime.models import *
+from account.models import *
 from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
@@ -24,6 +25,20 @@ def view_product(request, slug):
     return direct_to_template(request, 'supply_page.html',
                              template_values)
 
+def shop(request):
+    subscriptions = request.user.profile.get_subscriptions()
+    
+    # print request.user.subscription_set.all().values_list('supply__categories', flat=True)
+    supplys = [sub.supply for sub in subscriptions]
+    categories = sum([list(sup.categories.all()) for sup in supplys], [])
+
+    template_values = {
+        "supplys": supplys,
+        "categories": categories
+    }  
+
+    return direct_to_template(request, 'shop.html',
+                             template_values)	
 
 
 

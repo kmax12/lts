@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
-from lifetime.models import Order
+from lifetime.models import *
+from account.models import *
 from datetime import datetime
 from django.forms import ModelForm
 
@@ -11,10 +12,10 @@ class UserProfile(models.Model):
     prefered_card = models.CharField(default="", max_length=100)
 
     def get_orders(self):
-        return Order.objects.select_related().filter(subscription__owner = self.user) .order_by('-date_placed')
+        return Order.objects.select_related().filter(subscription__owner = self.user).order_by('-date_placed')
 
     def get_subscriptions(self):
-        return self.user.subscription_set.all()
+        return Subscription.objects.select_related().filter(owner=self.user)
 
     def get_cards(self):
         return Card.objects.select_related().filter(owner = self.user)

@@ -1,4 +1,4 @@
-{% extends "content-page.html" %}
+{% extends "base.html" %}
 
 {% block styles %}
 <link href="{{ STATIC_URL}}css/supply_page.css" rel="stylesheet">
@@ -16,8 +16,8 @@ $(".product .btn").click(function(e){
 </script>
 {% endblock %}
 
-{% block content %}
-<div class="container content">
+{% block body %}
+<div class="container">
   <div class="row">
     <div class="span12">
       <h1>{{supply.name}} Supply</h1>
