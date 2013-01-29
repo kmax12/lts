@@ -1,23 +1,17 @@
-{% extends 'content-page.html' %}
+{% extends 'base.html' %}
 
-{% block content_styles %}
+{% block styles %}
 <link href="{{ STATIC_URL}}css/cart.css" rel="stylesheet">
 {% endblock %}
 
-{% block page-header %} 
-Checkout
-{% endblock %}
-
-{% block content %}
+{% block body %}
+<div class="container">
 	{% if cart.total > 0 %}
-
 	    {% include "cart-checkout.html" %}
-
 	{% else %}
-
-	    {% include "cart-empty.html" %}
-
+	    {% include "cart-empty.html" %}p
 	{% endif %}
+</div>
 {% endblock %}
 
 {% block content_scripts %}

@@ -3,6 +3,10 @@
 	padding-bottom: 10px;
 }
 
+.btn-checkout{
+	margin: 15px 0;
+}
+
 .checkout-body{
 	/*background-color: #fff;*/
 	padding: 10px 5px 20px 5px;

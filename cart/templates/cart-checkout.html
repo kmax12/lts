@@ -1,48 +1,47 @@
 <div class="row">
     <div class="span12">
-        <table class="table table-hover">
-            <thead>
-            <tr>
-                <th>Product</th>
-                <th>Price (billed yearly)</th>
-            </tr>
-            </thead>
-            <tbody>
-                {% for item in cart %}
-                <tr>
-                    <td>{{ item.product.name }}</td>
-                    <td>{{ item.total_price }}</td>
-                    <td><button href="/cart/remove?id={{item.object_id}}" type="button" class="btn btn-warning btn-remove" data-loading-text="Remove">Remove</button></td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+        <h1>Checkout</h1>
     </div>
-</div>
-<div class="row">
-    <div class="span12">
-        <div class="alert">
-            <p class="cart-message">Is this purchase a gift?</p>
-            <div class="btn-group" data-toggle="buttons-radio">
-              <a  type="button" href="/cart?gift=1" class="btn large {% if cart.is_gift %} active {% endif %}">Yes</a>
-              <a type="button" href="/cart?gift=0" class="btn large {% if not cart.is_gift %} active {% endif %}">No</a>
-            </div>
-            {% if cart.is_gift %}
-                <p>Note: We'll send you a certificate to present</p>
-            {% endif %}
+    <div class="span8">
+        <div class="lightbg">
+            <table class="table table-hover light">
+                <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Price (billed yearly)</th>
+                </tr>
+                </thead>
+                <tbody>
+                    {% for item in cart %}
+                    <tr>
+                        <td>{{ item.product.name }}</td>
+                        <td>{{ item.total_price }}</td>
+                        <td><button href="/cart/remove?id={{item.object_id}}" type="button" class="btn btn-warning btn-remove" data-loading-text="Remove">Remove</button></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+
+            <!--  <div class="alert hide">
+                <p class="cart-message">Is this purchase a gift?</p>
+                <div class="btn-group" data-toggle="buttons-radio">
+                  <a  type="button" href="/cart?gift=1" class="btn large {% if cart.is_gift %} active {% endif %}">Yes</a>
+                  <a type="button" href="/cart?gift=0" class="btn large {% if not cart.is_gift %} active {% endif %}">No</a>
+                </div>
+                {% if cart.is_gift %}
+                    <p>Note: We'll send you a certificate to present</p>
+                {% endif %}
+            </div> -->
         </div>
     </div>
-</div>
-<div class="row">
-    <div id="cart-total-container" class="span8 well">
-        <p>Total</p>
-        <p>$<span id="total">{{cart.total}}</span>/year</p>
-    </div>
-</div>
+    <div class="span4">
+        <div class="lightbg">
+            <div id="cart-total-container">
+                <p>Total</p>
+                <p>$<span id="total">{{cart.total}}</span>/year</p>
+            </div>
 
-<div class="row">
-    <div class="span12">
-        <div class="checkout-body">
             {% if not user.is_authenticated %}
             <p class="cart-message"> You must log in to checkout: </p>
             <p> <a href="/login/?next=/cart/" class="btn btn-primary" type="button">Login</a> or <a href="/register/">register</a> </p>
@@ -52,21 +51,23 @@
             {% else %}
             <form action="/cart/checkout/" method="post">
                 {% csrf_token %}
-
+                <button type="submit" class="btn-checkout btn-large btn btn-primary"> Confirm Purchase </button>
                 <select id="card-select" name="card_id">
                     {% with cards=user.profile.get_cards %}
                         {% for card in cards %}
                             <option value="{{card.id}}" {% if card.id == user.profile.prefered_card %}selected="selected"{% endif %}>{{card.card_type}} - {{card.last4}}</option>
                         {% endfor %}
                     {% endwith %}
-                </select>  or <a class="add-card" type="button">Add another card</a>
-                <div>
-                    <button type="submit" class="btn-checkout btn-large btn-buy btn btn-primary"> Confirm Purchase </button>
-                    <span class="muted">note: we'll ask for shipping info when you place your first order</span>
-                </div>
+                </select> 
+                <p><a class="add-card" type="button">Add another card</a></p>
             </form>
-
             {% endif %}
+
+            
         </div>
     </div>
 </div>
+
+<div class="row">
+</div>
+
