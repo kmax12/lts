@@ -10,10 +10,25 @@ import json
 
 @login_required    
 def account(request):
+    orders_raw = request.user.profile.get_orders()
+    orders = []
+    for i, o in enumerate(orders_raw):
+        #has_product_id returns the product instance, match against instance for boolean
+        if(o.product.active and request.user.profile.has_product_id(o.product.id) == o.product):
+            orders.append( {'obj': o, 'can_order':True} )
+        elif(not o.product.active):
+            sim_cats = o.product.similar_categories(request.user)
+            #TODO: This breaks for products in more than one cat
+            shop_url = '/shop/?cat='+sim_cats[0].url_slug
+            orders.append( {'obj': o, 'can_order':False, 'shop_url': shop_url} )
+        else:
+            orders.append( {'obj': o, 'can_order':False} )
+
     template_values = {
         'form': AddressForm(),
         'account_active': "active",
-        'title': "Account | Lifetime Supply"
+        'title': "Account | Lifetime Supply",
+        'orders': orders
     }
 
     return direct_to_template(request, 'account.html', template_values)

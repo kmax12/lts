@@ -55,6 +55,20 @@ a:hover {
   margin: 14px 0;
   padding: 10px;
 }
+.darkbg h6 {
+  margin: 2px 0 1px;
+}
+.darkbg a {
+  color: #6d8da5;
+}
+.darkbg a:hover {
+  color: #546d81;
+}
+.darkbg ul {
+  list-style-type: none;
+  margin-left: 0;
+  margin-bottom:5px;
+}
 
 /*
 Supply item styles

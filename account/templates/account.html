@@ -3,37 +3,55 @@
 {% block page-header %} Your Products {% endblock %}
 
 {% block account-content %}
-<h3 class="account-header">Place an order</h3>
-<div class="span8">
-      <h1>Use a Supply</h1>
-      {% for sub in user.subscription_set.all %}
-          {% include "partial/supply_item.html" with s=sub.supply %}
-      {% endfor %}
-    </div>
-<h3 class="account-header">Past orders</h3>
-<table class="table table-hover">
+<h2>Your Supply's</h2>
+<div class="lightbg">
+  <table class="table table-hover" style="margin-bottom:0;">
     <thead>
     <tr>
-        <th>Product</th>
-        <th>Date</th>
-        <th>Shipped</th>
+      <th>Supply</th>
+      <th></th>
     </tr>
     </thead>
     <tbody>
-        {% for o in user.profile.get_orders %}
-        <tr>
-            <td>{{o.subscription.supply.name}}</td>
-            <td>{{o.date_placed}}</td>
 
-            <td>
-                {% if o.date_shipped %}
-                    Yes
-                {% else %}
-                    No
-                {% endif %}
-            </td>
-        </tr>
-        {% endfor %}
+    {% for sub in user.subscription_set.all %}
+      <tr>
+        <td style="vertical-align:middle;">{{sub.supply.name}}</td>
+        <td><a href="/shop" class="btn btn-inverse pull-right">Shop</a></td>
+      </tr>
+    {% endfor %}
+
     </tbody>
-</table>
+  </table>
+</div>
+
+<h2>Order History</h2>
+<div class="lightbg">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Date</th>
+        <th>Ship Again</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for o in orders %}
+      <tr>
+        <td>{{o.obj.product.name}}</td>
+        <td>{{o.obj.date_placed}}</td>
+        <td style="text-align:right;">
+          {% if o.obj.product.active and o.can_order %}
+          {% include "partial/shipit_button.html" with p=product type="tile" %}
+          {% elif o.obj.product.active %}
+          Supply expired. <a href="/?src=click">Shop Supply's</a>
+          {% else %}
+          {{o.s}}No longer available. <a href="{{o.shop_url}}">Shop Similar</a>
+          {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
 {% endblock %}
