@@ -41,13 +41,11 @@ def view_product(request, slug):
     product = Product.objects.get(id=slug) 
 
     similar = product.similar_products(request.user).exclude(pk=product.pk)
-    similar_cat = product.similar_categories(request.user)
 
     template_values = {
         "title": product.name + " | Lifetime Supply",
         "product": product,
         "similar": similar,
-        "similar_cat": similar_cat
     }
 
     return direct_to_template(request, 'product_page.html',
