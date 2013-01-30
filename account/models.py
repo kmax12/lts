@@ -11,6 +11,25 @@ class UserProfile(models.Model):
     user = models.ForeignKey(User, unique=True)
     prefered_card = models.CharField(default="", max_length=100)
 
+
+    def has_product_id(self, product_id):
+        """
+        returns product if user has access to id, otherwise return None
+        """
+        product = Product.objects.filter(
+            categories__in = Category.objects.filter(
+                supply__in = Supply.objects.filter(
+                    subscription__in = self.user.subscription_set.all()
+                )
+            ),
+            id = product_id
+        )
+
+        if product.exists():
+            return product[0]
+        else:
+            return None
+
     def get_orders(self):
         return Order.objects.select_related().filter(user = self.user).order_by('-date_placed')
 

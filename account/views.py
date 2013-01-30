@@ -83,27 +83,18 @@ def place_order(request):
         return redirect('lifetime.views.account')
 
 
-    product = Product.objects.filter(
-        categories__in = Category.objects.filter(
-            supply__in = Supply.objects.filter(
-                subscription__in = request.user.subscription_set.all()
-            )
-        ),
-        id = product_id
-    )
+    product = request.user.profile.has_product_id(product_id)
 
     success = False
-    if product.exists():
-        product = product[0]
+    if product:
+        # subscriptions_used = Subscription.objects.filter(
+        #     owner = request.user,
+        #     supply__in = Supply.objects.filter(
+        #         categories__in = product.categories.all()
+        #     )
+        # )
 
-        subscriptions_used = Subscription.objects.filter(
-            owner = request.user,
-            supply__in = Supply.objects.filter(
-                categories__in = product.categories.all()
-            )
-        )
-
-        order = Order(user=request.user, subscription=subscriptions_used, product=product)
+        order = Order(user=request.user, product=product)
         order.save()
         success = True
 

@@ -90,7 +90,6 @@ class Gift(models.Model):
 
 class Order (models.Model):
     user = models.ForeignKey(User)
-    subscription = models.ManyToManyField(Subscription)
     product = models.ForeignKey(Product)
     date_placed = models.DateTimeField(default=datetime.now, verbose_name='date placed') #date placed
     date_shipped =  models.DateTimeField(blank=True, null=True)
