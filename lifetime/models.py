@@ -89,7 +89,9 @@ class Gift(models.Model):
         s = Supply(user=user, product=self.product)
 
 class Order (models.Model):
-    subscription = models.ForeignKey(Subscription)
+    user = models.ForeignKey(User)
+    subscriptions_used = models.ManyToManyField(Subscription)
+    product = models.ForeignKey(Product)
     date_placed = models.DateTimeField(default=datetime.now, verbose_name='date placed') #date placed
     date_shipped =  models.DateTimeField(blank=True, null=True)
     item_quanity = models.IntegerField(default=0) # number of items in shipment

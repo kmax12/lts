@@ -121,3 +121,9 @@ Supply item styles
   text-align: right;
   margin-top: 5px;
 }
+
+
+/*shipit form*/
+#order-form{
+  margin: 0px 5px;
+}

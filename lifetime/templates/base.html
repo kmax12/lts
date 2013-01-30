@@ -54,7 +54,10 @@
 		{% include "partial/footer.html" %}
 	</div>
 
+	
+
   	<div id="ajax-modal" class="modal hide fade" tabindex="-1"></div>
+	{% include "partial/ship-it-modal.html" %}
 
 	<script type="text/javascript">
 
@@ -91,6 +94,7 @@
 	<script src="{{ STATIC_URL}}js/bootstrap-typeahead.js"></script>
 	<script src="{{ STATIC_URL}}js/bootstrap-affix.js"></script>
 
+	<script src="{{ STATIC_URL}}js/base.js"></script>
  	<!-- <script src="https://raw.github.com/davatron5000/FitText.js/master/jquery.fittext.js"></script> -->
 
 	<script type="text/javascript" src="https://js.stripe.com/v1/"></script>

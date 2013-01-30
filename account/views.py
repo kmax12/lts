@@ -1,6 +1,6 @@
 from django.views.generic.simple import direct_to_template
 from utils.SubscriptionManager import SubscriptionManager
-from lifetime.models import Order, Product, Subscription
+from lifetime.models import *
 from account.models import AddressForm, Card
 from django.http import HttpResponse
 from django.shortcuts import redirect
@@ -78,19 +78,38 @@ def add_address(request):
 @login_required
 @csrf_exempt
 def place_order(request):
-    supply_id = request.POST.get("id", None)
-    if not supply_id:
+    product_id = request.POST.get("id", None)
+    if not product_id:
         return redirect('lifetime.views.account')
 
 
-    supply = Supply.objects.get(id=supply_id)
-    s = Subscription.objects.get(owner=request.user, supply=supply)
-    
-    order = Order(subscription=s)
-    order.save()
+    product = Product.objects.filter(
+        categories__in = Category.objects.filter(
+            supply__in = Supply.objects.filter(
+                subscription__in = request.user.subscription_set.all()
+            )
+        ),
+        id = product_id
+    )
 
+    success = False
+    if product.exists():
+        product = product[0]
+
+        subscriptions_used = Subscription.objects.filter(
+            owner = request.user,
+            supply__in = Supply.objects.filter(
+                categories__in = product.categories.all()
+            )
+        )
+
+        order = Order(user=request.user, product=product)
+        order.save()
+        success = True
+
+        
     template_values = {
-        'supply': supply
-    }
-
+                'product': product,
+                'success' : success
+            }
     return direct_to_template(request, 'order-success.html', template_values) 

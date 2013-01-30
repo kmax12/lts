@@ -36,7 +36,7 @@ $(".product .btn").click(function(e){
           {% endif %}
 
           <h6>Categories</h6>
-          {% if request_cat %}
+            {% if request_cat %}
               <div >{{request_cat.name}}</div>
               <div><a href="/shop?{{url|qstring_del:"cat"}}">clear filter</a></div>
           {% else %}
