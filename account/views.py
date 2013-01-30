@@ -103,7 +103,7 @@ def place_order(request):
             )
         )
 
-        order = Order(user=request.user, product=product)
+        order = Order(user=request.user, subscription=subscriptions_used, product=product)
         order.save()
         success = True
 

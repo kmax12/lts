@@ -90,14 +90,14 @@ class Gift(models.Model):
 
 class Order (models.Model):
     user = models.ForeignKey(User)
-    subscriptions_used = models.ManyToManyField(Subscription)
+    subscription = models.ManyToManyField(Subscription)
     product = models.ForeignKey(Product)
     date_placed = models.DateTimeField(default=datetime.now, verbose_name='date placed') #date placed
     date_shipped =  models.DateTimeField(blank=True, null=True)
     item_quanity = models.IntegerField(default=0) # number of items in shipment
 
     def __unicode__(self):
-        return self.Supply.product.name
+        return self.product.name
 
     class Meta:
         get_latest_by = "date_placed"

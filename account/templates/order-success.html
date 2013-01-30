@@ -8,15 +8,17 @@ Order placed
 {% endblock %}
 
 {% block content %}
-<p>We will email {{user.email}} when we ship your order of {{ product.name}}.</p>
+<div class="lightbg">
+	<p>We will email {{user.email}} when we ship your order of {{ product.name}}.</p>
 
-success: {{success}}
+	success: {{success}}
 
-<p>Thanks for using LifetimeSupply.com</p>
+	<p>Thanks for using LifetimeSupply.com</p>
 
-<p>
-	<a href="/account/" class="btn btn-buy">Your account</a>
-	<a href="/" class="btn">Home</a>
-</p>
+	<p>
+		<a href="/account/" class="btn btn-buy">Your account</a>
+		<a href="/" class="btn">Home</a>
+	</p>
+</div>
 {% endblock %}
 
