@@ -16,19 +16,27 @@ class UserProfile(models.Model):
         """
         returns product if user has access to id, otherwise return None
         """
-        product = Product.objects.filter(
-            categories__in = Category.objects.filter(
-                supply__in = Supply.objects.filter(
-                    subscription__in = self.user.subscription_set.all()
-                )
-            ),
-            id = product_id
-        )
+        product = self.get_products().filter(id=product_id)
 
         if product.exists():
             return product[0]
         else:
             return None
+
+    def get_products(self):
+        return Product.objects.filter(
+            categories__in = self.get_categories()
+        )
+
+    def get_categories(self):
+        return Category.objects.filter(
+            supply__in = self.get_supplys()
+        )
+
+    def get_supplys(self):
+        return Supply.objects.filter(
+            subscription__in = self.user.subscription_set.all()
+        )
 
     def get_orders(self):
         return Order.objects.select_related().filter(user = self.user).order_by('-date_placed')

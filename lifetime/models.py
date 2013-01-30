@@ -50,6 +50,16 @@ class Product(models.Model):
     # units_per_year = models.IntegerField(default=0) #length of Supply in days
     # unit_name =models.CharField(max_length=100, default="units")
 
+    def similar_categories(self, user=None):
+        if not user:
+            return self.categories.all()
+
+        return self.categories.all().filter(pk__in = user.profile.get_categories())
+
+    def similar_products(self, user=None):
+        return Product.objects.filter(
+            categories__in = self.similar_categories(user)
+        )
     
     def __unicode__(self):
         return u'%s | %s' % (self.name, ", ".join([str(x) for x in self.categories.all()]))
