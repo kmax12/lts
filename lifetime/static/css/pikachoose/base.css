@@ -1,0 +1,137 @@
+.pika-thumbs li {
+	height: 144	px;
+	width: 144px;
+}
+.pika-stage {
+	width: 100%
+}
+.pikachoose {
+	width: 520px;
+}
+.pika-stage {
+	background: #fafafa;
+	height: 250px;
+	position: relative;
+	text-align: center;
+}
+.pika-stage .main-image {
+	left: 10px;
+	position: absolute;
+	top: 10px;
+}
+.pika-stage .pika-aniwrap {
+	left: 0px;
+	position: absolute;
+	top: 10px;
+}
+.pika-stage .pika-aniwrap {
+	width: 100%;
+}
+.pika-stage .pika-ani {
+	display: none;
+	margin: 0 auto;
+	position: relative;
+	z-index: 2;
+}
+.pika-stage img {
+	border: 0;
+	height: 100%;
+}
+.pika-stage .caption {
+	display: none;
+}
+
+.pika-imgnav a {
+	display: block;
+	position: absolute;
+	text-indent: -5000px;
+	z-index: 3;
+}
+.pika-imgnav a.previous {
+	background: url(/assets/images/prev.png) no-repeat left 45%;
+	cursor: pointer;
+	height: 100%;
+	left: 10px;
+	top: 10px;
+	width: 50px;
+}
+.pika-imgnav a.next {
+	background: url(/assets/images/next.png) no-repeat right 45%;
+	cursor: pointer;
+	height: 100%;
+	right: 10px;
+	top: 10px;
+	width: 50px;
+}
+.pika-imgnav a.play {
+	background: url(/assets/images/play.png) no-repeat 0% 50%;
+	cursor: pointer;
+	display: none;
+	height: 100px;
+	left: 50%;
+	top: 0;
+	width: 44px;
+}
+.pika-imgnav a.pause {
+	background: url(/assets/images/pause.png) no-repeat 0% 50%;
+	cursor: pointer;
+	display: none;
+	height: 100px;
+	left: 50%;
+	top: 0;
+	width: 44px;
+}
+.pika-textnav {
+	display: none;
+}
+.pika-thumbs {
+	margin: 10px 0 0 17px;
+	overflow: hidden;
+	padding: 0;
+}
+.pika-thumbs li {
+	background: #fafafa;
+	border: 1px solid #e5e5e5;
+	cursor: pointer;
+	float: left;
+	list-style-type: none;
+	margin: 0 5px;
+	padding: 3px;
+}
+.pika-thumbs li:last {
+	margin: 0;
+}
+.pika-thumbs li .clip {
+	height: 100%;
+	overflow: hidden;
+	position: relative;
+	text-align: center;
+	vertical-align: center;
+}
+.pika-tooltip {
+	display: none;
+}
+.pika-counter {
+	display: none;
+}
+.jcarousel-skin-pika .jcarousel-container-horizontal {
+	padding: 15px 20px;
+}
+.jcarousel-skin-pika .jcarousel-clip-horizontal {
+	height: 90px;
+	width: 485px;
+}
+.jcarousel-skin-pika .jcarousel-item-horizontal {
+	margin-right: 10px;
+}
+#sidead {
+	height: 100%;
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 160px;
+}
+body .one .bsa_it_ad, #bsap_1258380, .one {
+	height: 290px;
+	margin-top: 65px;
+}

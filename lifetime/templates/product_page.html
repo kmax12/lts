@@ -1,12 +1,31 @@
 {% extends "base.html" %}
 
 {% block styles %}
-{% endblock %}
+  <link type="text/css" href="{{STATIC_URL}}css/pikachoose/base.css" rel="stylesheet" />
+{% endblock %}><a href="http://www.pikachoose.com"><img src="../../1.jpg"/></a><span>This is an example of the basic theme.</span></li>
+          <li><a href="http://www.pikachoose.com"><img src="../../2.jpg"/></a><span>jCarousel is supported and can be integrated with PikaChoose!</span></li>
+          <li><a href="http://www.pikachoose.com"><img src="../../3.jpg"/></a><span>Be sure to check out <a href="http://www.pikachoose.com">PikaChoose.com</a> for updates.</span></li>
+          <li><a href="http://www.pikachoose.com"><img src="../../4.jpg"/></a><span>You can use any type of html you want with PikaChoose</span></li>
+          <li><a href="http://www.pikachoose.com"><img src="../../5.jpg"/></a><span>PikaChoose survives on your donations! Keep the project alive with a donation.</span></li>
+        </ul>
+
 
 {% block page-header %} 
 {{product.name}}{% endblock %}
 
 {% block scripts %}
+    <script type="text/javascript" src="{{STATIC_URL}}js/pikachoose/jquery.jcarousel.min.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}js/pikachoose/jquery.pikachoose.js"></script>
+    <script language="javascript">
+      $(document).ready(function (){
+          $("#pikame").PikaChoose({
+            autoPlay:false,
+            showTooltips:false,
+            showCaption:false,
+            animationSpeed:0
+          });
+        });
+    </script>
 {% endblock %}
 
 {% block body %}
@@ -16,10 +35,15 @@
     	<h1>{{product.name}}</h1>
 	    <div class="lightbg">
       	<div class="prod-detail">
-        	<img style="width:238px;height:273px;" src="{{STATIC_URL}}{{product.img}}" />
+          <ul id="pikame" class="jcarousel-skin-pika">
+            {% for x in "123" %}
+            <li><a href="http://www.pikachoose.com"><img src="http://placehold.it/680x250"/></a><span>{{x}}</span></li>
+            {% endfor %}
+          </ul>
+        	<!-- <img style="width:238px;height:273px;" src="{{STATIC_URL}}{{product.img}}" /> -->
       	</div>
-      	<p class="muted" style="font-size:17.5px;line-height:20px; ">
-      		$0 &minus; Free Shipping <a href="#" class="btn btn-large btn-warning">Ship It!</a>
+      	<p class="muted" style="font-size:17.5px;line-height:20px;">
+      		$0 &minus; Free Shipping <a href="#" class="btn btn-large btn-warning pull-right">Ship It!</a>
       	</p>
       	{{product.description|safe}}
       </div>
