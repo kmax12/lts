@@ -12,7 +12,7 @@ class UserProfile(models.Model):
     prefered_card = models.CharField(default="", max_length=100)
 
     def get_orders(self):
-        return Order.objects.select_related().filter(subscription__owner = self.user).order_by('-date_placed')
+        return Order.objects.select_related().filter(user = self.user).order_by('-date_placed')
 
     def get_subscriptions(self):
         return Subscription.objects.select_related().filter(owner=self.user)
