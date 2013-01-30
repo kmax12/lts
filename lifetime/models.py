@@ -41,7 +41,6 @@ class Subscription(models.Model):
 class Product(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField(default="This is a description")
-    img = models.CharField(max_length=100, default="/img/default_product.jpg")
     active = models.BooleanField(default=False)
     categories = models.ManyToManyField(Category)
 
@@ -54,6 +53,14 @@ class Product(models.Model):
     
     def __unicode__(self):
         return u'%s | %s' % (self.name, ", ".join([str(x) for x in self.categories.all()]))
+
+class ProductImage(models.Model):
+    product = models.ForeignKey(Product)
+    image = models.TextField()
+    
+    def __unicode__(self):
+        return u'%s' % (self.image)
+
 
 class ProductDetail(models.Model):
     product = models.ForeignKey(Product)

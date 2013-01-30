@@ -18,7 +18,7 @@
     <script type="text/javascript" src="{{STATIC_URL}}js/pikachoose/jquery.pikachoose.js"></script>
     <script language="javascript">
       $(document).ready(function (){
-          $("#pikame").PikaChoose({
+          $("#prod-img-slider").PikaChoose({
             autoPlay:false,
             showTooltips:false,
             showCaption:false,
@@ -35,9 +35,9 @@
     	<h1>{{product.name}}</h1>
 	    <div class="lightbg">
       	<div class="prod-detail">
-          <ul id="pikame" class="jcarousel-skin-pika">
-            {% for x in "123" %}
-            <li><a href="http://www.pikachoose.com"><img src="http://placehold.it/680x250"/></a><span>{{x}}</span></li>
+          <ul id="prod-img-slider" class="jcarousel-skin-pika">
+            {% for i in product.productimage_set.all %}
+              <li><img src="{{i.image}}"/></li>
             {% endfor %}
           </ul>
         	<!-- <img style="width:238px;height:273px;" src="{{STATIC_URL}}{{product.img}}" /> -->
