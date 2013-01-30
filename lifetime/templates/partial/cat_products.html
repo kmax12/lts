@@ -10,7 +10,7 @@
         <div class="muted">$0 &minus; Free Shipping</div>
         {% if shop %}
         <div class="buttons">
-          <a href="#" class="btn btn-warning">Ship It!</a>
+          {% include "partial/shipit_button.html" with p=p type="tile" %}
         </div>
         {% endif %}
       </div>

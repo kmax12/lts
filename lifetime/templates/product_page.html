@@ -42,7 +42,7 @@
           </ul>
       	</div>
       	<p class="muted" style="margin-top:5px;font-size:17.5px;line-height:44px;">
-      		$0 &minus; Free Shipping <a href="#" class="btn btn-large btn-warning pull-right">Ship It!</a>
+      		$0 &minus; Free Shipping {% include "partial/shipit_button.html" with p=product type="detail" %}
       	</p>
       	{{product.description|safe}}
       </div>
