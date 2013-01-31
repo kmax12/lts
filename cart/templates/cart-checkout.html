@@ -8,15 +8,17 @@
                 <thead>
                 <tr>
                     <th>Product</th>
-                    <th>Price (billed yearly)</th>
+                    <th>Semester</th>
+                    <th>Price</th>
                 </tr>
                 </thead>
                 <tbody>
                     {% for item in cart %}
                     <tr>
                         <td>{{ item.product.name }}</td>
+                        <td>Spring 2013</td>
                         <td>{{ item.total_price }}</td>
-                        <td><button href="/cart/remove?id={{item.object_id}}" type="button" class="btn btn-warning btn-remove" data-loading-text="Remove">Remove</button></td>
+                        <td><button href="/cart/remove?id={{item.object_id}}" type="button" class="btn btn-warning btn-remove pull-right" data-loading-text="Remove">Remove</button></td>
                     </tr>
                     {% endfor %}
                 </tbody>

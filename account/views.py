@@ -95,7 +95,7 @@ def add_address(request):
 def place_order(request):
     product_id = request.POST.get("id", None)
     if not product_id:
-        return redirect('lifetime.views.account')
+        return redirect('account.views.account')
 
 
     product = request.user.profile.has_product_id(product_id)

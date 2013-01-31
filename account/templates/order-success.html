@@ -9,16 +9,21 @@ Order placed
 
 {% block content %}
 <div class="lightbg">
-	<p>We will email {{user.email}} when we ship your order of {{ product.name}}.</p>
+	{% if success %}
+		<h2>Sweet! We're rushing to deliver your order</h2>
+		<h4>
+			We will email {{user.email}} when we ship your order of {{ product.name}}.
+		</h4>
+		<div>Thanks for using LifetimeSupply.com</div>
+	{% else %}
+		Something went wrong :(. Please try again or email support@lifetimesupply.com to place your order
+	{% endif %}
 
-	success: {{success}}
 
-	<p>Thanks for using LifetimeSupply.com</p>
-
-	<p>
+	<div>
 		<a href="/account/" class="btn btn-buy">Your account</a>
 		<a href="/" class="btn">Home</a>
-	</p>
+	</div>
 </div>
 {% endblock %}
 

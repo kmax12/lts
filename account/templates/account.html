@@ -42,7 +42,7 @@
         <td>{{o.obj.date_placed}}</td>
         <td style="text-align:right;">
           {% if o.obj.product.active and o.can_order %}
-          {% include "partial/shipit_button.html" with p=product type="tile" %}
+          {% include "partial/shipit_button.html" with p=o.obj.product type="tile" %}
           {% elif o.obj.product.active %}
           Supply expired. <a href="/?src=click">Shop Supply's</a>
           {% else %}

@@ -18,6 +18,9 @@ function handleOrder(e){
 
 	var $modal = $('#order-modal');
 	var $target = $(e.target);
+	console.log($target.data('name'))
+	console.log($target.data('id'))
+	console.log($modal.find('#item-id'))
 
 	$modal.find('#order-item').text($target.data('name'));
 	$modal.find('#item-id').val($target.data('id'));

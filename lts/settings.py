@@ -160,7 +160,7 @@ ABSOLUTE_URL_OVERRIDES = {
 }
 REGISTRATION_OPEN=True
 
-ORDER_TEXT = "Ship it"
+ORDER_TEXT = "Ship it!"
 
 # STRIPE_KEY = "pk_live_mnjoApYz5X91FsZcdyBzjSiw"
 # STRIPE_SECRET = "sk_live_kqMFbpyk6UhnaMaxOhher2RX"
