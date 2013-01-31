@@ -23,32 +23,38 @@ $(".product .btn").click(function(e){
       <div class="darkbg">
         {% load qstring %}
         {% with url=request.GET.urlencode %}
+          
           <h6>Supply's</h6>
+          <ul>
           {% if request_supply %}
-              <div >{{request_supply.name}}</div>
-              <div><a href="/shop?{{url|qstring_del:"supply"}}">clear filter</a></div>
+              <li>{{request_supply.name}}</li>
+              <li><a href="/shop?{{url|qstring_del:"supply"}}">clear filter</a></li>
           {% else %}
             {% for s in supplys %}
               {% with param="supply="|add:s.url_slug %}
-                <div><a href="/shop?{{url|qstring_set:param}}">{{s.name}}</a></div>
+                <li><a href="/shop?{{url|qstring_set:param}}">{{s.name}}</a></li>
               {% endwith %}
             {% endfor %}
           {% endif %}
-
+          </ul>
+          
           <h6>Categories</h6>
-            {% if request_cat %}
-              <div >{{request_cat.name}}</div>
-              <div><a href="/shop?{{url|qstring_del:"cat"}}">clear filter</a></div>
+          <ul>
+          {% if request_cat %}
+              <li>{{request_cat.name}}</li>
+              <li><a href="/shop?{{url|qstring_del:"cat"}}">clear filter</a></li>
           {% else %}
             {% for c in categories %}
               {% with param="cat="|add:c.url_slug %}
-                <div>
+                <li>
                   <a href="/shop?{{url|qstring_set:param}}">{{c.name}}</a>
                   ({{c.product_set.count}})
-                </div>
+                </li>
               {% endwith %}
             {% endfor %}
           {% endif %}
+          </ul>
+          
         {% endwith %}
       </div>
     </div>
