@@ -3,14 +3,10 @@
 {% block content_styles %}
 {% endblock %}
 
-{% block page-header %} 
-Order placed
-{% endblock %}
-
 {% block content %}
+<h2>Sweet! We're rushing to deliver your order</h2>
 <div class="lightbg">
 	{% if success %}
-		<h2>Sweet! We're rushing to deliver your order</h2>
 		<h4>
 			We will email {{user.email}} when we ship your order of {{ product.name}}.
 		</h4>

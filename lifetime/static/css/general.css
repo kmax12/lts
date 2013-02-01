@@ -1,10 +1,12 @@
 html {
-    background: url(http://subtlepatterns.subtlepatterns.netdna-cdn.com/patterns/navy_blue.png) fixed;s
+    background: url(http://subtlepatterns.subtlepatterns.netdna-cdn.com/patterns/navy_blue.png) fixed;
+    background-color: #2a2a2a;
 }
 body {
   font-family: 'Source Sans Pro', sans-serif;
   color: #444;
   background: url(http://subtlepatterns.subtlepatterns.netdna-cdn.com/patterns/navy_blue.png) fixed;
+  background-color: #2a2a2a;
   margin-top: 83px;
 }
 input, button, select, textarea {
