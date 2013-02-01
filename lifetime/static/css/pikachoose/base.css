@@ -85,6 +85,7 @@
 	display: none;
 }
 .pika-thumbs {
+	display: none;
 	margin: 10px 0 0 17px;
 	overflow: hidden;
 	padding: 0;
