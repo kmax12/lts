@@ -44,7 +44,7 @@
       	<p class="muted" style="margin-top:5px;font-size:17.5px;line-height:44px;">
       		$0 &minus; Free Shipping {% include "partial/shipit_button.html" with p=product type="detail" %}
       	</p>
-      	{{product.description|safe}}
+      	{{product.description|linebreaks}}
       </div>
     </div>
     <div class="span3">

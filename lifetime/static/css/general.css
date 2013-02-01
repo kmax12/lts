@@ -47,6 +47,15 @@ a:hover {
   padding: 10px;
 }
 
+.btn img {
+  height: 20px;
+  margin-top: -4px;
+}
+.btn.btn-large img {
+  height: 24px;
+  margin: -6px 0 -3px;
+}
+
 .darkbg {
   background-image: url(/static/img/darklinen.png);
   background-color: #444;
