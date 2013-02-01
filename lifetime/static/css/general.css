@@ -58,12 +58,18 @@ a:hover {
 .darkbg h6 {
   margin: 2px 0 1px;
 }
-.darkbg a {
+
+.darkbg a, #footer a {
   color: #6d8da5;
 }
-.darkbg a:hover {
+.darkbg a:hover, #footer a:hover {
   color: #546d81;
 }
+
+#footer {
+  margin: 20px 0 18px;
+}
+
 .darkbg ul {
   list-style-type: none;
   margin-left: 0;

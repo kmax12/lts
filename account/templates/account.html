@@ -17,7 +17,7 @@
     {% for sub in user.subscription_set.all %}
       <tr>
         <td style="vertical-align:middle;">{{sub.supply.name}}</td>
-        <td><a href="/shop" class="btn btn-inverse pull-right">Shop</a></td>
+        <td><a href="/shop/?supply={{sub.supply.url_slug}}" class="btn btn-inverse pull-right">Shop</a></td>
       </tr>
     {% endfor %}
 
