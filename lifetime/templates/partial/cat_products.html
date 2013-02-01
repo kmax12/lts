@@ -3,7 +3,7 @@
   <div class="span3">
     <div class="lightbg product">
       <a href="/product/{{p.id}}">
-        <img src="http://placehold.it/220x150" />
+        <div class="image" style="background-image:url('{{p.productimage_set.all|first}}');"></div>
         <h5>{{p.name}}</h5>
       </a>
       <div>

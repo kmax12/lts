@@ -120,10 +120,17 @@ Supply item styles
   padding-top: 155px;
   position: relative;
 }
-.product img {
+.product .image {
   position: absolute;
   top:0;
   left:0;
+  background-size: auto 130px; 
+  background-repeat: no-repeat;
+  background-position: center;
+  width:220px;
+  height:130px;
+  background-color: #fff;
+  padding: 10px 0px;
 }
 
 .product h5 {
