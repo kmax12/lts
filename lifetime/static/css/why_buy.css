@@ -1,0 +1,18 @@
+.why-buy{
+
+}
+
+.why-buy h4{
+    font-size: 25px;
+    line-height: 25px;
+    margin: 15px 0px 5px 0px;
+}
+
+.why-buy h4:nth-child(1){
+    margin-top: 10px;
+}
+
+.why-buy li{
+    font-size: 16px;
+    line-height: normal;
+}
