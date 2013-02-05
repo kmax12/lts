@@ -26,7 +26,7 @@ urlpatterns = patterns('',
     url(r'^privacy/$', direct_to_template,{'template': 'privacy.html', 'extra_context': {"title": "Privacy Policy| Lifetime Supply"}}),
     
     #landing pages
-    url(r'^parents/$', direct_to_template,{'template': 'parents.html', 'extra_context': {"title": "For Parents | Lifetime Supply", "nonav": True}}),
+    url(r'^parents/$', direct_to_template,{'template': 'parents.html', 'extra_context': {"title": "For Parents | Lifetime Supply", "supplys": Supply.objects.all().order_by('?')[:3]}}),
 
     # url(r'^$', direct_to_template,{'template': 'signup.html'}),
     url(r'^$', 'lifetime.views.home', name="home"),    
