@@ -7,31 +7,43 @@
 {% block body %}
 <div class="container">
   <div class="row">
+    <!-- <div  class="alert alert-info span12">Wahoo</div> -->
 
     <div class="span4">
-      <h2>How it Works</h2>
-      <div class="how darkbg">
-        <!--  List designed by P.J. Onori from The Noun Project -->
-        <h3 class="title">Subscribe</h3>
-        <img class="svg" src="{{STATIC_URL}}img/subscribe.svg">
-        <div class="description">
-          Pick what you need and pay once for the semester
-        </div>
+        <h2>How it Works</h2>
+        <div class="lightbg">
+          <div class="how-step clearfix">
+              <img src="{{STATIC_URL}}img/subscribe.svg"/>
+              <div>
+                  <h4 class="title">Subscribe</h4>
+                  <div class="description">
+                      Pick what you need and pay once for the semester
+                  </div>
+              </div>
+          </div>
 
-        <!-- Button designed by Anna Weiss from The Noun Project -->
-        <h3 class="title">Ship & Re-ship</h3>
-        <img class="svg" src="{{STATIC_URL}}img/order.svg">
-        <div class="description">
-          Request more at any time for no additional cost
+          <!-- Button designed by Anna Weiss from The Noun Project -->
+          <div class="how-step clearfix">
+              <img src="{{STATIC_URL}}img/order.svg"/>
+              <div>
+                  <h4 class="title">Ship & Re-ship</h4>
+                  <div class="description">
+                      Request more at any time for no additional cost
+                  </div>
+              </div>
+          </div>
+
+          <!-- Box designed by Jerome Tave from The Noun Project -->
+          <div class="how-step clearfix">
+              <img src="{{STATIC_URL}}img/ship.svg"/>
+              <div>
+                  <h4 class="title">Free Shipping</h4>
+                  <div class="description">
+                      We ship your products to your doorstep for free!
+                  </div>
+              </div>
+          </div>
         </div>
-      
-        <!-- Box designed by Jerome Tave from The Noun Project -->
-        <h3 class="title">Free Shipping</h3>
-        <img class="svg" src="{{STATIC_URL}}img/ship.svg">
-        <div class="description">
-          We ship your products to your doorstep for free!
-        </div>
-      </div>
     </div>
 
     <div class="span8">

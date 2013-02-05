@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block styles %}
+<link href="{{ STATIC_URL}}css/parents.css" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="span10 offset1">
+            <h1 class="big-title">Keep your Child Supplied</h2>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="span4 offset4">
+            <div class="how-step lightbg clearfix">
+                <img src="{{STATIC_URL}}img/subscribe.svg"/>
+                <span>
+                    <h4 class="title">Subscribe</h4>
+                    <div class="description">
+                        Pick what you need and pay once for the semester
+                    </div>
+                </span>
+            </div>
+
+            <!-- Button designed by Anna Weiss from The Noun Project -->
+            <div class="how-step lightbg clearfix">
+                <img src="{{STATIC_URL}}img/order.svg"/>
+                <span>
+                    <h4 class="title">Ship & Re-ship</h4>
+                    <div class="description">
+                        Request more at any time for no additional cost
+                    </div>
+                </span>
+            </div>
+            
+            <!-- Box designed by Jerome Tave from The Noun Project -->
+            <div class="how-step lightbg clearfix">
+                <img src="{{STATIC_URL}}img/ship.svg"/>
+                <span>
+                    <h4 class="title">Free Shipping</h4>
+                    <div class="description">
+                        We ship your products to your doorstep for free!
+                    </div>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

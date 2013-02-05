@@ -1,29 +1,28 @@
-.how-step{
-	padding: 5px;
+html, body{
+/*	  background-image: url(http://subtlepatterns.com/patterns/fabric_plaid.png);
+  		background-color: #ddd;*/
 }
 
-.how-step>div{
-	margin: 10px 0px 10px 10px;
+.big-title{
+	font-size: 64px;
+	line-height: normal;
+	text-align: center;
+}
+
+
+.how-step{
+	padding: 15px;
+}
+
+.how-step>span{
+	margin: 0px 5px;
+	width: 190px;
 }
 
 
 .how-step>img{
 	width: 70px;
-	margin: 10px;
-	float:left;
-}
-
-.how-step:nth-child(1)>img{
-	margin-top: 25px;
-}
-
-.how-step:nth-child(2)>img{
-	margin-top: 15px;
-	/*float:right;*/
-}
-
-.how-step:nth-child(3)>img{
-	margin-top: 20px;
+	margin-top: 10px;
 }
 
 .how-step .title{
@@ -40,7 +39,7 @@
 
 }
 
-/*.how-step:nth-child(odd)>img{
+.how-step:nth-child(odd)>img{
 	float:left;
 }
 
@@ -58,4 +57,4 @@
 
 .how-step:nth-child(even)>span{
 	float:left;
-}*/
+}
