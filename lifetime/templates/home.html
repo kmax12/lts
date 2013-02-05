@@ -12,9 +12,31 @@
 
     <div class="span4">
         <h2>How it Works</h2>
-        <div class="lightbg">
+        <div class="darkbg">
           {% include 'partial/how_it_works.html' %}
         </div>
+
+        <h2>Why Buy?</h2>
+            <div class="darkbg why-buy">
+                <h4>It’s super convenient</h4>
+                <ul>
+                    <li>No wasted time going to the store</li>
+                    <li>Easier to focus on studying hard and having fun</li>
+                </ul>
+
+                <h4>Stay supplied</h4>
+                <ul>
+                    <li>Students will never run out of the things they need</li>
+                    <li>Unlimited access to any product in a Supply</li>
+                </ul>
+
+                <h4>Great products</h4>
+                <ul>
+                    <li>We offer a wide variety of top brands</li>
+                    <li>New products added to Supplies monthly</li>
+                </ul>
+  
+            </div>
     </div>
 
     <div class="span8">
@@ -23,7 +45,9 @@
           {% include "partial/supply_item.html" with s=supply %}
       {% endfor %}
     </div>
-
+    <div class="span4">
+            
+        </div>
   </div>
 </div>
 {% endblock %}
