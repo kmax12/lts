@@ -52,7 +52,12 @@ def view_supply(request, slug):
 def view_product(request, slug):
     product = Product.objects.get(id=slug) 
 
-    similar = product.similar_products(request.user).exclude(pk=product.pk)
+    if request.user.is_authenticated():
+        similar = product.similar_products(request.user)
+    else:
+        similar = product.similar_products()
+
+    similar = similar.exclude(pk=product.pk)
 
     template_values = {
         "title": product.name + " | Lifetime Supply",
