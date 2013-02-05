@@ -15,6 +15,7 @@ class Supply(models.Model):
     name = models.CharField(max_length=100)
     price = models.FloatField()
     categories = models.ManyToManyField(Category)
+    brands_text = models.CharField(max_length=100)
     url_slug = models.CharField(max_length=100, unique=True)
 
     def category_names(self):
