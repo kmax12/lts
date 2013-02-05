@@ -1,8 +1,8 @@
 $(function(){
-	$(document).on('click', '.btn-remove', handleRemove);
-	$(document).on('add-card-success', function(){
-		window.location = "/cart/";
-	});
+	// $(document).on('click', '.btn-remove', handleRemove);
+	// $(document).on('add-card-success', function(){
+	// 	window.location = "/cart/";
+	// });
 })
 
 function handleRemove(e){

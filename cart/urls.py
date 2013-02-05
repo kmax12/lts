@@ -13,5 +13,6 @@ urlpatterns = patterns('',
     url(r'^add/$', 'cart.views.add_to_cart', name="add to cart"),
     url(r'^remove/$', 'cart.views.remove_from_cart', name="remove from cart"),
     url(r'^checkout/$', 'cart.views.checkout', name="checkout"),
+    url(r'^confirm-checkout/$', 'cart.views.confirm_checkout', name="checkout"),
     url(r'^$', 'cart.views.view_cart', name="view_cart"),
 )

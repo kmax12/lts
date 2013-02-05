@@ -15,10 +15,10 @@
                 <tbody>
                     {% for item in cart %}
                     <tr>
-                        <td>{{ item.product.name }}</td>
+                        <td><a href="/supply/{{item.product.url_slug}}">{{ item.product.name }}</a></td>
                         <td>Spring 2013</td>
                         <td>{{ item.total_price }}</td>
-                        <td><button href="/cart/remove?id={{item.object_id}}" type="button" class="btn btn-warning btn-remove pull-right" data-loading-text="Remove">Remove</button></td>
+                        <td><a href="/cart/remove?id={{item.object_id}}" type="button" class="btn btn-warning btn-remove pull-right" data-loading-text="Remove">Remove</a></td>
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -43,8 +43,10 @@
                 <p>Total</p>
                 <p>$<span id="total">{{cart.total}}</span>/year</p>
             </div>
-
-            {% if not user.is_authenticated %}
+            <a href="/confirm-checkout" class="btn-checkout btn-large btn btn-primary"> Buy for myself</a>
+            <a href="/confirm-checkout" class="btn-checkout btn-large btn btn-success"> Buy for a student</a>
+            <p class="muted">Note: you will be not be charged, yet</p>
+            <!-- {% if not user.is_authenticated %}
             <p class="cart-message"> You must log in to checkout: </p>
             <p> <a href="/login/?next=/cart/" class="btn btn-primary" type="button">Login</a> or <a href="/register/">register</a> </p>
             {% elif not user.profile.get_cards %}
@@ -63,7 +65,7 @@
                 </select> 
                 <p><a class="add-card" type="button">Add another card</a></p>
             </form>
-            {% endif %}
+            {% endif %} -->
 
             
         </div>

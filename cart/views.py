@@ -12,6 +12,11 @@ import json
 
 @login_required
 def checkout(request):
+    return redirect("cart.views.view_cart")
+
+
+@login_required
+def confirm_checkout(request):
     cart = Cart(request)
     total = cart.total()
     card_id = request.POST.get("card_id", None)
@@ -53,16 +58,13 @@ def remove_from_cart(request):
     supply_id = request.GET.get('id', None)
     response_data = {}
     response_data['success'] = False
-    if (supply):
+    if (supply_id):
         supply = Supply.objects.get(id=supply_id)
         cart = Cart(request)
         cart.remove(supply)
         response_data['success'] = True
 
-    
-    response_data['total'] = cart.total()
-
-    return HttpResponse(json.dumps(response_data), mimetype="application/json")
+    return redirect('cart.views.view_cart')
 
 def view_cart(request):
     template_values = {
