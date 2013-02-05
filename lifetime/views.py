@@ -24,6 +24,18 @@ def home(request):
     return direct_to_template(request, 'home.html',
                              template_values)
 
+
+def buy_supply(request):
+
+    template_values = {
+                    "title": "Lifetime Supply",
+                    "home_active" : "active",
+                    "supplys": Supply.objects.all(),
+                }
+
+    return direct_to_template(request, 'home.html',
+                             template_values)
+
 def view_supply(request, slug):
     supply = Supply.objects.get(url_slug=slug) 
 

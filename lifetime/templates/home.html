@@ -2,6 +2,7 @@
 
 {% block styles %}
 <link href="{{ STATIC_URL}}css/home.css" rel="stylesheet">
+<link href="{{ STATIC_URL}}css/how.css" rel="stylesheet">
 {% endblock %}
 
 {% block body %}
@@ -12,37 +13,7 @@
     <div class="span4">
         <h2>How it Works</h2>
         <div class="lightbg">
-          <div class="how-step clearfix">
-              <img src="{{STATIC_URL}}img/subscribe.svg"/>
-              <div>
-                  <h4 class="title">Subscribe</h4>
-                  <div class="description">
-                      Pick what you need and pay once for the semester
-                  </div>
-              </div>
-          </div>
-
-          <!-- Button designed by Anna Weiss from The Noun Project -->
-          <div class="how-step clearfix">
-              <img src="{{STATIC_URL}}img/order.svg"/>
-              <div>
-                  <h4 class="title">Ship & Re-ship</h4>
-                  <div class="description">
-                      Request more at any time for no additional cost
-                  </div>
-              </div>
-          </div>
-
-          <!-- Box designed by Jerome Tave from The Noun Project -->
-          <div class="how-step clearfix">
-              <img src="{{STATIC_URL}}img/ship.svg"/>
-              <div>
-                  <h4 class="title">Free Shipping</h4>
-                  <div class="description">
-                      We ship your products to your doorstep for free!
-                  </div>
-              </div>
-          </div>
+          {% include 'partial/how_it_works.html' %}
         </div>
     </div>
 

@@ -12,6 +12,7 @@ urlpatterns = patterns('',
     #product stuff
     url(r'^supply/(.+)$', 'lifetime.views.view_supply', name="view_cart"),    
     url(r'^shop/$', 'lifetime.views.shop', name="shop"),    
+    url(r'^buy-supply/$', 'lifetime.views.buy_supply', name="shop"),    
     url(r'^product/([0-9]+)$', 'lifetime.views.view_product', name="view_cart"),    
 
 
@@ -25,7 +26,7 @@ urlpatterns = patterns('',
     url(r'^privacy/$', direct_to_template,{'template': 'privacy.html', 'extra_context': {"title": "Privacy Policy| Lifetime Supply"}}),
     
     #landing pages
-    url(r'^parents/$', direct_to_template,{'template': 'parents.html', 'extra_context': {"title": "For Parents | Lifetime Supply"}}),
+    url(r'^parents/$', direct_to_template,{'template': 'parents.html', 'extra_context': {"title": "For Parents | Lifetime Supply", "nonav": True}}),
 
     # url(r'^$', direct_to_template,{'template': 'signup.html'}),
     url(r'^$', 'lifetime.views.home', name="home"),    

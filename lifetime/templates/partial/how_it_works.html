@@ -1,40 +1,31 @@
-<div class="row how-container">
-    <!--  List designed by P.J. Onori from The Noun Project -->
-    <!-- <div class="span12">
-        <h2 class="large">LifetimeSupply.com sells unlimited, on demand access to products you use on a daily basis.</h2> 
-    </div> -->
+<div class="how-step clearfix">
+  <img src="{{STATIC_URL}}img/subscribe.svg"/>
+  <div>
+      <h4 class="title">Subscribe to a Supply</h4>
+      <div class="description">
+          Pick what you need and pay once for the semester
+      </div>
+  </div>
+</div>
 
-    <div class="how-step">
-        <img src="{{STATIC_URL}}img/subscribe.svg"/>
-        <div class="title">1. Subscribe</div>
-        <div class="description">
-            Find products you like. Pay once for an entire year.
-        </div>
-    </div>
+<!-- Button designed by Anna Weiss from The Noun Project -->
+<div class="how-step clearfix">
+  <img src="{{STATIC_URL}}img/order.svg"/>
+  <div>
+      <h4 class="title">Ship & Re-ship</h4>
+      <div class="description">
+          Request more at any time for no additional cost
+      </div>
+  </div>
+</div>
 
-    <!-- Button designed by Anna Weiss from The Noun Project -->
-    <div class="how-step">
-        <img src="{{STATIC_URL}}img/order.svg"/>
-        <div class="title">2. Order</div>
-        <div class="description">
-            Quickly reorder more on the site - anytime you need it.
-        </div>
-    </div>
-    
-    <!-- Box designed by Jerome Tave from The Noun Project -->
-    <div class="how-step">
-        <img src="{{STATIC_URL}}img/ship.svg"/>
-        <div class="title">3. Free Shipping</div>
-        <div class="description">
-            We ship your products to your doorstep for free!
-        </div>
-    </div>
-
-    {% if not user.is_authenticated %}
-        <div class="span12">
-            <div class="alert alert-info"> 
-                <div class="home-message">We are still in private beta. Request an invite <a href="http://www.lifetimesupply.com" class="" >here</a></div>
-            </div>
-        </div>
-    {% endif %}
+<!-- Box designed by Jerome Tave from The Noun Project -->
+<div class="how-step clearfix">
+  <img src="{{STATIC_URL}}img/ship.svg"/>
+  <div>
+      <h4 class="title">Free Shipping</h4>
+      <div class="description">
+          We ship your products to your doorstep for free!
+      </div>
+  </div>
 </div>

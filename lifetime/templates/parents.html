@@ -1,49 +1,56 @@
 {% extends "base.html" %}
 
 {% block styles %}
+<link href="{{ STATIC_URL}}css/how.css" rel="stylesheet">
 <link href="{{ STATIC_URL}}css/parents.css" rel="stylesheet">
 {% endblock %}
 
 {% block body %}
 <div class="container">
     <div class="row">
-        <div class="span10 offset1">
-            <h1 class="big-title">Keep your Child Supplied</h2>
+        <div class="span12">
+            <h1 class="big-title">We guarantee students <i>always</i> have what they need</h2>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="span6">
+            <h2>How it Works</h2>
+            <div class="lightbg">
+              {% include 'partial/how_it_works.html' %}
+            </div>
+        </div>
+
+        <div class="span6">
+            <h2>Why Buy?</h2>
+            <div class="lightbg why-buy">
+                <h4>It’s super convenient</h4>
+                <ul>
+                    <li>No wasted time going to the store</li>
+                    <li>Easier to focus on studying hard and having fun</li>
+                </ul>
+
+                <h4>Stay supplied</h4>
+                <ul>
+                    <li>Students will never run out of the things they need</li>
+                    <li>Unlimited access to any product in a Supply</li>
+                </ul>
+
+                <h4>Great products</h4>
+                <ul>
+                    <li>We offer a wide variety of top brands</li>
+                    <li>New products added to Supplies monthly</li>
+                </ul>
+  
+            </div>
         </div>
     </div>
 
     <div class="row">
-        <div class="span4 offset4">
-            <div class="how-step lightbg clearfix">
-                <img src="{{STATIC_URL}}img/subscribe.svg"/>
-                <span>
-                    <h4 class="title">Subscribe</h4>
-                    <div class="description">
-                        Pick what you need and pay once for the semester
-                    </div>
-                </span>
-            </div>
-
-            <!-- Button designed by Anna Weiss from The Noun Project -->
-            <div class="how-step lightbg clearfix">
-                <img src="{{STATIC_URL}}img/order.svg"/>
-                <span>
-                    <h4 class="title">Ship & Re-ship</h4>
-                    <div class="description">
-                        Request more at any time for no additional cost
-                    </div>
-                </span>
-            </div>
-            
-            <!-- Box designed by Jerome Tave from The Noun Project -->
-            <div class="how-step lightbg clearfix">
-                <img src="{{STATIC_URL}}img/ship.svg"/>
-                <span>
-                    <h4 class="title">Free Shipping</h4>
-                    <div class="description">
-                        We ship your products to your doorstep for free!
-                    </div>
-                </span>
+        <div class="span12">
+            <div class="lightbg">
+                asdasd
             </div>
         </div>
     </div>

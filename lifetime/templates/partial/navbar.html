@@ -9,7 +9,7 @@
         <ul class="nav nav-pills pull-right">
           {% if user.is_authenticated %}
           <li class="{{shop_active}}"><a href="/shop">Shop</a></li>
-          <li class="{{home_active}}"><a href="/?src=click">Buy a Supply</a></li>
+          <li class="{{home_active}}"><a href="/buy-supply">Buy a Supply</a></li>
           {% else %}
           <li class="{{home_active}}"><a href="/">Home</a></li>
           {% endif %}

@@ -1,60 +1,30 @@
 html, body{
-/*	  background-image: url(http://subtlepatterns.com/patterns/fabric_plaid.png);
-  		background-color: #ddd;*/
+/*    background-image: url(http://subtlepatterns.com/patterns/fabric_plaid.png);
+        background-color: #ddd;*/
 }
 
 .big-title{
-	font-size: 64px;
-	line-height: normal;
-	text-align: center;
+    font-size: 64px;
+    line-height: normal;
+    text-align: center;
+    margin-top: -50px;
 }
 
-
-.how-step{
-	padding: 15px;
-}
-
-.how-step>span{
-	margin: 0px 5px;
-	width: 190px;
-}
-
-
-.how-step>img{
-	width: 70px;
-	margin-top: 10px;
-}
-
-.how-step .title{
-	font-size: 25px;
-	margin: 0px 0px 5px 0px;
-	line-height: 25px;
-}
-
-.how-step .description{
-	font-size: 18px;
-}
-
-.how-step:nth-child(odd){
+.why-buy{
 
 }
 
-.how-step:nth-child(odd)>img{
-	float:left;
+.why-buy h4{
+    font-size: 25px;
+    line-height: 25px;
+    margin: 15px 0px 5px 0px;
 }
 
-.how-step:nth-child(odd)>span{
-	float:left;
+.why-buy h4:nth-child(1){
+    margin-top: 10px;
 }
 
-.how-step:nth-child(even){
-	text-align: left;
-}
-
-.how-step:nth-child(even)>img{
-	float:left;
-}
-
-.how-step:nth-child(even)>span{
-	float:left;
+.why-buy li{
+    font-size: 20px;
+    line-height: normal;
 }

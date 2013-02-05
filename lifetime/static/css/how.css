@@ -1,0 +1,61 @@
+.how-step{
+	padding: 3px;
+}
+
+.how-step>div{
+	margin: 10px 0px 10px 10px;
+}
+
+
+.how-step>img{
+	width: 70px;
+	margin: 10px;
+	float:left;
+}
+
+.how-step:nth-child(1)>img{
+	margin-top: 25px;
+}
+
+.how-step:nth-child(2)>img{
+	margin-top: 15px;
+	/*float:right;*/
+}
+
+.how-step:nth-child(3)>img{
+	margin-top: 20px;
+}
+
+.how-step .title{
+	font-size: 25px;
+	margin: 0px 0px 5px 0px;
+	line-height: 25px;
+}
+
+.how-step .description{
+	font-size: 18px;
+}
+
+.how-step:nth-child(odd){
+
+}
+
+/*.how-step:nth-child(odd)>img{
+	float:left;
+}
+
+.how-step:nth-child(odd)>span{
+	float:left;
+}
+
+.how-step:nth-child(even){
+	text-align: left;
+}
+
+.how-step:nth-child(even)>img{
+	float:left;
+}
+
+.how-step:nth-child(even)>span{
+	float:left;
+}*/
