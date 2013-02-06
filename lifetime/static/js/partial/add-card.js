@@ -3,10 +3,6 @@ $(function(){
 });
 
 function handleAddCard(e){
-	var token = function(res){
-	    console.log('Got token ID:', res.id);
-	};
-
 	StripeCheckout.open({
 		key:         'pk_test_czwzkTp2tactuLOEOqbMTRzG',
 		name:        'Lifetime Supply',
@@ -19,8 +15,5 @@ function handleAddCard(e){
 }
 
 function stripeResponseHandler(token){
-	$.get('/account/add-card/', {token:token}, function(a){
-		$.trigger('add-card-success');
-		console.log(a)
-	});
+	$('#stripe-token').val(token.id)
 }

@@ -12,6 +12,7 @@ class Migration(SchemaMigration):
         db.create_table('lifetime_category', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('name', self.gf('django.db.models.fields.CharField')(max_length=100)),
+            ('url_slug', self.gf('django.db.models.fields.CharField')(unique=True, max_length=100)),
         ))
         db.send_create_signal('lifetime', ['Category'])
 
@@ -20,6 +21,8 @@ class Migration(SchemaMigration):
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('name', self.gf('django.db.models.fields.CharField')(max_length=100)),
             ('price', self.gf('django.db.models.fields.FloatField')()),
+            ('brands_text', self.gf('django.db.models.fields.CharField')(max_length=100)),
+            ('photo', self.gf('django.db.models.fields.CharField')(max_length=100)),
             ('url_slug', self.gf('django.db.models.fields.CharField')(unique=True, max_length=100)),
         ))
         db.send_create_signal('lifetime', ['Supply'])
@@ -47,7 +50,6 @@ class Migration(SchemaMigration):
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('name', self.gf('django.db.models.fields.CharField')(max_length=100)),
             ('description', self.gf('django.db.models.fields.TextField')(default='This is a description')),
-            ('img', self.gf('django.db.models.fields.CharField')(default='/img/default_product.jpg', max_length=100)),
             ('active', self.gf('django.db.models.fields.BooleanField')(default=False)),
         ))
         db.send_create_signal('lifetime', ['Product'])
@@ -59,6 +61,14 @@ class Migration(SchemaMigration):
             ('category', models.ForeignKey(orm['lifetime.category'], null=False))
         ))
         db.create_unique('lifetime_product_categories', ['product_id', 'category_id'])
+
+        # Adding model 'ProductImage'
+        db.create_table('lifetime_productimage', (
+            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('product', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['lifetime.Product'])),
+            ('image', self.gf('django.db.models.fields.TextField')()),
+        ))
+        db.send_create_signal('lifetime', ['ProductImage'])
 
         # Adding model 'ProductDetail'
         db.create_table('lifetime_productdetail', (
@@ -72,14 +82,15 @@ class Migration(SchemaMigration):
         db.create_table('lifetime_gift', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('supply', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['lifetime.Supply'], null=True, blank=True)),
-            ('code', self.gf('django.db.models.fields.CharField')(default='RNi2XzIc', unique=True, max_length=8)),
+            ('code', self.gf('django.db.models.fields.CharField')(default='cWjlku13', unique=True, max_length=8)),
         ))
         db.send_create_signal('lifetime', ['Gift'])
 
         # Adding model 'Order'
         db.create_table('lifetime_order', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('subscription', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['lifetime.Subscription'])),
+            ('user', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'])),
+            ('product', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['lifetime.Product'])),
             ('date_placed', self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime.now)),
             ('date_shipped', self.gf('django.db.models.fields.DateTimeField')(null=True, blank=True)),
             ('item_quanity', self.gf('django.db.models.fields.IntegerField')(default=0)),
@@ -105,6 +116,9 @@ class Migration(SchemaMigration):
 
         # Removing M2M table for field categories on 'Product'
         db.delete_table('lifetime_product_categories')
+
+        # Deleting model 'ProductImage'
+        db.delete_table('lifetime_productimage')
 
         # Deleting model 'ProductDetail'
         db.delete_table('lifetime_productdetail')
@@ -156,11 +170,12 @@ class Migration(SchemaMigration):
         'lifetime.category': {
             'Meta': {'object_name': 'Category'},
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'name': ('django.db.models.fields.CharField', [], {'max_length': '100'})
+            'name': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
+            'url_slug': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '100'})
         },
         'lifetime.gift': {
             'Meta': {'object_name': 'Gift'},
-            'code': ('django.db.models.fields.CharField', [], {'default': "'flCNKgDE'", 'unique': 'True', 'max_length': '8'}),
+            'code': ('django.db.models.fields.CharField', [], {'default': "'txvMraeJ'", 'unique': 'True', 'max_length': '8'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'supply': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['lifetime.Supply']", 'null': 'True', 'blank': 'True'})
         },
@@ -170,7 +185,8 @@ class Migration(SchemaMigration):
             'date_shipped': ('django.db.models.fields.DateTimeField', [], {'null': 'True', 'blank': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'item_quanity': ('django.db.models.fields.IntegerField', [], {'default': '0'}),
-            'subscription': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['lifetime.Subscription']"})
+            'product': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['lifetime.Product']"}),
+            'user': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['auth.User']"})
         },
         'lifetime.product': {
             'Meta': {'object_name': 'Product'},
@@ -178,7 +194,6 @@ class Migration(SchemaMigration):
             'categories': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['lifetime.Category']", 'symmetrical': 'False'}),
             'description': ('django.db.models.fields.TextField', [], {'default': "'This is a description'"}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'img': ('django.db.models.fields.CharField', [], {'default': "'/img/default_product.jpg'", 'max_length': '100'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '100'})
         },
         'lifetime.productdetail': {
@@ -186,6 +201,12 @@ class Migration(SchemaMigration):
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'product': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['lifetime.Product']"}),
             'text': ('django.db.models.fields.TextField', [], {})
+        },
+        'lifetime.productimage': {
+            'Meta': {'object_name': 'ProductImage'},
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'image': ('django.db.models.fields.TextField', [], {}),
+            'product': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['lifetime.Product']"})
         },
         'lifetime.subscription': {
             'Meta': {'object_name': 'Subscription'},
@@ -197,9 +218,11 @@ class Migration(SchemaMigration):
         },
         'lifetime.supply': {
             'Meta': {'object_name': 'Supply'},
+            'brands_text': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
             'categories': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['lifetime.Category']", 'symmetrical': 'False'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
+            'photo': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
             'price': ('django.db.models.fields.FloatField', [], {}),
             'url_slug': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '100'})
         }

@@ -13,8 +13,13 @@ class Cart(models.Model):
     gift = models.BooleanField(verbose_name=_('cart is gift'), \
                                       default=False)
     creation_date = models.DateTimeField(verbose_name=_('creation date'))
-    checked_out = models.BooleanField(verbose_name=_('checked out'), \
+    checked_out = models.BooleanField(verbose_name=_('checked out'),
                                       default=False)
+
+    name = models.CharField(max_length=100)
+    email =  models.EmailField(null=True)
+    stripe_token = models.CharField(max_length=100)
+
 
     class Meta:
         verbose_name = _('Cart')

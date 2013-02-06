@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+
+{% block styles %}
+<link href="{{ STATIC_URL}}css/cart.css" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="span12">
+            <h1>Checkout</h1>
+        </div>
+        <div class="span12">
+            <div class="lightbg">
+                {% include 'partial/checkout-table.html' %}
+                <!--  <div class="alert hide">
+                    <p class="cart-message">Is this purchase a gift?</p>
+                    <div class="btn-group" data-toggle="buttons-radio">
+                      <a  type="button" href="/cart?gift=1" class="btn large {% if cart.is_gift %} active {% endif %}">Yes</a>
+                      <a type="button" href="/cart?gift=0" class="btn large {% if not cart.is_gift %} active {% endif %}">No</a>
+                    </div>
+                    {% if cart.is_gift %}
+                        <p>Note: We'll send you a certificate to present</p>
+                    {% endif %}
+                </div> -->
+            </div>
+        </div>
+        <div class="span8">
+            <div class="lightbg">
+                <h4> Step {{step}} of 3 </h4>
+                <div class="progress  progress-striped">
+                  <div class="bar" style="width: {{progress}}%;"></div>
+                </div>
+
+                {% if error %}
+                    <div class="alert alert-error">
+                      {{error|safe}}
+                    </div>
+                {% endif %}
+
+                <form action="/cart/confirm-checkout/" method="post" class="clearfix">
+                    {% csrf_token %}
+                    <input type="hidden" name="step" value="{{step}}"/>
+                    {% if step == 1 %}
+                        <div>
+                            <label for="name">Name</label>
+                            <input type="text" name="name" placeholder="Name" value="{{cart.cart.name}}" />
+                        </div>
+                        <div>
+                            <label for="email">Email</label>
+                            <input type="text" name="email" placeholder="Email" value="{{cart.cart.email}}"/>
+                        </div>
+                        <div>
+                            <label for="token">Credit Card</label>
+                            <input id="stripe-token" type="hidden" name="token" value="{{cart.cart.stripe_token}}"/>
+                            <a class="btn btn-primary add-card" type="button">Add card</a>
+                        </div>
+                        
+                        <div>
+                            <input value="Next" class="btn btn-success pull-right" type="submit"/>
+                        </div>
+                    {% elif step == "2" %}
+
+                    {% elif step == "3" %}
+
+                    {% endif %}
+                </form>
+            </div>
+        </div>
+        <div class="span4">
+            <div class="lightbg">
+                <div id="cart-total-container">
+                    <p>Total</p>
+                    <p>$<span id="total">{{cart.total}}</span></p>
+                </div>
+                
+                <!-- {% if not user.is_authenticated %}
+                <p class="cart-message"> You must log in to checkout: </p>
+                <p> <a href="/login/?next=/cart/" class="btn btn-primary" type="button">Login</a> or <a href="/register/">register</a> </p>
+                {% elif not user.profile.get_cards %}
+                <p class="cart-message"> Add credit card to continue:</p>
+                <p><button class="add-card btn btn-primary" type="button">Add card</button></p>
+                {% else %}
+                <form action="/cart/checkout/" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn-checkout btn-large btn btn-primary"> Confirm Purchase </button>
+                    <select id="card-select" name="card_id">
+                        {% with cards=user.profile.get_cards %}
+                            {% for card in cards %}
+                                <option value="{{card.id}}" {% if card.id == user.profile.prefered_card %}selected="selected"{% endif %}>{{card.card_type}} - {{card.last4}}</option>
+                            {% endfor %}
+                        {% endwith %}
+                    </select> 
+                    <p><a class="add-card" type="button">Add another card</a></p>
+                </form>
+                {% endif %} -->
+
+                
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
+
+{% block c_includes %}
+    {% include "partial/add-card.html" %}    
+{% endblock %}

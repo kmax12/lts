@@ -10,39 +10,77 @@ from django.views.decorators.csrf import csrf_exempt
 from django.db.models import F
 import json
 
-@login_required
+# @login_required
 def checkout(request):
-    return redirect("cart.views.view_cart")
-
-
-@login_required
-def confirm_checkout(request):
     cart = Cart(request)
     total = cart.total()
-    card_id = request.POST.get("card_id", None)
-    success = False
+    # card_id = request.POST.get("card_id", None)
+    # success = False
 
-    if (request.user and card_id and total > 0):
-        if not Card.objects.filter(owner=request.user, id=card_id).exists():
-            return redirect("cart.views.view_cart") # person doesn't own card they checked out with
+    # if (request.user and card_id and total > 0):
+    #     if not Card.objects.filter(owner=request.user, id=card_id).exists():
+    #         return redirect("cart.views.view_cart") # person doesn't own card they checked out with
 
-        sm = SubscriptionManager(request)
-        success = sm.charge(cart.total(), card_id)
-        if success:
-            cart.checkout()
-            for item in cart:
-                    sm.add(item.get_product(), 365, cart.is_gift()) #todo un hardcode sub length
+    #     sm = SubscriptionManager(request)
+    #     success = sm.charge(cart.total(), card_id)
+    #     if success:
+    #         cart.checkout()
+    #         for item in cart:
+    #                 sm.add(item.get_product(), 365, cart.is_gift()) #todo un hardcode sub length
 
+
+    # template_values = {
+    #     "total" : total
+    # }
+    return redirect("cart.views.view_cart")
+
+def confirm_checkout(request):
+    cart = Cart(request)
+    post = request.POST
+    error = ''
+    if post:
+        step = int(post.get("step", "1"))
+
+        if step == 1:
+            name = post.get("name", None)
+            if name:
+                cart.cart.name = name
+            else:
+                error += "<p>No name</p>"
+
+            email = post.get("email", None)
+            if email:
+                cart.cart.email = email
+            else:
+                error += "<p>No email</p>"
+
+            token = post.get("token", None)
+            if token:
+                cart.cart.stripe_token = token
+            else:
+                error += "<p>Re-enter credit card</p>"
+
+            cart.cart.save()
+
+            if not error:
+                step += 1
+    else:
+        step = 1
+
+    
+
+    total_steps = 3
 
     template_values = {
-        "total" : total
+        "step" : step,
+        "progress" : int(100/total_steps*step),
+        'form_name' : name,
+        'form_email' : email,
+        'form_token' : token,
     }
-
-
-    if success:
-        return direct_to_template(request, 'checkout-success.html', template_values)
-    else:
-        return redirect("cart.views.view_cart")
+    if error:
+        template_values['error'] = error
+    return direct_to_template(request, 'confirm-checkout.html', template_values)
 
 def add_to_cart(request):
     quantity = 1

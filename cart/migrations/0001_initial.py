@@ -15,6 +15,9 @@ class Migration(SchemaMigration):
             ('gift', self.gf('django.db.models.fields.BooleanField')(default=False)),
             ('creation_date', self.gf('django.db.models.fields.DateTimeField')()),
             ('checked_out', self.gf('django.db.models.fields.BooleanField')(default=False)),
+            ('name', self.gf('django.db.models.fields.CharField')(max_length=100)),
+            ('email', self.gf('django.db.models.fields.EmailField')(max_length=75, null=True)),
+            ('stripe_token', self.gf('django.db.models.fields.CharField')(max_length=100)),
         ))
         db.send_create_signal('cart', ['Cart'])
 
@@ -72,9 +75,12 @@ class Migration(SchemaMigration):
             'Meta': {'ordering': "('-creation_date',)", 'object_name': 'Cart'},
             'checked_out': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
             'creation_date': ('django.db.models.fields.DateTimeField', [], {}),
+            'email': ('django.db.models.fields.EmailField', [], {'max_length': '75', 'null': 'True'}),
             'gift': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'owner': ('django.db.models.fields.related.ForeignKey', [], {'blank': 'True', 'related_name': "'cart'", 'null': 'True', 'to': "orm['auth.User']"})
+            'name': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
+            'owner': ('django.db.models.fields.related.ForeignKey', [], {'blank': 'True', 'related_name': "'cart'", 'null': 'True', 'to': "orm['auth.User']"}),
+            'stripe_token': ('django.db.models.fields.CharField', [], {'max_length': '100'})
         },
         'cart.item': {
             'Meta': {'ordering': "('cart',)", 'object_name': 'Item'},
