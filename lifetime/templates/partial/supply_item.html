@@ -1,7 +1,7 @@
 <div class="supply lightbg">
 
   <a href="/supply/{{s.url_slug}}">
-    <img class="feature" style="height:195px; width:170px;" src="{{s.categories.all.0.product_set.all.0.productimage_set.all.0}}" />
+    <img class="feature" style="height:195px; width:170px;" src="{{STATIC_URL}}{{s.photo}}" />
     <h3 class="title">{{s.name}}</h3>
   </a>
   <h3 class="price">${{s.price|floatformat:"0"}}<span>/semester</span></h3>
