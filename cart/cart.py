@@ -47,12 +47,9 @@ class Cart:
 
     def remove(self, item):
         try:
-            print models.Item.objects.get(cart=self.cart, object_id=item.id)
-            item = models.Item.objects.get(cart=self.cart, object_id=item.id)
+            item = models.Item.objects.filter(cart=self.cart, object_id=item.id).delete()
         except models.Item.DoesNotExist:
             raise ItemDoesNotExist
-        else:
-            item.delete()
 
     def update(self, supply, quantity, unit_price=None):
         try:

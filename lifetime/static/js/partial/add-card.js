@@ -4,7 +4,7 @@ $(function(){
 
 function handleAddCard(e){
 	StripeCheckout.open({
-		key:         'pk_test_czwzkTp2tactuLOEOqbMTRzG',
+		key:         'pk_test_K9TEaiWEhLWxOhkmsRC1WgCD',
 		name:        'Lifetime Supply',
 		panelLabel:  'Add card',
 		token:       stripeResponseHandler

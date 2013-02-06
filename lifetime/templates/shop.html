@@ -24,7 +24,7 @@ $(".product .btn").click(function(e){
         {% load qstring %}
         {% with url=request.GET.urlencode %}
           
-          <h6>Supply's</h6>
+          <h6>Supplies</h6>
           <ul>
           {% if request_supply %}
               <li>{{request_supply.name}}</li>

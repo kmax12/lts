@@ -1,9 +1,10 @@
 from django.views.generic.simple import direct_to_template
 from cart import Cart
-from utils.SubscriptionManager import SubscriptionManager
+from utils.SubscriptionManager import SubscriptionManager, make_stripe_customer, get_stripe_customer
 from lifetime.models import *
 from account.models import *
 from django.http import HttpResponse
+from django.contrib.auth.models import User
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt 
@@ -39,45 +40,61 @@ def confirm_checkout(request):
     post = request.POST
     error = ''
     if post:
-        step = int(post.get("step", "1"))
+        student = post.get("student", '')
 
-        if step == 1:
-            name = post.get("name", None)
-            if name:
-                cart.cart.name = name
+        name = post.get("name", '')
+        if not name: error += "<p>No name</p>"
+
+        email = post.get("lts-email", '')
+        if not email: error += "<p>No email</p>"
+
+        student_email = post.get("student_email", '')
+        if not student_email and student: error += "<p>No student email</p>"
+
+        password = post.get("password", '')
+        if not password and not student: error += "<p>No password</p>"
+
+        token = post.get("token", '')
+        if token:
+            customer = make_stripe_customer(token, email)
+        if not token:
+            customer_id = post.get("customer_id", None)
+            customer = None
+            if customer_id:
+                customer = get_stripe_customer(customer_id)
             else:
-                error += "<p>No name</p>"
+                error += "<p>Enter credit card</p>"
+        
+        tos = post.get("tos", None)
+        if tos != None : tos = True
+        if not tos : error += "<p>Accept Terms of Use</p>"
 
-            email = post.get("email", None)
-            if email:
-                cart.cart.email = email
-            else:
-                error += "<p>No email</p>"
+        # if not error:
+        #     User.
 
-            token = post.get("token", None)
-            if token:
-                cart.cart.stripe_token = token
-            else:
-                error += "<p>Re-enter credit card</p>"
-
-            cart.cart.save()
-
-            if not error:
-                step += 1
     else:
-        step = 1
-
+        student = request.GET.get("student", '')
+        name = ""
+        email = ""
+        student_email = ""
+        password = ""
+        token = ""
+        tos = False
+        customer = None
     
 
-    total_steps = 3
 
     template_values = {
-        "step" : step,
-        "progress" : int(100/total_steps*step),
-        'form_name' : name,
-        'form_email' : email,
-        'form_token' : token,
+        "student": student,
+        "name" : name,
+        "email" : email, 
+        "student_email" : student_email,
+        "password" : password,
+        "token" : token,
+        "tos" : tos,
+        "customer" : customer
     }
+
     if error:
         template_values['error'] = error
     return direct_to_template(request, 'confirm-checkout.html', template_values)

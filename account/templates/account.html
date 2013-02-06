@@ -44,7 +44,7 @@
           {% if o.obj.product.active and o.can_order %}
           {% include "partial/shipit_button.html" with p=o.obj.product type="tile" %}
           {% elif o.obj.product.active %}
-          Supply expired. <a href="/?src=click">Shop Supply's</a>
+          Supply expired. <a href="/buy-supply/">Shop Supplies</a>
           {% else %}
           {{o.s}}No longer available. <a href="{{o.shop_url}}">Shop Similar</a>
           {% endif %}

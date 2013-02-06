@@ -1,10 +1,25 @@
 from account.models import *
 from lifetime.models import *
-from lts.settings import STRIPE_SECRET
+from lts.settings import STRIPE_SECRET, STRIPE_KEY
 import stripe
 
 stripe.api_key = STRIPE_SECRET
 
+def make_stripe_customer(token, email):
+    customer =  stripe.Customer.create(
+        card = token,
+        description = email
+    )
+
+    return customer
+
+def get_stripe_customer(customer_id):
+    customer =  stripe.Customer.retrieve(
+        customer_id
+    )
+
+    return customer
+    
 class SubscriptionManager:
     def __init__(self, request):
         self.user = request.user
@@ -31,16 +46,14 @@ class SubscriptionManager:
 
     def add_card(self, token):
         #todo : store last for and exp dates!
-        customer = stripe.Customer.create(
-            card=token,
-            description= self.user.email
-        )
+        customer = make_stripe_customer(token, self.user.email)
         print customer
         card = Card(owner=self.user, token=token, last4=customer["active_card"]["last4"], card_type=customer["active_card"]["type"], stripe_id=customer["id"])
         card.save()
 
 
         return True
+
 
     def charge(self, total, card_id):
         card = Card.objects.filter(owner=self.user, id=card_id) #must filter by user to ensure user own card

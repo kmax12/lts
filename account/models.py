@@ -55,7 +55,7 @@ User.products = property(lambda u: Product.objects.filter(subscription__owner=u)
 User.address = property(lambda u: Address.objects.get_or_create(owner=u)[0])
 
 class Card(models.Model):
-    owner = models.ForeignKey(User)
+    owner = models.ForeignKey(User, blank=True, null=True)
     token = models.TextField(max_length=50, default='')
     stripe_id = models.TextField(max_length=50, default='')
     card_type = models.TextField(max_length=50, default='')

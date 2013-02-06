@@ -27,11 +27,6 @@
         </div>
         <div class="span8">
             <div class="lightbg">
-                <h4> Step {{step}} of 3 </h4>
-                <div class="progress  progress-striped">
-                  <div class="bar" style="width: {{progress}}%;"></div>
-                </div>
-
                 {% if error %}
                     <div class="alert alert-error">
                       {{error|safe}}
@@ -40,30 +35,60 @@
 
                 <form action="/cart/confirm-checkout/" method="post" class="clearfix">
                     {% csrf_token %}
-                    <input type="hidden" name="step" value="{{step}}"/>
-                    {% if step == 1 %}
+                    <input type="hidden" name="student" value="{{student}}"/>
+                    <div style="margin-bottom:10px;">
+                        {% if student %}
+                            <h4 style="margin:0px">You are buy this for a student</h4>
+                            <a href="/cart/confirm-checkout?">Change to buying this for yourself</a>
+                        {%  else %}
+                            <h4 style="margin:0px">You are buy this for yourself</h4>
+                            <a href="/cart/confirm-checkout?student=1">Change to buying this for a student</a>
+                        {% endif %}
+                    </div>
+                    <div>
+                        <label for="name">Your Name</label>
+                        <input type="text" name="name" placeholder="Name" value="{{name}}" />
+                    </div>
+                    <div>
+                        <label for="email">Your email</label>
+                        <input type="text" name="lts-email" placeholder="Email" value="{{email}}"/>
+                    </div>
+                    
+                    {% if student %}
                         <div>
-                            <label for="name">Name</label>
-                            <input type="text" name="name" placeholder="Name" value="{{cart.cart.name}}" />
+                            <label for="email">Student's email address</label>
+                            <input type="text" name="student_email" placeholder="Student's email address" value="{{student_email}}"/>
+                            <span class="muted">We will email the student a link to claim this purchase</span>
                         </div>
+                    {% else %}
                         <div>
-                            <label for="email">Email</label>
-                            <input type="text" name="email" placeholder="Email" value="{{cart.cart.email}}"/>
+                            <label for="password">Create a Password</label>
+                            <input type="password" name="password" value="{{password}}" placeholder="Password" />
                         </div>
-                        <div>
-                            <label for="token">Credit Card</label>
-                            <input id="stripe-token" type="hidden" name="token" value="{{cart.cart.stripe_token}}"/>
-                            <a class="btn btn-primary add-card" type="button">Add card</a>
-                        </div>
-                        
-                        <div>
-                            <input value="Next" class="btn btn-success pull-right" type="submit"/>
-                        </div>
-                    {% elif step == "2" %}
-
-                    {% elif step == "3" %}
-
                     {% endif %}
+
+                    <div style="margin-top:5px;">
+                        {% if customer %}
+                            <input id="customer-id" type="hidden"  name="customer_id" value="{{customer.id}}" />
+                            <div class="alert"
+                                <p>Last 4 Digits: {{customer.active_card.last4}}</p>
+                                <p>Card type: {{customer.active_card.type}}</p>
+                            </div>
+                        {% else %}
+                            <input id="stripe-token" type="hidden"  name="token"/>
+                            <a class="btn btn-primary add-card" type="button">Add Credit Card</a>
+                        {% endif %}
+                    </div>
+                    
+                    <div style="margin-top:15px;">
+                        <label for="tos">I have read and agree to the <a href='/terms/'>Terms of Use</a> <input id="id_tos" type="checkbox" name="tos" {% if tos %}checked {% endif %}/> </label>
+                    </div>
+                    
+                    <div class="pull-right">
+                        <input value="Checkout" class="btn btn-success pull-right" type="submit"/>
+                        <div></div>
+                        <p class="muted pull-right">Note: your credit card will be charged</p>
+                    </div>
                 </form>
             </div>
         </div>
