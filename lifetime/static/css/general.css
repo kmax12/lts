@@ -26,6 +26,18 @@ h3 {
 h6 {
   text-transform: uppercase;
 }
+.guarantee {
+  text-align: center;
+  background-color: #bd362f;
+  font-weight: 100;
+  padding: 10px 0;
+  color: #EEE;
+  box-shadow: 0 0 5px #222;
+  text-shadow: none;
+}
+.guarantee em {
+  font-weight: 400;
+}
 form {
   margin-bottom: 0;
 }
@@ -68,6 +80,9 @@ a:hover {
 .darkbg h6 {
   margin: 2px 0 1px;
 }
+.darkbg h4 {
+  font-weight: 200;
+}
 
 .darkbg a, #footer a {
   color: #6d8da5;
@@ -102,7 +117,7 @@ Supply item styles
 }
 
 .supply .title {
-  font-weight: 200;
+  font-weight: 400;
   padding-top: 3px;
   color: #444;
   text-shadow: none;
