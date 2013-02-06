@@ -36,17 +36,6 @@
 .how-step:nth-child(odd){
 }
 
-.why-buy h4 {
-	margin: 6px 0 4px;
-}
-.why-buy ul li {
-	margin-left: 25px;
-	list-style-type: circle;
-}
-.why-buy ul {
-	margin-bottom:10px;
-}
-
 /*.how-step:nth-child(odd)>img{
 	float:left;
 }
