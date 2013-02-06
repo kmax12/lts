@@ -17,6 +17,7 @@ class Supply(models.Model):
     categories = models.ManyToManyField(Category)
     brands_text = models.CharField(max_length=100)
     photo = models.CharField(max_length=100)
+    description = models.TextField(default="This is a description")
     url_slug = models.CharField(max_length=100, unique=True)
 
     def category_names(self):

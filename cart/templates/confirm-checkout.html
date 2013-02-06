@@ -37,7 +37,7 @@
                     {% csrf_token %}
                     <input type="hidden" name="student" value="{{student}}"/>
                     <div style="margin-bottom:10px;">
-                        {% if student %}
+                        {% if student == "1" %}
                             <h4 style="margin:0px">You are buy this for a student</h4>
                             <a href="/cart/confirm-checkout?">Change to buying this for yourself</a>
                         {%  else %}
@@ -54,7 +54,7 @@
                         <input type="text" name="lts-email" placeholder="Email" value="{{email}}"/>
                     </div>
                     
-                    {% if student %}
+                    {% if student == "1" %}
                         <div>
                             <label for="email">Student's email address</label>
                             <input type="text" name="student_email" placeholder="Student's email address" value="{{student_email}}"/>

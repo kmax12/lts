@@ -11,36 +11,41 @@ from django.views.decorators.csrf import csrf_exempt
 from django.db.models import F
 import json
 
-# @login_required
 def checkout(request):
+    post = request.POST
+
+    if not post:
+        return redirect("cart.views.confirm_checkout")
+
+
     cart = Cart(request)
     total = cart.total()
-    # card_id = request.POST.get("card_id", None)
-    # success = False
+    card_id = request.POST.get("card_id", None)
+    success = False
 
-    # if (request.user and card_id and total > 0):
-    #     if not Card.objects.filter(owner=request.user, id=card_id).exists():
-    #         return redirect("cart.views.view_cart") # person doesn't own card they checked out with
+    if (request.user and card_id and total > 0):
+        if not Card.objects.filter(owner=request.user, id=card_id).exists():
+            return redirect("cart.views.view_cart") # person doesn't own card they checked out with
 
-    #     sm = SubscriptionManager(request)
-    #     success = sm.charge(cart.total(), card_id)
-    #     if success:
-    #         cart.checkout()
-    #         for item in cart:
-    #                 sm.add(item.get_product(), 365, cart.is_gift()) #todo un hardcode sub length
+        sm = SubscriptionManager(request)
+        success = sm.charge(cart.total(), card_id)
+        if success:
+            cart.checkout()
+            for item in cart:
+                    sm.add(item.get_product(), 365, cart.is_gift()) #todo un hardcode sub length
 
 
-    # template_values = {
-    #     "total" : total
-    # }
-    return redirect("cart.views.view_cart")
+    template_values = {
+        "total" : total
+    }
+    
 
 def confirm_checkout(request):
     cart = Cart(request)
     post = request.POST
     error = ''
     if post:
-        student = post.get("student", '')
+        student = post.get("student", "0")
 
         name = post.get("name", '')
         if not name: error += "<p>No name</p>"
@@ -69,11 +74,17 @@ def confirm_checkout(request):
         if tos != None : tos = True
         if not tos : error += "<p>Accept Terms of Use</p>"
 
-        # if not error:
-        #     User.
+        if not error:
+            if student == "1":
+                checkout = checkout(
+                    student = student, 
+                    customer_id = customer_id,
+                    email = email,
+                    student_email = student_email
+                )
 
     else:
-        student = request.GET.get("student", '')
+        student = request.GET.get("student", 0)
         name = ""
         email = ""
         student_email = ""
