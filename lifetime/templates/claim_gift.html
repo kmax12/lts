@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block styles %}
+{% endblock %}
+
+{% block body %}
+<div class="container">
+  
+  <div class="row">
+    <div class="span4">\
+        <h2>Register to claim your Supply!</h2>
+        {% if error %}
+            <div class="alert alert-error">
+              {{error|safe}}
+            </div>
+        {% endif %}
+        <form action="/gift/" method="post" class="lightbg clearfix">
+          {% csrf_token %}
+          <input type="hidden" name="code" value={{gift.code}} />
+          <div>
+            <label for="name">Your Name</label>
+            <input type="text" name="name" placeholder="Name" value={{gift.name}}  />
+          </div>
+
+          <div>
+            <label for="email">Your email</label>
+            <input type="text" name="email" placeholder="Your email" value="{{gift.to_email}}" />
+          </div>
+
+          <div>
+            <label for="password">Password</label>
+            <input type="password" name="password" placeholder="Password" />
+          </div>
+
+          <div>
+              <label for="tos">I have read and agree to the <a href='/terms/'>Terms of Use</a> <input id="id_tos" type="checkbox" name="tos" {% if tos %}checked {% endif %}/> </label>
+          </div>
+
+           <div class="pull-right">
+              <input value="Claim & Register" class="btn btn-success pull-right" type="submit"/>
+          </div>
+
+        </div>
+    
+    </form>
+
+    <div class="span8">
+        {% if gift.message %}
+          <div class="offset2 span4">
+            {{gift.message}}
+          </div>
+        {% endif %}
+        {% for supply in gift.supplies.all %}
+          {% include "partial/supply_item.html" with s=supply %}
+        {% endfor %}
+    </div>
+
+  </div>
+</div>
+{% endblock %}
+
+{%block scripts %}
+{% endblock %}
+
+{% block c_includes %}
+{% endblock %}

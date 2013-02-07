@@ -19,7 +19,7 @@ class Cart:
         for item in self.cart.item_set.all():
             yield item
 
-    def new(self, request):        
+    def new(self, request):      
         cart = models.Cart(creation_date=datetime.datetime.now())
         if isinstance(request.user, User):
             cart.user = request.user
@@ -51,6 +51,11 @@ class Cart:
         except models.Item.DoesNotExist:
             raise ItemDoesNotExist
 
+    def get_supplies(self):
+        supplies = [item.product for item in self.cart.item_set.all()] #problematic if lots of items in cart!!!
+        return supplies
+
+
     def update(self, supply, quantity, unit_price=None):
         try:
             item = models.Item.objects.get(
@@ -67,7 +72,7 @@ class Cart:
                 cart = models.Cart.objects.select_related().get(id=cart_id, checked_out=False)
                 if cart.owner == None and isinstance(request.user, User):
                     cart.owner = request.user
-            except models.Cart.DoesNotExist:
+            except:
                 cart = self.new(request)
         else:
             cart = self.new(request)

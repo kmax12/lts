@@ -4,6 +4,7 @@ from datetime import datetime
 import random, string
 
 
+
 class Category(models.Model):
     name = models.CharField(max_length=100)
     url_slug = models.CharField(max_length=100, unique=True)
@@ -92,14 +93,16 @@ def promotion_code_generate():
             return prom_code
 
 class Gift(models.Model):
-    supply = models.ForeignKey(Supply, blank=True, null=True)
+    supplies = models.ManyToManyField(Supply, blank=True, null=True)
     code = models.CharField(default=promotion_code_generate, unique=True, max_length=8)
-
-    def last_order(self):
-        pass
+    from_name = models.CharField(max_length=100)
+    to_email = models.EmailField()
+    message = models.CharField(blank=True, null=True, max_length=100)
 
     def claim(self, user):
-        s = Supply(user=user, product=self.product)
+        for s in self.supplies:
+            sub = Subscription(owner=user, supply=s)
+            sub.save()
 
 class Order (models.Model):
     user = models.ForeignKey(User)

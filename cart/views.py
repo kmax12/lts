@@ -1,6 +1,6 @@
 from django.views.generic.simple import direct_to_template
 from cart import Cart
-from utils.SubscriptionManager import SubscriptionManager, make_stripe_customer, get_stripe_customer
+from utils.SubscriptionManager import SubscriptionManager, make_stripe_customer, get_stripe_customer, charge_customer
 from lifetime.models import *
 from account.models import *
 from django.http import HttpResponse
@@ -9,35 +9,27 @@ from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt 
 from django.db.models import F
+from utils.registration import email_student_supplies, create_user_with_subscriptions
+from django.contrib.auth import authenticate, login
 import json
 
-def checkout(request):
-    post = request.POST
-
-    if not post:
-        return redirect("cart.views.confirm_checkout")
+def checkout(request, cart, student, name, customer_id, email, student_email=None, password=None):
+    c = charge_customer(cart.total(), customer_id, email)
 
 
-    cart = Cart(request)
-    total = cart.total()
-    card_id = request.POST.get("card_id", None)
-    success = False
 
-    if (request.user and card_id and total > 0):
-        if not Card.objects.filter(owner=request.user, id=card_id).exists():
-            return redirect("cart.views.view_cart") # person doesn't own card they checked out with
+    if student:
+        email_student_supplies(
+            supplies = cart.get_supplies(),
+            from_name = name,
+            to_email = student_email
+        )
+    else:
+        create_user_with_subscriptions(name, email, password, cart.get_supplies())
 
-        sm = SubscriptionManager(request)
-        success = sm.charge(cart.total(), card_id)
-        if success:
-            cart.checkout()
-            for item in cart:
-                    sm.add(item.get_product(), 365, cart.is_gift()) #todo un hardcode sub length
+        user = authenticate(username=email, password=password)
+        login(request, user)
 
-
-    template_values = {
-        "total" : total
-    }
     
 
 def confirm_checkout(request):
@@ -54,7 +46,7 @@ def confirm_checkout(request):
         if not email: error += "<p>No email</p>"
 
         student_email = post.get("student_email", '')
-        if not student_email and student: error += "<p>No student email</p>"
+        if not student_email and student == "1": error += "<p>No student email</p>"
 
         password = post.get("password", '')
         if not password and not student: error += "<p>No password</p>"
@@ -76,12 +68,29 @@ def confirm_checkout(request):
 
         if not error:
             if student == "1":
-                checkout = checkout(
-                    student = student, 
+                c = checkout(
+                    request = request,
+                    cart = cart,
+                    student = True,
+                    name = name, 
                     customer_id = customer_id,
                     email = email,
                     student_email = student_email
                 )
+            else:
+                c = checkout(
+                    request = request,
+                    cart = cart,
+                    student = False, 
+                    name = name,
+                    customer_id = customer_id,
+                    email = email,
+                    password = password
+                )
+
+            if checkout:
+                return direct_to_template(request, 'checkout-success.html')
+
 
     else:
         student = request.GET.get("student", 0)

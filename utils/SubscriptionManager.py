@@ -19,7 +19,16 @@ def get_stripe_customer(customer_id):
     )
 
     return customer
-    
+
+def charge_customer(total, customer_id, email):
+    charge = stripe.Charge.create(
+                amount= int(total*100), # in cents
+                currency= "usd",
+                customer= customer_id,
+                description= email
+            )
+    return charge
+
 class SubscriptionManager:
     def __init__(self, request):
         self.user = request.user

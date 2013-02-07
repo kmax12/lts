@@ -2,6 +2,7 @@ from django.views.generic.simple import direct_to_template
 # from utils import cart
 from cart import Cart
 from utils.SubscriptionManager import SubscriptionManager
+from utils.registration import create_user_with_subscriptions
 from lifetime.models import *
 from account.models import *
 from django.http import HttpResponse
@@ -10,6 +11,8 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt 
 from django.db.models import F
 import json
+from django.contrib.auth import authenticate, login
+
 
 def home(request):
     if request.user.is_authenticated() and request.GET.get("src", None) != "click":
@@ -67,6 +70,60 @@ def view_product(request, slug):
 
     return direct_to_template(request, 'product_page.html',
                              template_values)
+
+def claim_gift(request):
+    post = request.POST
+    error = ""
+    
+    code = request.GET.get("code", None)
+    if post:
+        code = post.get("code", None)
+
+    if not code:
+        return redirect("lifetime.views.buy_supply")
+
+    try:
+        gift = Gift.objects.get(code=code)
+    except:
+        return redirect("lifetime.views.buy_supply")
+
+    if post:
+        name = post.get("name", '')
+        if not name: error += "<p>No name</p>"
+
+        email = post.get("email", '')
+        if not email: error += "<p>No email</p>"
+
+        password = post.get("password", '')
+        if not password: error += "<p>No password</p>"
+
+        tos = post.get("tos", None)
+        if tos != None : tos = True
+        if not tos : error += "<p>Accept Terms of Use</p>"
+
+        if error == "":
+            create_user_with_subscriptions(name, email, password, gift.supplies.all())
+            user = authenticate(username=email, password=password)
+            login(request, user)
+            return redirect('account.views.account')
+
+    else:
+        name = ""
+        email = ""
+
+
+
+
+    template_values = {
+        "gift": gift,
+        "name" : name,
+        "email" : email,
+        "error" : error
+    }
+
+    return direct_to_template(request, 'claim_gift.html',
+                             template_values)
+
 
 def shop(request):
     subscriptions = request.user.profile.get_subscriptions()
