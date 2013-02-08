@@ -16,7 +16,11 @@
     <div class="span12">
       <h1>{{supply.name}} Supply</h1>
       <div class="prod-detail">
-        <img style="width:238px;height:273px;" src="{{STATIC_URL}}{{supply.photo}}" />
+        <img src="{{STATIC_URL}}{{supply.photo}}" />
+
+        {{supply.description|safe|linebreaks}}
+
+        <a href="#" class="btn btn-large btn-warning" style="position:absolute;bottom:15px;right:15px;">Add to Cart</a>
       </div>
     </div>
   </div>

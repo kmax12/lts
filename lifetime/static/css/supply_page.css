@@ -28,7 +28,22 @@
   position: relative;
   box-shadow: 0 0 5px #EEE;
   background-image: url(http://subtlepatterns.com/patterns/fabric_plaid.png);      
+  padding: 15px 15px 15px 250px;
+  position: relative;
+  height: 243px;
 }
+.prod-detail img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 238px;
+  height: 273px;
+}
+.prod-detail p {
+  font-size:17.5px; 
+  font-weight: 400;
+}
+
 
 /* these are dead styles */
 .product-list {
