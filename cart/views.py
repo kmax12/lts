@@ -13,8 +13,8 @@ from utils.registration import email_student_supplies, create_user_with_subscrip
 from django.contrib.auth import authenticate, login
 import json
 
-def checkout(request, cart, student, name, customer_id, email, student_email=None, password=None):
-    c = charge_customer(cart.total(), customer_id, email)
+def checkout(request, cart, student, name, customer, email, student_email=None, password=None):
+    c = charge_customer(cart.total(), customer["id"], email)
 
 
 
@@ -73,7 +73,7 @@ def confirm_checkout(request):
                     cart = cart,
                     student = True,
                     name = name, 
-                    customer_id = customer_id,
+                    customer = customer,
                     email = email,
                     student_email = student_email
                 )
@@ -83,7 +83,7 @@ def confirm_checkout(request):
                     cart = cart,
                     student = False, 
                     name = name,
-                    customer_id = customer_id,
+                    customer = customer,
                     email = email,
                     password = password
                 )

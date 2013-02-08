@@ -70,18 +70,25 @@
                     <div style="margin-top:5px;">
                         {% if customer %}
                             <input id="customer-id" type="hidden"  name="customer_id" value="{{customer.id}}" />
-                            <div class="alert"
+                            <div class="alert">
                                 <p>Last 4 Digits: {{customer.active_card.last4}}</p>
                                 <p>Card type: {{customer.active_card.type}}</p>
+                                <a class="btn btn-primary add-card" type="button">Change Card</a>
                             </div>
                         {% else %}
                             <input id="stripe-token" type="hidden"  name="token"/>
-                            <a class="btn btn-primary add-card" type="button">Add Credit Card</a>
+                            <div id="card-info" class="alert hide">
+                                <p>Last 4 Digits: <span id="card-last4"></span></p>
+                                <p>Card type: <span id="card-type"></span></p>
+                                <a class="btn btn-primary add-card" type="button">Change Card</a>
+                            </div>
+                            <a id="add-card" class="btn btn-primary add-card" type="button">Add Credit Card</a>
                         {% endif %}
                     </div>
                     
                     <div style="margin-top:15px;">
-                        <label for="tos">I have read and agree to the <a href='/terms/'>Terms of Use</a> <input id="id_tos" type="checkbox" name="tos" {% if tos %}checked {% endif %}/> </label>
+                        <label for="tos">I have read and agree to the <a href='/terms/'>Terms of Use</a> and <a href='/privacy/'>Privacy Policy</a> </label>
+                        <input id="id_tos" type="checkbox" name="tos" {% if tos %}checked {% endif %}/>
                     </div>
                     
                     <div class="pull-right">

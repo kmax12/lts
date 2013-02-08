@@ -15,5 +15,12 @@ function handleAddCard(e){
 }
 
 function stripeResponseHandler(token){
+	$('#add-card').addClass('hide');
+
+	$('#card-info').removeClass('hide');
+
+	$('#card-type').text(token.card.type)
+	$('#card-last4').text(token.card.last4);
+
 	$('#stripe-token').val(token.id)
 }
