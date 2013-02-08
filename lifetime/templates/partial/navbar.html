@@ -13,7 +13,7 @@
           {% else %}
           <li class="{{home_active}}"><a href="/">Home</a></li>
           {% endif %}
-          <li class="{{about_active}}"><a href="/about">About</a></li>
+          <li class="{{about_active}}"><a href="/faq">FAQ</a></li>
           <li class="vr"></li>
 
 					{% if user.is_authenticated %}
@@ -46,6 +46,9 @@
           	-->
           </li>
           {% endif %}
+          <li class="contact small">
+            Call Us: (724) 254-7759
+          </li>
 
           <!-- <li class="cart small">
             <a href="/cart">Cart: <span class="badge">{{cart.num_items}}</span></a>
