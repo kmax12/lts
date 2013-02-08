@@ -4,7 +4,7 @@ from utils.email_templates import gift
 
 
 def email_student_supplies(supplies, from_name, to_email):
-    g = Gift()
+    g = Gift(from_name = from_name, to_email = to_email)
     g.save()
     g.supplies.add(*supplies)
     g.save()

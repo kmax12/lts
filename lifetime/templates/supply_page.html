@@ -19,8 +19,7 @@
         <img src="{{STATIC_URL}}{{supply.photo}}" />
 
         {{supply.description|safe|linebreaks}}
-
-        <a href="#" class="btn btn-large btn-warning" style="position:absolute;bottom:15px;right:15px;">Add to Cart</a>
+        <a href="/cart/add?id={{supply.id}}" class="btn btn-large btn-warning" style="position:absolute;bottom:15px;right:15px;">Add to Cart</a>
       </div>
     </div>
   </div>
