@@ -65,6 +65,14 @@
   margin-left: 4px;
 }
 
+.header .nav-pills > li.small.contact {
+  font-size: 14px;
+  line-height: 18px;
+  padding: 3px 6px;
+  margin-top: 5px;
+  margin-left: 0;
+}
+
 .header .nav-pills > .active > a, 
 .header .nav-pills > .active > a:hover {
   color: #fff;
