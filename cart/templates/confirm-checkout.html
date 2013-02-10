@@ -27,15 +27,15 @@
         </div>
         <div class="span8">
             <div class="lightbg">
-                {% if error %}
-                    <div class="alert alert-error">
-                      {{error|safe}}
-                    </div>
+                {% if form.errors %}
+                <div class="alert alert-error">
+                  {{form.errors}}
+                </div>
                 {% endif %}
 
                 <form action="/cart/confirm-checkout/" method="post" class="clearfix">
                     {% csrf_token %}
-                    <input type="hidden" name="student" value="{{student}}"/>
+                    {{form.student}}
                     <div style="margin-bottom:10px;">
                         {% if student == "1" %}
                             <h4 style="margin:0px">You are buy this for a student</h4>
@@ -46,24 +46,24 @@
                         {% endif %}
                     </div>
                     <div>
-                        <label for="name">Your Name</label>
-                        <input type="text" name="name" placeholder="Name" value="{{name}}" />
+                        {{form.name.label_tag}}
+                        {{form.name}}
                     </div>
                     <div>
-                        <label for="email">Your email</label>
-                        <input type="text" name="lts-email" placeholder="Email" value="{{email}}"/>
+                       {{form.email.label_tag}}
+                       {{form.email}}
                     </div>
                     
                     {% if student == "1" %}
                         <div>
-                            <label for="email">Student's email address</label>
-                            <input type="text" name="student_email" placeholder="Student's email address" value="{{student_email}}"/>
+                            {{form.student_email.label_tag}}
+                            {{form.student_email}}
                             <span class="muted">We will email the student a link to claim this purchase</span>
                         </div>
                     {% else %}
                         <div>
-                            <label for="password">Create a Password</label>
-                            <input type="password" name="password" value="{{password}}" placeholder="Password" />
+                            {{form.password.label_tag}}
+                            {{form.password}}
                         </div>
                     {% endif %}
 
@@ -87,8 +87,8 @@
                     </div>
                     
                     <div style="margin-top:15px;">
-                        <label for="tos">I have read and agree to the <a href='/terms/'>Terms of Use</a> and <a href='/privacy/'>Privacy Policy</a> </label>
-                        <input id="id_tos" type="checkbox" name="tos" {% if tos %}checked {% endif %}/>
+                            {{form.tos}}
+                            <label for="id_tos">Signing up signifies that you’ve read and agree to our <a href='/terms/'>Terms of Use</a> and <a href='/privacy/'>Privacy Policy</a>.</label>
                     </div>
                     
                     <div class="pull-right">

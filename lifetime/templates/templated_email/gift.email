@@ -1,0 +1,21 @@
+{% block subject %}{{from_name}} sent you a Supply!{% endblock %}
+{% block plain %}
+Hi, 
+
+redeem it here: mit.lifetimesupply.com/gift?code={{code}}
+
+{% for s in supplies %}
+  	{{s.name}}
+{% endfor %}
+
+{% endblock %}
+
+{% block html %}
+  <p>Hi,</p>
+  <p>{{from_name}} has sent you a supply!</p>
+  {% for s in supplies %}
+  	<p>{{s.name}}</p>
+  {% endfor %}
+  
+  <p>redeem it here: mit.lifetimesupply.com/gift?code={{code}}</p>
+{% endblock %}

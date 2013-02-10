@@ -1,0 +1,19 @@
+{% block subject %}Reciept for purchase from Lifetime Supply{% endblock %}
+{% block plain %}
+Hi {{name}},
+  We have charged your card ${{total}}
+  Your purchase
+  {% for s in supplies %}
+  	{{s.name}} - ${{s.price}}
+  {% endfor %}
+
+{% endblock %}
+
+{% block html %}
+  <p>Hi {{name}},</p>
+  <p>We have charged your card ${{total}}</p>
+  <p>Your purchase</p>
+  {% for s in supplies %}
+  	<p>{{s.name}} - ${{s.price}}</p>
+  {% endfor %}
+{% endblock %}

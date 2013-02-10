@@ -5,3 +5,4 @@ django-registration
 south
 stripe
 requests
+django-templated-email

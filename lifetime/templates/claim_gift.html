@@ -7,14 +7,18 @@
 <div class="container">
   
   <div class="row">
-    <div class="span4">\
-        <h2>Register to claim your Supply!</h2>
+    <div class="span12">
+      <h1 style="text-align:center">Register to claim your Supply!</h1>
+    </div>
+    
+
+    <div class="span4">
+        <form action="/gift/" method="post" class="lightbg clearfix">
         {% if error %}
             <div class="alert alert-error">
               {{error|safe}}
             </div>
         {% endif %}
-        <form action="/gift/" method="post" class="lightbg clearfix">
           {% csrf_token %}
           <input type="hidden" name="code" value={{gift.code}} />
           <div>
@@ -33,28 +37,24 @@
           </div>
 
           <div>
-              <label for="tos">I have read and agree to the <a href='/terms/'>Terms of Use</a> <input id="id_tos" type="checkbox" name="tos" {% if tos %}checked {% endif %}/> </label>
+            <input id="id_tos" type="checkbox" name="tos" {% if tos %}checked {% endif %}/>
+            <label for="id_tos">Signing up signifies that you’ve read and agree to our <a href='/terms/'>Terms of Use</a> and <a href='/privacy/'>Privacy Policy</a>.</label>
           </div>
 
            <div class="pull-right">
               <input value="Claim & Register" class="btn btn-success pull-right" type="submit"/>
-          </div>
-
-        </div>
-    
+          </div>    
     </form>
-
-    <div class="span8">
-        {% if gift.message %}
-          <div class="offset2 span4">
-            {{gift.message}}
-          </div>
-        {% endif %}
-        {% for supply in gift.supplies.all %}
-          {% include "partial/supply_item.html" with s=supply %}
-        {% endfor %}
-    </div>
-
+  </div>
+  <div class="span8">
+      <!-- {% if gift.message %}
+        <div class="offset2 span4">
+          {{gift.message}}
+        </div>
+      {% endif %} -->
+      {% for supply in gift.supplies.all %}
+        {% include "partial/supply_item.html" with s=supply %}
+      {% endfor %}
   </div>
 </div>
 {% endblock %}

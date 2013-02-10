@@ -1,9 +1,34 @@
 from account.models import *
 from lifetime.models import *
 from lts.settings import STRIPE_SECRET, STRIPE_KEY
+from utils.registration import email_student_supplies, create_user_with_subscriptions, send_reciept
 import stripe
 
 stripe.api_key = STRIPE_SECRET
+
+def checkout(request, cart, student, name, customer, email, student_email=None, password=None):
+    print cart
+    c = charge_customer(cart.total(), customer["id"], email)
+
+    send_reciept(
+        total = cart.total(),
+        supplies = cart.get_supplies(),
+        to_email = email,
+        name = name,
+    )
+
+
+    if student:
+        email_student_supplies(
+            supplies = cart.get_supplies(),
+            from_name = name,
+            to_email = student_email
+        )
+    else:
+        create_user_with_subscriptions(name, email, password, cart.get_supplies())
+
+        user = authenticate(username=email, password=password)
+        login(request, user)
 
 def make_stripe_customer(token, email):
     customer =  stripe.Customer.create(

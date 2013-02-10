@@ -6,7 +6,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes import generic
 from django.contrib.auth.models import User
-
+from django import forms
 
 class Cart(models.Model):
     owner = models.ForeignKey(User, related_name='cart', blank=True, null=True)
@@ -74,3 +74,26 @@ class Item(models.Model):
         self.object_id = product.pk
 
     product = property(get_product, set_product)
+
+class CheckoutForm(forms.Form):
+    name = forms.CharField(label='Your Name', max_length=100)
+    email = forms.EmailField(label='Your Email')
+    tos = forms.BooleanField(label="<label for='id_tos'>Signing up signifies that you’ve read and agree to our <a href='/terms/'>Terms of Use</a> and <a href='/privacy/'>Privacy Policy</a>.</label>")
+
+    def __init__(self, *args, **kwargs):
+        super(CheckoutForm, self).__init__(*args, **kwargs)
+        for field_name in self.fields:
+                field = self.fields.get(field_name)  
+                if field:
+                    if type(field.widget) in (forms.TextInput, forms.DateInput):
+                        field.widget = forms.TextInput(attrs={'placeholder': field.label})    
+
+class CheckoutStudent(CheckoutForm):
+    student = forms.CharField(widget=forms.HiddenInput(), initial="1")
+    student_email = forms.EmailField(label='Student\'s Email')
+
+class CheckoutSelf(CheckoutForm):
+    student = forms.CharField(widget=forms.HiddenInput(), initial="0")
+    password = forms.CharField(label='Password', widget=forms.PasswordInput(attrs={'placeholder': 'Password'}))
+        
+    
