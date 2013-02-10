@@ -1,6 +1,6 @@
 from django.views.generic.simple import direct_to_template
 # from utils import cart
-from cart import Cart
+from cart.models import *
 from utils.SubscriptionManager import SubscriptionManager
 from utils.registration import create_user_with_subscriptions
 from lifetime.models import *
@@ -88,37 +88,19 @@ def claim_gift(request):
         return redirect("lifetime.views.buy_supply")
 
     if post:
-        name = post.get("name", '')
-        if not name: error += "<p>No name</p>"
-
-        email = post.get("email", '')
-        if not email: error += "<p>No email</p>"
-
-        password = post.get("password", '')
-        if not password: error += "<p>No password</p>"
-
-        tos = post.get("tos", None)
-        if tos != None : tos = True
-        if not tos : error += "<p>Accept Terms of Use</p>"
-
-        if error == "":
-            create_user_with_subscriptions(name, email, password, gift.supplies.all())
-            user = authenticate(username=email, password=password)
+        form = ClaimGift(post)
+        if form.is_valid():
+            form_data = form.cleaned_data
+            create_user_with_subscriptions(form_data["name"], form_data["email"], form_data["password"], gift.supplies.all())
+            user = authenticate(username=form_data["email"], password=form_data["password"])
             login(request, user)
             return redirect('account.views.account')
-
     else:
-        name = ""
-        email = ""
-
-
-
+        form = ClaimGift()
 
     template_values = {
         "gift": gift,
-        "name" : name,
-        "email" : email,
-        "error" : error
+        "form": form,
     }
 
     return direct_to_template(request, 'claim_gift.html',

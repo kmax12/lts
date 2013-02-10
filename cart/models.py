@@ -95,5 +95,8 @@ class CheckoutStudent(CheckoutForm):
 class CheckoutSelf(CheckoutForm):
     student = forms.CharField(widget=forms.HiddenInput(), initial="0")
     password = forms.CharField(label='Password', widget=forms.PasswordInput(attrs={'placeholder': 'Password'}))
+
+class ClaimGift(CheckoutForm):
+    password = forms.CharField(label='Password', widget=forms.PasswordInput(attrs={'placeholder': 'Password'}))
         
     

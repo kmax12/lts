@@ -14,30 +14,30 @@
 
     <div class="span4">
         <form action="/gift/" method="post" class="lightbg clearfix">
-        {% if error %}
+        {% if form.errors %}
             <div class="alert alert-error">
-              {{error|safe}}
+              {{form.errors}}
             </div>
         {% endif %}
           {% csrf_token %}
           <input type="hidden" name="code" value={{gift.code}} />
           <div>
-            <label for="name">Your Name</label>
-            <input type="text" name="name" placeholder="Name" />
+            {{form.name.label_tag}}
+            {{form.name}}
           </div>
 
           <div>
-            <label for="email">Your email</label>
-            <input type="text" name="email" placeholder="Your email" value="{{gift.to_email}}" />
+            {{form.email.label_tag}}
+            <input id="id_email" type="text" name="email" placeholder="Your email" value="{{gift.to_email}}" />
           </div>
 
           <div>
-            <label for="password">Password</label>
-            <input type="password" name="password" placeholder="Password" />
+            {{form.password.label_tag}}
+            {{form.password}}
           </div>
 
           <div>
-            <input id="id_tos" type="checkbox" name="tos" {% if tos %}checked {% endif %}/>
+            {{form.tos}}
             <label for="id_tos">Signing up signifies that you’ve read and agree to our <a href='/terms/'>Terms of Use</a> and <a href='/privacy/'>Privacy Policy</a>.</label>
           </div>
 
