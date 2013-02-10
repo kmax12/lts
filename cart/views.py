@@ -62,7 +62,7 @@ def confirm_checkout(request):
                 )
 
 
-            return direct_to_template(request, 'checkout-success.html')
+            return direct_to_template(request, 'checkout-success.html', {"student": student, "total": cart.total()})
 
     else:
         student = request.GET.get("student", 0)

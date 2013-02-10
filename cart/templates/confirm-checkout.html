@@ -38,10 +38,10 @@
                     {{form.student}}
                     <div style="margin-bottom:10px;">
                         {% if student == "1" %}
-                            <h4 style="margin:0px">You are buy this for a student</h4>
+                            <h4 style="margin:0px">You are buying this for a student</h4>
                             <a href="/cart/confirm-checkout?">Change to buying this for yourself</a>
                         {%  else %}
-                            <h4 style="margin:0px">You are buy this for yourself</h4>
+                            <h4 style="margin:0px">You are buying this for yourself</h4>
                             <a href="/cart/confirm-checkout?student=1">Change to buying this for a student</a>
                         {% endif %}
                     </div>

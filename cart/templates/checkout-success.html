@@ -1,20 +1,31 @@
-{% extends 'content-page.html' %}
+{% extends 'base.html' %}
 
 {% block content_styles %}
 <link href="{{ STATIC_URL}}css/checkout-success.css" rel="stylesheet">
 {% endblock %}
 
 {% block page-header %} 
-Checkout successful
 {% endblock %}
 
-{% block content %}
-<h2> Your lifetime supply is active! </h2>
-<h4> Your credit card was charged ${{total}}</h4>
-<p>
-	Go to your <a href="/account/"> account </a> to place an order
-</p>
+{% block body %}
+<div class="container">
+	<div class="row">
+		<div class="span12">
+			<h1>Checkout successful</h1>
+		</div>
 
+		<div class="span12">
+			<div class="lightbg">
+				<h4> Your credit card was charged ${{total}}</h4>
+				{% if student == "0" %}
+					<div>
+						Go to your <a href="/account/"> account </a> to place your first order.
+					</div>
+				{% endif %}
+			</div>
+		</div>
 
+	</div>
+</div>
 
 {% endblock %}
