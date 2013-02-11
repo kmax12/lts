@@ -62,7 +62,7 @@ def confirm_checkout(request):
                 )
 
 
-            return direct_to_template(request, 'checkout-success.html', {"student": student, "total": cart.total()})
+            return direct_to_template(request, 'checkout-success.html', {"student": student, "total": cart.total(), "email" : form.cleaned_data["email"], "student_email" : form.cleaned_data["student_email"] })
 
     else:
         student = request.GET.get("student", 0)

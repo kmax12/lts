@@ -16,12 +16,21 @@
 
 		<div class="span12">
 			<div class="lightbg">
-				<h4> Your credit card was charged ${{total}}</h4>
+				<h4> Your credit card was charged ${{total}}. We emailed {{email}} a reciept.</h4>
+
 				{% if student == "0" %}
 					<div>
 						Go to your <a href="/account/"> account </a> to place your first order.
 					</div>
+				{% elif student == "1" %}
+					<p>
+						We emailed {{student_email}} a link to sign up. 
+					</p>
 				{% endif %}
+
+				<p>
+					Please <a href="/contact/">contact us</a> with any questions.
+				</p> 
 			</div>
 		</div>
 
