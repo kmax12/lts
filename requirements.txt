@@ -6,3 +6,4 @@ south
 stripe
 requests
 django-templated-email
+analytics-python

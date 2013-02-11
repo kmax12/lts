@@ -62,19 +62,18 @@
 
   	<div id="ajax-modal" class="modal hide fade" tabindex="-1"></div>
 	{% include "partial/ship-it-modal.html" %}
-
 	<script type="text/javascript">
+	  var analytics=analytics||[];analytics.load=function(e){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"===document.location.protocol?"https://":"http://")+"d2dq2ahtl5zl1z.cloudfront.net/analytics.js/v1/"+e+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t,n);var r=function(e){return function(){analytics.push([e].concat(Array.prototype.slice.call(arguments,0)))}},i=["identify","track","trackLink","trackForm","trackClick","trackSubmit","pageview","ab","alias","ready"];for(var s=0;s<i.length;s++)analytics[i[s]]=r(i[s])};
+	  analytics.load("rtdx8zpbbf");
 
-	  var _gaq = _gaq || [];
-	  _gaq.push(['_setAccount', 'UA-37042669-1']);
-	  _gaq.push(['_trackPageview']);
-
-	  (function() {
-	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-	  })();
-
+	  {% if request.user.is_authenticated %}
+		analytics.identify('user.id', {
+		    name             : "{{user.first_name}}",
+		    email            : "{{user.email}}"
+		});
+	{% else %}
+		analytics.identify('anon');
+	{% endif %}
 	</script>
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>

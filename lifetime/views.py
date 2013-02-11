@@ -154,7 +154,7 @@ def shop(request):
     }  
 
     return direct_to_template(request, 'shop.html',
-                             template_values)	
+                             template_values)   
 
 
 

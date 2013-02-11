@@ -7,6 +7,7 @@ from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt 
 import json
+import analytics
 
 @login_required    
 def account(request):
@@ -108,6 +109,15 @@ def place_order(request):
         #         categories__in = product.categories.all()
         #     )
         # )
+        analytics.identify(request.user.id, {
+               'email': request.user.email,
+               'name': request.user.first_name,
+        })
+
+        analytics.track(request.user.id, 'Placed an order', {
+          'product_id' : product.id,
+          'product_name' : product.name,
+        })
 
         order = Order(user=request.user, product=product)
         order.save()
