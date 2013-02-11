@@ -109,15 +109,15 @@ def place_order(request):
         #         categories__in = product.categories.all()
         #     )
         # )
-        analytics.identify(request.user.id, {
-               'email': request.user.email,
-               'name': request.user.first_name,
-        })
+        # analytics.identify(request.user.id, {
+        #        'email': request.user.email,
+        #        'name': request.user.first_name,
+        # })
 
-        analytics.track(request.user.id, 'Placed an order', {
-          'product_id' : product.id,
-          'product_name' : product.name,
-        })
+        # analytics.track(request.user.id, 'Placed an order', {
+        #   'product_id' : product.id,
+        #   'product_name' : product.name,
+        # })
 
         order = Order(user=request.user, product=product)
         order.save()

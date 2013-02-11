@@ -7,6 +7,9 @@ Hi {{name}},
   	{{s.name}} - ${{s.price}}
   {% endfor %}
 
+  Thanks,
+  Lifetime Supply Team
+
 {% endblock %}
 
 {% block html %}
@@ -16,4 +19,7 @@ Hi {{name}},
   {% for s in supplies %}
   	<p>{{s.name}} - ${{s.price}}</p>
   {% endfor %}
+  
+  <p>Thanks,</p>
+  <p>Lifetime Supply Team</p>
 {% endblock %}

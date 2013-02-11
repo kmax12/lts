@@ -8,6 +8,9 @@ redeem it here: mit.lifetimesupply.com/gift?code={{code}}
   	{{s.name}}
 {% endfor %}
 
+Thanks,
+Lifetime Supply Team
+
 {% endblock %}
 
 {% block html %}
@@ -18,4 +21,7 @@ redeem it here: mit.lifetimesupply.com/gift?code={{code}}
   {% endfor %}
   
   <p>redeem it here: mit.lifetimesupply.com/gift?code={{code}}</p>
+
+  <p>Thanks,</p>
+  <p>Lifetime Supply Team</p>
 {% endblock %}
