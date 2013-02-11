@@ -143,6 +143,7 @@ INSTALLED_APPS = (
 
 TEMPLATE_CONTEXT_PROCESSORS = {
     'django.contrib.messages.context_processors.messages',
+    'django.core.context_processors.debug',
     'django.contrib.auth.context_processors.auth',
     'django.core.context_processors.static',
     'utils.context_processors.cart',
@@ -162,10 +163,12 @@ REGISTRATION_OPEN=True
 
 ORDER_TEXT = "Ship it!"
 
-# STRIPE_KEY = "pk_live_mnjoApYz5X91FsZcdyBzjSiw"
-# STRIPE_SECRET = "sk_live_kqMFbpyk6UhnaMaxOhher2RX"
-STRIPE_KEY = "pk_test_K9TEaiWEhLWxOhkmsRC1WgCD"
-STRIPE_SECRET = "sk_test_zRgqAeLfEjLZbD7gnkMIZ3iB"
+STRIPE_KEY = "pk_live_mnjoApYz5X91FsZcdyBzjSiw"
+STRIPE_SECRET = "sk_live_kqMFbpyk6UhnaMaxOhher2RX"
+
+if DEBUG :
+    STRIPE_KEY = "pk_test_K9TEaiWEhLWxOhkmsRC1WgCD"
+    STRIPE_SECRET = "sk_test_zRgqAeLfEjLZbD7gnkMIZ3iB"
 
 EMAIL_HOST = 'smtp.sendgrid.net'
 EMAIL_HOST_USER = 'lifetime'
