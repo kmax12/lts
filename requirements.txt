@@ -6,5 +6,5 @@ south
 stripe
 requests
 django-templated-email
+python-dateutil==2.1
 analytics-python==0.3.4
-dateutil
