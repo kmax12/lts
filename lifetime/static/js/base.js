@@ -7,6 +7,7 @@
 */
 
 $(function(){
+	$('.has-tip').tooltip()
 	$('.btn-ship-it').click(handleOrder);
 });
 

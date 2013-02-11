@@ -19,15 +19,17 @@
                 {% endif %}
             </div> -->
         </div>
+        <div>
+            <a href="/buy-supply/" class="btn btn-buy">Continue shopping</a>
+        </div>  
     </div>
     <div class="span4">
         <div class="lightbg">
-            <div id="cart-total-container">
-                <p>Total</p>
-                <p>$<span id="total">{{cart.total}}</span>/year</p>
-            </div>
-            <a href="/cart/confirm-checkout" class="btn-checkout btn-large btn btn-primary"> Buy for myself</a>
-            <a href="/cart/confirm-checkout?student=1" class="btn-checkout btn-large btn btn-success"> Buy for a student</a>
+            {% include 'partial/cart-total.html' %}
+        </div>
+        <div class="lightbg">
+            <a id="for-student" href="/cart/confirm-checkout?student=1" class="btn-checkout btn-large btn btn-success has-tip" data-toggle="tooltip" data-placement="right" title="Use this is buying for someone else"> Buy for a student</a>
+            <a href="/cart/confirm-checkout" class="btn-checkout btn-large btn btn-primary has-tip" data-toggle="tooltip" data-placement="right" title="Use this to buy for yourself"> Buy for myself</a>
             <p class="muted">Note: you will be not be charged, yet</p>
             <!-- {% if not user.is_authenticated %}
             <p class="cart-message"> You must log in to checkout: </p>

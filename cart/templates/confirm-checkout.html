@@ -101,10 +101,7 @@
         </div>
         <div class="span4">
             <div class="lightbg">
-                <div id="cart-total-container">
-                    <p>Total</p>
-                    <p>$<span id="total">{{cart.total}}</span></p>
-                </div>
+                {% include 'partial/cart-total.html' %}
                 
                 <!-- {% if not user.is_authenticated %}
                 <p class="cart-message"> You must log in to checkout: </p>
