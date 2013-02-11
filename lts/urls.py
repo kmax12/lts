@@ -10,8 +10,8 @@ from django.contrib import admin
 admin.autodiscover()
 
 #analytics.js
-import analytics
-analytics.init('8q7671bxndzv1yk81jbn')
+# import analytics
+# analytics.init('8q7671bxndzv1yk81jbn')
 
 
 urlpatterns = patterns('',

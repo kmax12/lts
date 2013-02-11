@@ -67,7 +67,7 @@
 	  analytics.load("rtdx8zpbbf");
 
 	  {% if request.user.is_authenticated %}
-		analytics.identify('user.id', {
+		analytics.identify('{{user.id}}', {
 		    name             : "{{user.first_name}}",
 		    email            : "{{user.email}}"
 		});
