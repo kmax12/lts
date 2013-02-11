@@ -143,10 +143,10 @@ INSTALLED_APPS = (
 
 TEMPLATE_CONTEXT_PROCESSORS = {
     'django.contrib.messages.context_processors.messages',
-    'django.core.context_processors.debug',
     'django.contrib.auth.context_processors.auth',
     'django.core.context_processors.static',
     'utils.context_processors.cart',
+    'utils.context_processors.debug',
     'django.core.context_processors.request',
 }
 
