@@ -1,16 +1,25 @@
 {% extends "content-page.html" %}
-{% block page-header %} 
-How it works
-{% endblock %}
+
 {% block content %}
-	<h3 class="">
-		<p>Never worry about running out of the things you use every day.</p>
-	</h3>
+	<h1>How it works</h1>
+	<div class="span4">
+		<div class="darkbg">
+          {% include 'partial/how_it_works.html' %}
+        </div>
+	</div>
 
-	{% include "partial/how_it_works.html" %}
+	<div class="span7">
+		<div class="lightbg">
+			<h4 class="">
+				<p>Never worry about running out of the things you use every day.</p>
+			</h4>
+			<h4 class="unbold">
+				<p>We currently only offer a focused selection of products, but we plan to expand this shortly. Let us know what you want to see <a href="/contact/">here</a>!</p> 
+			</h4>
+		</div>
+	</div>
 
-	<h3 class="unbold">
-		<p>We currently only offer a focused selection of products, but we plan to expand this shortly. Let us know what you want to see <a href="/contact/">here</a>!</p> 
-	</h3>
+
+	
 
 {% endblock %}
