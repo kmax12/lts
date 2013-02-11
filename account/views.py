@@ -70,10 +70,15 @@ def address(request):
 
         a.save()
 
-        print a.edited
+        name = request.POST.get('name', '')
+        if name != request.user.first_name:
+            request.user.first_name = name
+            request.user.save()
+
         
     template_values = {
         'form': AddressForm(instance=request.user.address),
+        'name' : request.user.first_name,
         'address_active': "active",
         'saved': saved
     }

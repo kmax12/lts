@@ -9,6 +9,9 @@
         </div>
     {% endif %}
     <form action="/account/address/" method="post">
+        <div>
+            <label for="id_name">Full Name</label>
+            <input id="id_name" type="text" placeholder="Full Name" name="name" value="{{name}}"/> 
         {{form}}
         <div>
         <button type="submit" class="btn btn-buy">Save</button>
