@@ -16,16 +16,17 @@
           
           {{ form }}
 
+
           <label class="checkbox">
               <input type="checkbox" value="remember-me"> Remember me
           </label>
 
+          
           <p><input type="submit" class="btn-login btn" value="{% trans 'Log in' %}" /></p>
           <input type="hidden" name="next" value="{{ next }}" />
-          <p>
-            {% trans "Not a member" %}? <a href="{% url registration_register %}">{% trans "Register" %}</a><br />
-            {% trans "Forgot password" %}? <a href="{% url auth_password_reset %}">{% trans "Reset it" %}</a>
-          </p>
+          <div>{% trans "Forgot password" %}? <a href="{% url auth_password_reset %}">{% trans "Reset it" %}</a></div>
+          <!-- {% trans "Not a member" %}? <a href="{% url registration_register %}">{% trans "Register" %}</a><br /> -->
+          <div class="">Make a purchase to register</div>
         </form>
       </div>
 
