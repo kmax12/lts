@@ -3,6 +3,7 @@ from lifetime.models import *
 from lts.settings import STRIPE_SECRET, STRIPE_KEY
 from utils.registration import email_student_supplies, create_user_with_subscriptions, send_reciept
 import stripe
+from django.contrib.auth import authenticate, login
 
 stripe.api_key = STRIPE_SECRET
 
