@@ -94,6 +94,7 @@ def claim_gift(request):
             create_user_with_subscriptions(form_data["name"], form_data["email"], form_data["password"], gift.supplies.all())
             user = authenticate(username=form_data["email"], password=form_data["password"])
             login(request, user)
+            gift.delete()
             return redirect('account.views.account')
     else:
         form = ClaimGift()
