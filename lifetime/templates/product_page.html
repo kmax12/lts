@@ -2,12 +2,7 @@
 
 {% block styles %}
   <link type="text/css" href="{{STATIC_URL}}css/pikachoose/base.css" rel="stylesheet" />
-{% endblock %}><a href="http://www.pikachoose.com"><img src="../../1.jpg"/></a><span>This is an example of the basic theme.</span></li>
-          <li><a href="http://www.pikachoose.com"><img src="../../2.jpg"/></a><span>jCarousel is supported and can be integrated with PikaChoose!</span></li>
-          <li><a href="http://www.pikachoose.com"><img src="../../3.jpg"/></a><span>Be sure to check out <a href="http://www.pikachoose.com">PikaChoose.com</a> for updates.</span></li>
-          <li><a href="http://www.pikachoose.com"><img src="../../4.jpg"/></a><span>You can use any type of html you want with PikaChoose</span></li>
-          <li><a href="http://www.pikachoose.com"><img src="../../5.jpg"/></a><span>PikaChoose survives on your donations! Keep the project alive with a donation.</span></li>
-        </ul>
+{% endblock %}>
 
 
 {% block page-header %} 
@@ -28,22 +23,25 @@
     </script>
 {% endblock %}
 
+{% load ship_tags %}
 {% block body %}
 <div class="container">
   <div class="row">
     <div class="span9">
     	<h1>{{product.name}}</h1>
 	    <div class="lightbg">
-      	<div class="prod-detail">
+      	<div class="prod-detail" style="margin-bottom:10px;">
           <ul id="prod-img-slider" class="jcarousel-skin-pika">
             {% for i in product.productimage_set.all %}
               <li><img src="{{i.image}}"/></li>
             {% endfor %}
           </ul>
-      	</div>
-      	<p class="muted" style="margin-top:5px;font-size:17.5px;line-height:44px;">
+      	</div> 
+        {% if request.user|can_ship:product %}
+      	<p class="muted" style="font-size:17.5px;line-height:44px;">
       		$0 &minus; Free Shipping {% include "partial/shipit_button.html" with p=product type="detail" %}
       	</p>
+        {% endif %}
       	{{product.description|linebreaks}}
       </div>
     </div>

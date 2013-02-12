@@ -49,10 +49,11 @@
           <li class="contact small">
             Call Us: (724) 254-7759
           </li>
-
-          <!-- <li class="cart small">
+          {% if cart.num_items != 0 %}
+          <li class="cart small">
             <a href="/cart">Cart: <span class="badge">{{cart.num_items}}</span></a>
-          </li> -->
+          </li>
+          {% endif %}
         </ul>
       </div>
     </div>

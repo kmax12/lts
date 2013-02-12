@@ -19,7 +19,10 @@
         <img src="{{STATIC_URL}}{{supply.photo}}" />
 
         {{supply.description|safe|linebreaks}}
-        <a href="/cart/add?id={{supply.id}}" class="btn btn-large btn-warning" style="position:absolute;bottom:15px;right:15px;">Add to Cart</a>
+        <div class="add">
+          <span>${{supply.price|floatformat:"0"}}<span>/semsester</span></span>
+          <a href="/cart/add?id={{supply.id}}" class="btn btn-large btn-warning" style="">Add to Cart</a>
+        </div>
       </div>
     </div>
   </div>

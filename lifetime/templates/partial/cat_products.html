@@ -7,8 +7,8 @@
         <h5>{{p.name}}</h5>
       </a>
       <div>
-        <div class="muted">$0 &minus; Free Shipping</div>
         {% if shop %}
+        <div class="muted">$0 &minus; Free Shipping</div>
         <div class="buttons">
           {% include "partial/shipit_button.html" with p=p type="tile" %}
         </div>
