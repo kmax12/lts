@@ -78,7 +78,7 @@ class Item(models.Model):
 class CheckoutForm(forms.Form):
     name = forms.CharField(label='Your Name', max_length=100)
     email = forms.EmailField(label='Your Email')
-    tos = forms.BooleanField(label="<label for='id_tos'>Signing up signifies that you’ve read and agree to our <a href='/terms/'>Terms of Use</a> and <a href='/privacy/'>Privacy Policy</a>.</label>")
+    # tos = forms.BooleanField(label="<label for='id_tos'>Signing up signifies that you’ve read and agree to our <a href='/terms/'>Terms of Use</a> and <a href='/privacy/'>Privacy Policy</a>.</label>")
 
     def __init__(self, *args, **kwargs):
         super(CheckoutForm, self).__init__(*args, **kwargs)

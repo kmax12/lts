@@ -56,13 +56,13 @@
                     
                     {% if student == "1" %}
                         <div>
+                            <div style="margin-bottom: 10px; margin-top:10px;" class="alert alert-info">After you checkout, we will email the student to collect their mailing address.  Then they will be ready to request products in their supply as often as they need.</div>
                             <label for="id_student_name">Student's Name</label>
                             <input type="text" placeholder="Student's Name" name="id_student_name" id="id_student_name">
                         </div>
                         <div>
                             {{form.student_email.label_tag}}
                             {{form.student_email}}
-                            <span class="muted">We will email the student a link to claim this purchase</span>
                         </div>
                     {% else %}
                         <div>
@@ -86,13 +86,12 @@
                                 <p>Card type: <span id="card-type"></span></p>
                                 <a class="btn btn-primary add-card" type="button">Change Card</a>
                             </div>
-                            <a id="add-card" class="btn btn-primary add-card" type="button">Add Credit Card</a>
+                            <a id="add-card" class="btn btn-primary add-card" type="button">Enter Credit Card</a>
                         {% endif %}
                     </div>
                     
                     <div style="margin-top:15px;">
-                            {{form.tos}}
-                            <label for="id_tos">Signing up signifies that you’ve read and agree to our <a href='/terms/' target="_blank">Terms of Use</a> and <a href='/privacy/' target="_blank">Privacy Policy</a>.</label>
+                            <label for="id_tos">Checking out signifies that you’ve read and agree to our <a href='/terms/' target="_blank">Terms of Use</a> and <a href='/privacy/' target="_blank">Privacy Policy</a>.</label>
                     </div>
                     
                     <div class="pull-right">
