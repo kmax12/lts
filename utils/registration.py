@@ -7,7 +7,7 @@ def send_reciept(total, supplies, to_email, name):
     send_templated_mail(
             template_name='reciept',
             from_email='Lifetime Supply <friends@lifetimesupply.com>',
-            recipient_list=[to_email],
+            recipient_list=[to_email, "sales@lifetimesupply.com"],
             context={
                 'total' : total,
                 'supplies' : supplies,
