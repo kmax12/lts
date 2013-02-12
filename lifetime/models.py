@@ -53,6 +53,13 @@ class Product(models.Model):
     # units_per_week = models.IntegerField(default=0) #length of Supply in days
     # units_per_year = models.IntegerField(default=0) #length of Supply in days
     # unit_name =models.CharField(max_length=100, default="units")
+    def get_supplies(self):
+        s = Supply.objects.filter(
+            categories__in = self.categories.all()
+        )
+
+        return s
+
 
     def similar_categories(self, user=None):
         if not user:

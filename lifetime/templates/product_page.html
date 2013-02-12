@@ -44,6 +44,15 @@
         {% endif %}
       	{{product.description|linebreaks}}
       </div>
+      
+      {% if not request.user|can_ship:product %}
+      <div>
+        <h1>Buy a Supply with this product</h1>
+        {% for supply in product.get_supplies %}
+            {% include "partial/supply_item.html" with s=supply %}
+        {% endfor %}
+      </div>
+      {% endif %}
     </div>
     <div class="span3">
     	<h3>Similar Products</h3>
