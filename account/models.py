@@ -77,7 +77,7 @@ class Address(models.Model):
     edited = models.BooleanField(default=False)
 
     def __unicode__(self):
-        return "%s \ %s \ %s, %s \%s" % (self.address_line1, self.address_line2, self.city, self.state_province, postal_code)
+        return "%s \ %s \ %s, %s \%s" % (self.address_line1, self.address_line2, self.city, self.state_province, self.postal_code)
 
     class Meta:
         verbose_name_plural = "Addresses"
