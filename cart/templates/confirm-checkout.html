@@ -56,6 +56,10 @@
                     
                     {% if student == "1" %}
                         <div>
+                            <label for="id_student_name">Student's Name</label>
+                            <input type="text" placeholder="Student's Name" name="id_student_name" id="id_student_name">
+                        </div>
+                        <div>
                             {{form.student_email.label_tag}}
                             {{form.student_email}}
                             <span class="muted">We will email the student a link to claim this purchase</span>

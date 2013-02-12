@@ -11,6 +11,8 @@ def checkout(request, cart, student, name, customer, email, student_email=None, 
     print cart
     c = charge_customer(cart.total(), customer["id"], email)
 
+    cart.checkout()
+    
     send_reciept(
         total = cart.total(),
         supplies = cart.get_supplies(),
