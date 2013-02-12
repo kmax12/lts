@@ -21,11 +21,11 @@
         {{supply.description|safe|linebreaks}}
         
         <div class="add">
-        {% if supply not in request.user.profile.get_supplies %}
+        {% if supply in request.user.profile.get_supplies %}
+          You're in luck! You already own this supply.
+        {% else %}
           <span>${{supply.price|floatformat:"0"}}<span>/semsester</span></span>
           <a href="/cart/add?id={{supply.id}}" class="btn btn-large btn-warning" style="">Add to Cart</a>
-        {% else %}
-          You're in luck! You already own this supply.
         {% endif %}
         </div>
       </div>
