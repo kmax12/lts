@@ -30,10 +30,10 @@ class UserProfile(models.Model):
 
     def get_categories(self):
         return Category.objects.filter(
-            supply__in = self.get_supplys()
+            supply__in = self.get_supplies()
         )
 
-    def get_supplys(self):
+    def get_supplies(self):
         return Supply.objects.filter(
             subscription__in = self.user.subscription_set.all()
         )

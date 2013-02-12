@@ -17,7 +17,16 @@
     <img src="johnson.png" /> -->
   </p>
   <div class="buttons">
-    <a class="btn btn-inverse" href="/supply/{{s.url_slug}}">Learn More</a>
-    <a class="btn btn-warning" href="/cart/add?id={{s.id}}">Add to Cart</a>
+    {% if s in request.user.profile.get_supplies %}
+      <span style="vertical-align:middle; margin-right:3px;">You already own this supply.</span>
+      <a class="btn btn-inverse" href="/supply/{{s.url_slug}}">Learn More</a>
+    {% else %}
+      <a class="btn btn-inverse" href="/supply/{{s.url_slug}}">Learn More</a>
+      {% if s not in cart.get_supplies %}
+      <a class="btn btn-warning" href="/cart/add?id={{s.id}}">Add to Cart</a>
+      {% else %}
+      <a class="btn btn-success" href="/cart/">Added - Checkout</a>
+      {% endif %}
+    {% endif %}
   </div>
 </div>

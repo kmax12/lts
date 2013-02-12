@@ -1,3 +1,4 @@
+{% load ship_tags %}
 <div class="row">
   {% for p in products %}
   <div class="span3">
@@ -7,7 +8,7 @@
         <h5>{{p.name}}</h5>
       </a>
       <div>
-        {% if shop %}
+        {% if request.user|can_ship:p %}
         <div class="muted">$0 &minus; Free Shipping</div>
         <div class="buttons">
           {% include "partial/shipit_button.html" with p=p type="tile" %}
