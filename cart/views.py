@@ -57,7 +57,7 @@ def confirm_checkout(request):
                     cart = cart,
                     student = False, 
                     customer = customer,
-                    name = name = form.cleaned_data["name"], 
+                    name = form.cleaned_data["name"], 
                     email = form.cleaned_data["email"],
                     password = form.cleaned_data["password"],
                 )
