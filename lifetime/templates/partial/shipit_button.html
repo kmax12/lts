@@ -1,3 +1,5 @@
+{% load ship_tags %}
+
 <a href="#" class="btn btn-ship-it btn-warning
 
 {% if type == "detail" %}
@@ -8,4 +10,3 @@
 
 "
 data-name="{{p.name}}" data-id="{{p.id}}"><img src="{{STATIC_URL}}img/logo-s.png"> {{ORDER_TEXT}}</a>
-
