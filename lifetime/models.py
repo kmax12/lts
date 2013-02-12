@@ -105,6 +105,8 @@ class Gift(models.Model):
     from_name = models.CharField(max_length=100)
     to_email = models.EmailField()
     message = models.CharField(blank=True, null=True, max_length=100)
+    claimed = models.BooleanField(default=False)
+
 
     def claim(self, user):
         for s in self.supplies:

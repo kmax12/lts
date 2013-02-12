@@ -84,6 +84,9 @@ def claim_gift(request):
 
     try:
         gift = Gift.objects.get(code=code)
+        
+        if gift.claimed:
+            return redirect("lifetime.views.buy_supply")
     except:
         return redirect("lifetime.views.buy_supply")
 
@@ -94,7 +97,8 @@ def claim_gift(request):
             create_user_with_subscriptions(form_data["name"], form_data["email"], form_data["password"], gift.supplies.all())
             user = authenticate(username=form_data["email"], password=form_data["password"])
             login(request, user)
-            gift.delete()
+            gift.claimed = True
+            gift.save()
             return redirect('account.views.account')
     else:
         form = ClaimGift()
