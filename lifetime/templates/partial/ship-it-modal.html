@@ -5,6 +5,11 @@
         <a href="/account/address/" class="">Edit your address</a>
     </div>
     <div class="modal-body">
+        {% if not request.user.address.edited %}
+            <div class="alert">
+                We don't know where to send your stuff. <a href="/account/address/" class="open-add-address bt-buy">Add your address</a> now.
+            </div>
+        {% endif %}
         <p><strong>Confirm shipment</strong> of <span id="order-item"></span></p>
         <div><strong>Ship to:</strong></div>
         <div>
