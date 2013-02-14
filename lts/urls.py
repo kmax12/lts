@@ -11,7 +11,7 @@ admin.autodiscover()
 
 #analytics.js
 import analytics
-analytics.init('8q7671bxndzv1yk81jbn')
+analytics.init('8q7671bxndzv1yk81jbn', flush_at=1)
 
 
 urlpatterns = patterns('',

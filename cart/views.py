@@ -13,7 +13,7 @@ from django.db.models import F
 from django.contrib.auth import authenticate, login
 import json
 from django.forms.util import ErrorList
-    
+import analytics
 
 def confirm_checkout(request):
     cart = Cart(request)
@@ -87,9 +87,22 @@ def add_to_cart(request):
     quantity = 1
     supply_id = request.GET.get('id', None)
     if (supply_id):
+
+        user_id = "anon"
+        if request.user.id:
+            user_id = request.user.id
+
+
         supply = Supply.objects.get(id=supply_id)
+        
+
         cart = Cart(request)
         cart.add(supply, supply.price, quantity)
+
+        analytics.track(user_id, 'Added to cart', {
+          'supply_id' : supply.id,
+          "supply_name" : supply.name
+        })
         
     return redirect('cart.views.view_cart')
 
