@@ -7,6 +7,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes import generic
 from django.contrib.auth.models import User
 from django import forms
+from django.forms import ModelForm
 
 class Cart(models.Model):
     owner = models.ForeignKey(User, related_name='cart', blank=True, null=True)
@@ -27,7 +28,7 @@ class Cart(models.Model):
         ordering = ('-creation_date',)
 
     def __unicode__(self):
-        return unicode(self.creation_date)
+        return str(self.email)
 
 
 class ItemManager(models.Manager):
@@ -74,6 +75,10 @@ class Item(models.Model):
         self.object_id = product.pk
 
     product = property(get_product, set_product)
+
+class EmailForm(forms.Form):
+    email = forms.EmailField(label='Your Email')
+
 
 class CheckoutForm(forms.Form):
     name = forms.CharField(label='Your Name', max_length=100)

@@ -11,6 +11,7 @@ from django.conf import settings
 urlpatterns = patterns('',
     #cart stuff
     url(r'^add/$', 'cart.views.add_to_cart', name="add to cart"),
+    url(r'^email/$', 'cart.views.get_email'),
     url(r'^remove/$', 'cart.views.remove_from_cart', name="remove from cart"),
     url(r'^checkout/$', 'cart.views.checkout', name="checkout"),
     url(r'^confirm-checkout/$', 'cart.views.confirm_checkout', name="checkout"),

@@ -1,0 +1,32 @@
+{% extends "content-page.html" %}
+
+{% block content_styles %}
+{% endblock %}
+
+{% block content %}
+<div class="span4 offset4">
+	<h1>Continue to cart</h1>
+</div>
+<div class="span4 offset4">
+	<div class="lightbg">
+		{% if form.errors %}
+	        <div class="alert alert-error">
+	          {{form.errors}}
+	        </div>
+	    {% endif %}
+
+		<form action="/cart/email/?next=/cart/" method="post" class="clearfix">
+			{% csrf_token %}
+			<div>
+			{{form}}
+			</div>
+            <div class="pull-left" style="margin:10px 0">
+                <input value="Continue to cart" class="btn btn-success" type="submit"/>
+            	<span style="margin:5px">or</span>
+                <a  style="margin-top:5px" href="/cart/">Skip to cart<a/>
+            </div>
+		</form>	
+	</div>
+</div>
+{% endblock %}
+

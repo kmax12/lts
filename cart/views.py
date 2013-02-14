@@ -3,8 +3,8 @@ from cart import Cart
 from utils.SubscriptionManager import SubscriptionManager, make_stripe_customer, get_stripe_customer, charge_customer, checkout
 from lifetime.models import *
 from account.models import *
-from models import CheckoutStudent, CheckoutSelf
-from django.http import HttpResponse
+from models import CheckoutStudent, CheckoutSelf, EmailForm
+from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
@@ -13,7 +13,27 @@ from django.db.models import F
 from django.contrib.auth import authenticate, login
 import json
 from django.forms.util import ErrorList
+
 import analytics
+
+def get_email(request):
+    post = request.POST
+    form = EmailForm()
+    if post:
+        form = EmailForm(post)
+        if form.is_valid():
+            request.session['email'] = form.cleaned_data["email"]
+            cart = Cart(request)
+            cart.cart.email = form.cleaned_data["email"]
+            cart.cart.save()
+            print request.GET.get('next', '/')
+            return HttpResponseRedirect(request.GET.get('next', '/'))
+
+    template_values = {
+        'form' : form
+    }
+    return direct_to_template(request, 'get_email.html', template_values)
+
 
 def confirm_checkout(request):
     cart = Cart(request)
@@ -67,10 +87,11 @@ def confirm_checkout(request):
 
     else:
         student = request.GET.get("student", 0)
+        email = request.session.get('email', '')
         if student == "1":
-            form = CheckoutStudent()
+            form = CheckoutStudent(initial={'email': email})
         else:
-            form = CheckoutSelf()
+            form = CheckoutSelf(initial={'email': email})
         customer = None
     
 
@@ -83,7 +104,7 @@ def confirm_checkout(request):
 
     return direct_to_template(request, 'confirm-checkout.html', template_values)
 
-def add_to_cart(request):
+def add_to_cart(request):    
     quantity = 1
     supply_id = request.GET.get('id', None)
     if (supply_id):
@@ -104,6 +125,9 @@ def add_to_cart(request):
           "supply_name" : supply.name
         })
         
+    if request.session.get('email', '') == '':
+        return redirect('cart.views.get_email')
+
     return redirect('cart.views.view_cart')
 
 def remove_from_cart(request):
