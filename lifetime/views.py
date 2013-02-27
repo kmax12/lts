@@ -12,6 +12,8 @@ from django.views.decorators.csrf import csrf_exempt
 from django.db.models import F
 import json
 from django.contrib.auth import authenticate, login
+from django.shortcuts import get_object_or_404
+
 
 
 def home(request):
@@ -40,7 +42,7 @@ def buy_supply(request):
                              template_values)
 
 def view_supply(request, slug):
-    supply = Supply.objects.get(url_slug=slug) 
+    supply = get_object_or_404(Supply, url_slug=slug) 
 
 
     template_values = {
@@ -53,7 +55,7 @@ def view_supply(request, slug):
                              template_values)
 
 def view_product(request, slug):
-    product = Product.objects.get(id=slug) 
+    product = get_object_or_404(Product, id=slug) 
 
     if request.user.is_authenticated():
         similar = product.similar_products(request.user)
