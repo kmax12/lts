@@ -13,6 +13,14 @@ admin.autodiscover()
 import analytics
 analytics.init('8q7671bxndzv1yk81jbn', flush_at=1)
 
+#api
+from tastypie.api import Api
+from lts.api import SupplyResource
+
+v1_api = Api(api_name='v1')
+v1_api.register(SupplyResource())
+
+
 
 urlpatterns = patterns('',
     #static files
@@ -30,6 +38,10 @@ urlpatterns = patterns('',
     
     #lifetime app
     url(r'', include('lifetime.urls')),
+
+    #api
+    (r'^api/', include(v1_api.urls)),
+
 
     # Examples:
     # url(r'^$', 'lts.views.home', name='home'),

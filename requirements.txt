@@ -7,3 +7,4 @@ stripe
 requests
 django-templated-email
 analytics-python
+django-tastypie
