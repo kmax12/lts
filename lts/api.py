@@ -56,16 +56,9 @@ class SupplyResource(ModelResource):
         elif request.user:
             return request.user.profile.get_supplies()
 
-
-    def apply_authorization_limits(self, request, object_list):
-        print "works!"
-        if request.user.is_superuser:
-            return object_list.filter(user__id=request.GET.get('user__id',''))
-
-    # def apply_authorization_limits(self, request, object_list):
-    #     # if request.GET.get("all", "true") != "true":
-    #     #     return User.objects.filter(user=request.user).profile.get_supplies()
-    #     return []
+    def dehydrate(self, bundle):
+        bundle.data["all"] = bundle.request.GET.get("all", "true")
+        return bundle
 
     class Meta:
         queryset = Supply.objects.select_related().all()
