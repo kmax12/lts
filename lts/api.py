@@ -10,6 +10,7 @@ from tastypie.http import HttpUnauthorized, HttpForbidden
 from django.conf.urls import url
 from tastypie.utils import trailing_slash
 from account.views import handleOrder
+from django.utils import formats
 
 class SupplyAuthorization(ReadOnlyAuthorization):
     def is_authorized(self, request, object=None):
@@ -89,6 +90,14 @@ class OrderResource(ModelResource):
         bundle.data["success"] = success
         print success
         return bundle
+
+    def dehydrate(self, bundle):
+        date = bundle.data["date_placed"]
+        formatted_datetime = formats.date_format(date, "SHORT_DATETIME_FORMAT")
+        print formatted_datetime
+        bundle.data["date_placed"] = formatted_datetime
+        return bundle
+
 
     class Meta:
         queryset = Order.objects.all()

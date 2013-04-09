@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt 
 import json
 import analytics
+from django.utils import formats
 
 @login_required    
 def account(request):
