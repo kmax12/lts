@@ -134,7 +134,7 @@ def place_order(request):
     success = handleOrder(request.user, product_id)
 
     if success:
-        product = user.profile.has_product_id(product_id)
+        product = request.user.profile.has_product_id(product_id)
 
     template_values = {
                 'product': product,
