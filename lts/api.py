@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from tastypie import fields
+from tastypie.models import ApiKey
 from tastypie.resources import ModelResource
 from lifetime.models import Supply, Category, Product, ProductImage
 from tastypie.authentication import BasicAuthentication
@@ -55,6 +56,14 @@ class UserResource(ModelResource):
 
     def get_object_list(self, request):
         return super(UserResource, self).get_object_list(request).filter(username=request.user)
+
+
+    def dehydrate(self, bundle):
+        api_key = ApiKey.objects.get_or_create(user=bundle.request.user)
+        key = api_key[0].generate_key()
+        api_key[0].key = key
+        api_key[0].save()
+        return {"api_key":key}
 
 # class EntryResource(ModelResource):
 #     user = fields.ForeignKey(UserResource, 'user')
