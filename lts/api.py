@@ -9,6 +9,7 @@ from django.contrib.auth import authenticate, login, logout
 from tastypie.http import HttpUnauthorized, HttpForbidden
 from django.conf.urls import url
 from tastypie.utils import trailing_slash
+from account.views import handleOrder
 
 class SupplyAuthorization(ReadOnlyAuthorization):
     def is_authorized(self, request, object=None):
@@ -80,6 +81,14 @@ class OrderResource(ModelResource):
 
     def get_object_list(self, request):
         return request.user.profile.get_orders()
+
+    def obj_create(self, bundle, request=None, **kwargs):
+        user = request.user
+        product_id = bundle.request.POST.get("product_id")
+        success = handleOrder(user, product_id)
+        bundle.data["success"] = success
+        print success
+        return bundle
 
     class Meta:
         queryset = Order.objects.all()

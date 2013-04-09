@@ -108,17 +108,17 @@ def handleOrder(user, product_id):
         #         categories__in = product.categories.all()
         #     )
         # )
-        analytics.identify(request.user.id, {
-               'email': request.user.email,
-               'name': request.user.first_name,
+        analytics.identify(user.id, {
+               'email': user.email,
+               'name': user.first_name,
         })
 
-        analytics.track(request.user.id, 'Placed an order', {
+        analytics.track(user.id, 'Placed an order', {
           'product_id' : product.id,
           'product_name' : product.name,
         })
 
-        order = Order(user=request.user, product=product)
+        order = Order(user=user, product=product)
         order.save()
         success = True
 
@@ -140,5 +140,5 @@ def place_order(request):
                 'product': product,
                 'success' : success
             }
-            
+
     return direct_to_template(request, 'order-success.html', template_values) 
