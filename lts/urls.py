@@ -15,11 +15,12 @@ analytics.init('8q7671bxndzv1yk81jbn', flush_at=1)
 
 #api
 from tastypie.api import Api
-from lts.api import SupplyResource, UserResource
+from lts.api import SupplyResource, UserResource, OrderResource
 
 v1_api = Api(api_name='v1')
 v1_api.register(SupplyResource())
 v1_api.register(UserResource())
+v1_api.register(OrderResource())
 
 
 

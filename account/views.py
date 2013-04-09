@@ -96,15 +96,9 @@ def add_address(request):
 
     return HttpResponse(json.dumps({'success':success}), mimetype="application/json")
 
-@login_required
-@csrf_exempt
-def place_order(request):
-    product_id = request.POST.get("id", None)
-    if not product_id:
-        return redirect('account.views.account')
 
-
-    product = request.user.profile.has_product_id(product_id)
+def handleOrder(user, product_id):
+    product = user.profile.has_product_id(product_id)
 
     success = False
     if product:
@@ -128,9 +122,23 @@ def place_order(request):
         order.save()
         success = True
 
-        
+    return success
+
+@login_required
+@csrf_exempt
+def place_order(request):
+    product_id = request.POST.get("id", None)
+    if not product_id:
+        return redirect('account.views.account')
+
+    sucess = handleOrder(request.user, product_id)
+
+    if success:
+        product = user.profile.has_product_id(product_id)
+
     template_values = {
                 'product': product,
                 'success' : success
             }
+            
     return direct_to_template(request, 'order-success.html', template_values) 

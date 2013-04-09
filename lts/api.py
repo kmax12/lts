@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from tastypie import fields
 from tastypie.models import ApiKey
 from tastypie.resources import ModelResource
-from lifetime.models import Supply, Category, Product, ProductImage
+from lifetime.models import Supply, Category, Product, ProductImage, Order
 from tastypie.authentication import BasicAuthentication, ApiKeyAuthentication
 from tastypie.authorization import DjangoAuthorization, Authorization, ReadOnlyAuthorization
 from django.contrib.auth import authenticate, login, logout
@@ -73,6 +73,19 @@ class ProductImageResource(ModelResource):
     class Meta:
         queryset = ProductImage.objects.all()
         resource_name = 'product_image'
+
+
+class OrderResource(ModelResource):
+    product = fields.ForeignKey(ProductResource, 'product', full=True)
+
+    def get_object_list(self, request):
+        return request.user.profile.get_orders()
+
+    class Meta:
+        queryset = Order.objects.all()
+        resource_name = 'order'
+        authentication = ApiKeyAuthentication()
+
 
 
 class UserResource(ModelResource):
