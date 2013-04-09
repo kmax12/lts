@@ -48,10 +48,13 @@ class UserResource(ModelResource):
     class Meta:
         queryset = User.objects.all()
         fields = ['first_name', 'last_name', 'email']
-        allowed_methods = ['post']
+        allowed_methods = ['post', 'get']
         resource_name = 'user'
         authentication = BasicAuthentication()
         authorization = DjangoAuthorization()
+
+    def get_object_list(self, request):
+        return super(UserResource, self).get_object_list(request).filter(username=request.user)
 
 # class EntryResource(ModelResource):
 #     user = fields.ForeignKey(UserResource, 'user')
