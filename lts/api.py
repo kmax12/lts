@@ -2,7 +2,8 @@ from django.contrib.auth.models import User
 from tastypie import fields
 from tastypie.resources import ModelResource
 from lifetime.models import Supply, Category, Product, ProductImage
-
+from tastypie.authentication import BasicAuthentication
+from tastypie.authorization import DjangoAuthorization
 
 
 
@@ -35,6 +36,22 @@ class ProductImageResource(ModelResource):
     class Meta:
         queryset = ProductImage.objects.all()
         resource_name = 'product_image'
+
+
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login, logout
+from tastypie.http import HttpUnauthorized, HttpForbidden
+from django.conf.urls import url
+from tastypie.utils import trailing_slash
+
+class UserResource(ModelResource):
+    class Meta:
+        queryset = User.objects.all()
+        fields = ['first_name', 'last_name', 'email']
+        allowed_methods = ['post']
+        resource_name = 'user'
+        authentication = BasicAuthentication()
+        authorization = DjangoAuthorization()
 
 # class EntryResource(ModelResource):
 #     user = fields.ForeignKey(UserResource, 'user')
