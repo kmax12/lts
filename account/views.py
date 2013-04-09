@@ -131,7 +131,7 @@ def place_order(request):
     if not product_id:
         return redirect('account.views.account')
 
-    sucess = handleOrder(request.user, product_id)
+    success = handleOrder(request.user, product_id)
 
     if success:
         product = user.profile.has_product_id(product_id)
